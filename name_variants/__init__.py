@@ -32,8 +32,8 @@ ALL_TABLES: dict[str, dict[str, list[str]]] = {
     "chinese": CHINESE_SURNAME_VARIANTS,
     "arabic": ARABIC_NAME_VARIANTS,
     "japanese": JAPANESE_SURNAME_VARIANTS,
-    "korean": KOREAN_SURNAME_VARIANTS,
     "vietnamese": VIETNAMESE_SURNAME_VARIANTS,
+    "korean": KOREAN_SURNAME_VARIANTS,
     "indian_hindi": INDIAN_NAMES_HINDI,
     "indian_tamil": INDIAN_NAMES_TAMIL,
     "indian_bengali": INDIAN_NAMES_BENGALI,
@@ -46,40 +46,53 @@ ALL_TABLES: dict[str, dict[str, list[str]]] = {
     "indonesian_malay": INDONESIAN_MALAY_NAME_VARIANTS,
 }
 
-# Lazy-built inverted index: romanization (lowercase) → canonical key
+# Lazy-built inverted index: romanization (lowercase) → canonical key (last-write-wins)
 _INDEX: dict[str, str] | None = None
-# Lazy-built variants map: canonical key → variants list (last-write-wins, same as _INDEX)
+# Lazy-built variants map: canonical key → variants list
 _VARIANTS: dict[str, list[str]] | None = None
+# Lazy-built multi-match map: romanization (lowercase) → all canonical keys across all tables
+_CANDIDATES: dict[str, list[str]] | None = None
 
 
-def _build_index() -> tuple[dict[str, str], dict[str, list[str]]]:
+def _build_index() -> tuple[dict[str, str], dict[str, list[str]], dict[str, list[str]]]:
     index: dict[str, str] = {}
     variants: dict[str, list[str]] = {}
+    candidates: dict[str, list[str]] = {}
     for table in ALL_TABLES.values():
         for canonical, variants_list in table.items():
-            # The canonical key itself maps to itself
             index[canonical] = canonical
-            # Last-write-wins for both dicts (same iteration order)
             variants[canonical] = variants_list
+            # candidates: canonical maps to itself for direct script-form lookup
+            if canonical not in candidates.get(canonical, []):
+                candidates.setdefault(canonical, []).append(canonical)
             for variant in variants_list:
                 v = variant.lower().strip()
                 if v:
-                    index[v] = canonical
-    return index, variants
+                    index[v] = canonical  # last-write-wins — preserves lookup_key behaviour
+                    if canonical not in candidates.get(v, []):
+                        candidates.setdefault(v, []).append(canonical)
+    return index, variants, candidates
 
 
 def _get_index() -> dict[str, str]:
-    global _INDEX, _VARIANTS
+    global _INDEX, _VARIANTS, _CANDIDATES
     if _INDEX is None:
-        _INDEX, _VARIANTS = _build_index()
+        _INDEX, _VARIANTS, _CANDIDATES = _build_index()
     return _INDEX
 
 
 def _get_variants() -> dict[str, list[str]]:
-    global _INDEX, _VARIANTS
+    global _INDEX, _VARIANTS, _CANDIDATES
     if _VARIANTS is None:
-        _INDEX, _VARIANTS = _build_index()
+        _INDEX, _VARIANTS, _CANDIDATES = _build_index()
     return _VARIANTS
+
+
+def _get_candidates() -> dict[str, list[str]]:
+    global _INDEX, _VARIANTS, _CANDIDATES
+    if _CANDIDATES is None:
+        _INDEX, _VARIANTS, _CANDIDATES = _build_index()
+    return _CANDIDATES
 
 
 def lookup_key(text: str) -> str | None:
@@ -119,6 +132,43 @@ def lookup_key(text: str) -> str | None:
     return None
 
 
+def lookup_candidates(text: str) -> list[str]:
+    """
+    Return all canonical keys that have this romanization as a variant.
+
+    Unlike lookup_key(), which returns one result via last-write-wins,
+    this returns every canonical key across all 15 language tables that
+    lists the input as a variant — ordered by table iteration order.
+
+    Examples:
+        lookup_candidates("Lee")    → ["이", "李", "lê"]  (Korean, Chinese, Vietnamese)
+        lookup_candidates("Ng")     → ["黄", "吴"]         (ambiguous Hokkien)
+        lookup_candidates("Nguyen") → ["nguyễn"]           (unambiguous)
+        lookup_candidates("Smith")  → []
+    """
+    if not text:
+        return []
+    cands = _get_candidates()
+    seen: set[str] = set()
+    result: list[str] = []
+
+    def _collect(lookup_key: str) -> None:
+        for canonical in cands.get(lookup_key, []):
+            if canonical not in seen:
+                seen.add(canonical)
+                result.append(canonical)
+
+    key = text.strip()
+    _collect(key)
+    key_lower = key.lower()
+    if key_lower != key:
+        _collect(key_lower)
+    for token in key_lower.split():
+        _collect(token)
+
+    return result
+
+
 def lookup_all(text: str) -> tuple[str, list[str]] | None:
     """
     Return (canonical_key, all_variants) for a name, or None if unknown.
@@ -137,4 +187,4 @@ def lookup_all(text: str) -> tuple[str, list[str]] | None:
     return key, variants
 
 
-__all__ = ["lookup_key", "lookup_all", "ALL_TABLES"]
+__all__ = ["lookup_key", "lookup_all", "lookup_candidates", "ALL_TABLES"]
