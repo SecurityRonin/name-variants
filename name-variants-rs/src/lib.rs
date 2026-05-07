@@ -130,4 +130,17 @@ mod tests {
         // "john" maps to Greek Ιωάννης — use names genuinely absent from the dataset
         assert_eq!(lookup_key("Kowalski Smith"), None);
     }
+
+    #[test]
+    fn lookup_all_chan_returns_variants() {
+        let (key, variants) = lookup_all("Chan").unwrap();
+        assert_eq!(key, "陈");
+        assert!(variants.contains(&"chen"));
+        assert!(variants.contains(&"陳"));
+    }
+
+    #[test]
+    fn lookup_all_unknown_returns_none() {
+        assert!(lookup_all("Smith").is_none());
+    }
 }
