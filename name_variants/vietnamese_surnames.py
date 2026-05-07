@@ -25,7 +25,7 @@ VIETNAMESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     # ── Surnames (covers ~99% of Vietnamese population) ───────────────────
     "nguyễn": ["nguyen", "nguyên", "nguyn"],
     "trần": ["tran", "trần", "trant"],
-    "lê": ["le", "lee", "lê"],
+    "lê": ["le", "lê"],
     "phạm": ["pham", "phan", "pham"],
     "hoàng": ["hoang", "hong", "hwang"],
     "huỳnh": ["huynh", "huyhn", "huynt"],
@@ -38,7 +38,7 @@ VIETNAMESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "hồ": ["ho", "hoh"],
     "ngô": ["ngo", "ngoh"],
     "dương": ["duong", "dong"],
-    "lý": ["ly", "li", "lee"],
+    "lý": ["ly", "li"],
     "trịnh": ["trinh", "trịnh"],
     "đinh": ["dinh", "dinh"],
     "lưu": ["luu", "lyu", "lu"],
@@ -111,5 +111,5 @@ VIETNAMESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "kim": ["kim", "gim"],
     "hồng": ["hong", "hoong"],
     "yến": ["yen", "yenn"],
-    "ly": ["ly", "lee"],
+    "ly": ["ly"],
 }

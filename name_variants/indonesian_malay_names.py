@@ -60,7 +60,8 @@ INDONESIAN_MALAY_NAME_VARIANTS: dict[str, list[str]] = {
     "sinaga": ["sinaga", "sinaga"],
     "rajagukguk": ["rajagukguk", "radjagoekoek"],
     # ── Common Malay names ────────────────────────────────────────────────────
-    "muhammad": ["muhammad", "mohammed", "mohamad"],
+    # Note: muhammad/mohamad covered by arabic_names محمد entry
+
     "ahmad": ["ahmad", "ahmed"],
     "mohd": ["mohd", "md"],        # common abbreviation
     "abd": ["abd", "ab"],          # Abdul abbreviation

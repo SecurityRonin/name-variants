@@ -68,7 +68,7 @@ PERSIAN_NAME_VARIANTS: dict[str, list[str]] = {
     "کریم": ["karim", "kareem"],
     "مجید": ["majid", "majeed"],
     # ── Female given names ───────────────────────────────────────────────────
-    "فاطمه": ["fateme", "fatemeh", "fatima", "fatime"],
+    "فاطمه": ["fateme", "fatemeh", "fatime"],
     "زهرا": ["zahra", "zehra"],
     "مریم": ["maryam", "mariam"],
     "زینب": ["zeinab", "zaynab", "zainab"],

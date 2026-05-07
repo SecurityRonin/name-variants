@@ -120,7 +120,7 @@ KOREAN_SURNAME_VARIANTS: dict[str, list[str]] = {
     "나": ["na", "rha"],
     "독": ["dok", "dock"],
     "각": ["gak", "kak"],
-    "탄": ["tan", "than"],
+    "탄": ["than"],
     "포": ["po", "poh"],
     "피": ["pi", "pee"],
     "예": ["ye", "yeh"],

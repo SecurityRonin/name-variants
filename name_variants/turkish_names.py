@@ -20,7 +20,7 @@ Sources:
 
 TURKISH_NAME_VARIANTS: dict[str, list[str]] = {
     # ── Male given names ─────────────────────────────────────────────────────
-    "mehmet": ["mehmet", "mehmed", "mahmoud", "mohammed"],
+    "mehmet": ["mehmet", "mehmed", "mahmoud"],
     "mustafa": ["mustafa", "mustaffa"],
     "ahmet": ["ahmet", "ahmed", "ahmad"],
     "ali": ["ali", "aly"],
@@ -74,7 +74,7 @@ TURKISH_NAME_VARIANTS: dict[str, list[str]] = {
     "yılmaz": ["yilmaz", "yilmas"],
     "polat": ["polat", "polad"],
     # ── Female given names ────────────────────────────────────────────────────
-    "fatma": ["fatma", "fatimah"],
+    "fatma": ["fatma"],
     "ayşe": ["ayse", "aysha", "aisha"],
     "emine": ["emine", "emina"],
     "hatice": ["hatice", "khatija"],
