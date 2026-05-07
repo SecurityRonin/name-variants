@@ -91,9 +91,11 @@ Optional: CJK normalization helpers (opencc + jaconv):
 pip install "name-variants[normalize]"
 ```
 
-The `[normalize]` extra installs:
-- **opencc-python-reimplemented** — converts Traditional Chinese input to Simplified before lookup (e.g. `陳` → `陈` programmatically, not just via the table's explicit Traditional variants)
+The `[normalize]` extra installs two pure-Python packages:
+- **opencc-python-reimplemented** — converts Traditional Chinese input to Simplified before lookup (e.g. `陳` → `陈` programmatically, beyond the explicit Traditional variants already in the table)
 - **jaconv** — normalizes Japanese kana (katakana ↔ hiragana, full-width ↔ half-width)
+
+Both are optional because the core package ships zero dependencies — most callers pre-normalize upstream.
 
 ---
 
