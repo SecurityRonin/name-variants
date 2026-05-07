@@ -44,6 +44,21 @@ pub fn lookup_key(text: &str) -> Option<&'static str> {
     None
 }
 
+/// Return the canonical key and all known variants for a name, or `None` if unknown.
+///
+/// # Examples
+/// ```
+/// use name_variants::lookup_all;
+/// let (key, variants) = lookup_all("Chan").unwrap();
+/// assert_eq!(key, "陈");
+/// assert!(variants.contains(&"chen"));
+/// ```
+pub fn lookup_all(text: &str) -> Option<(&'static str, &'static [&'static str])> {
+    let key = lookup_key(text)?;
+    let variants = generated::VARIANTS.get(key)?;
+    Some((key, variants))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

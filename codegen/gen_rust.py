@@ -71,29 +71,56 @@ def build_flat_index(
     return index
 
 
+def build_variants_map(
+    tables: list[tuple[str, dict[str, list[str]]]]
+) -> dict[str, list[str]]:
+    """canonical_key → variants list (last-write-wins, same as build_flat_index)."""
+    variants_map: dict[str, list[str]] = {}
+    for _name, table in tables:
+        for canonical, variants in table.items():
+            variants_map[canonical] = variants
+    return variants_map
+
+
 def escape_rust_str(s: str) -> str:
     """Escape a string for use in a Rust string literal."""
     return s.replace("\\", "\\\\").replace('"', '\\"')
 
 
-def generate(index: dict[str, str]) -> str:
+def generate(index: dict[str, str], variants_map: dict[str, list[str]]) -> str:
     """Render the Rust generated.rs content."""
-    entries = "\n".join(
+    # INDEX entries (variant → canonical)
+    index_entries = "\n".join(
         f'    "{escape_rust_str(k)}" => "{escape_rust_str(v)}",'
         for k, v in sorted(index.items())
     )
-    entry_count = len(index)
+
+    # VARIANTS entries (canonical → &[variants])
+    def fmt_variants(vs: list[str]) -> str:
+        items = ", ".join(f'"{escape_rust_str(v)}"' for v in vs)
+        return f"&[{items}]"
+
+    variants_entries = "\n".join(
+        f'    "{escape_rust_str(k)}" => {fmt_variants(vs)},'
+        for k, vs in sorted(variants_map.items())
+    )
+
     return f"""\
 // GENERATED FILE — do not edit by hand.
 // Run: python codegen/gen_rust.py
 // to regenerate from name_variants/*.py source tables.
 //
-// Entries: {entry_count}
+// INDEX entries: {len(index)}
+// VARIANTS entries: {len(variants_map)}
 
 use phf::phf_map;
 
 pub(crate) static INDEX: phf::Map<&'static str, &'static str> = phf_map! {{
-{entries}
+{index_entries}
+}};
+
+pub(crate) static VARIANTS: phf::Map<&'static str, &'static [&'static str]> = phf_map! {{
+{variants_entries}
 }};
 """
 
@@ -106,9 +133,10 @@ def main() -> None:
         print(f"  loaded {module_name}: {len(table)} entries", file=sys.stderr)
 
     index = build_flat_index(tables)
-    print(f"  flat index: {len(index)} entries total", file=sys.stderr)
+    variants_map = build_variants_map(tables)
+    print(f"  flat index: {len(index)} entries, variants: {len(variants_map)} keys", file=sys.stderr)
 
-    content = generate(index)
+    content = generate(index, variants_map)
     OUTPUT_PATH.write_text(content, encoding="utf-8")
     print(f"  wrote {OUTPUT_PATH}", file=sys.stderr)
 
