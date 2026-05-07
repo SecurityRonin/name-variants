@@ -1,3 +1,10 @@
+[![Stars](https://img.shields.io/github/stars/SecurityRonin/name-variants?style=flat-square)](https://github.com/SecurityRonin/name-variants/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://github.com/SecurityRonin/name-variants/actions/workflows/ci.yml/badge.svg)](https://github.com/SecurityRonin/name-variants/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/name-variants)](https://pypi.org/project/name-variants/)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+[![Sponsor](https://img.shields.io/badge/sponsor-h4x0r-ea4aaa?logo=github-sponsors)](https://github.com/sponsors/h4x0r)
+
 # name-variants
 
 Multilingual name romanization lookup tables for NLP, entity resolution, and document processing.
@@ -70,6 +77,7 @@ key, variants = lookup_all("Chan")
 - **Zero runtime dependencies** — pure Python dicts
 - **Lowercase romanizations** — callers casefold before lookup
 - **`None` for unknowns** — explicit signal to fall back to fuzzy matching
+- **No language detection** — the index is a flat map; romanization collisions across languages are resolved last-write-wins with the highest-priority table winning (Chinese > Korean > Arabic > …). When a romanization is ambiguous (e.g. `Lee` could be Chinese 李 or Korean 이), the table loaded last wins. Use `lookup_all()` to see all candidates.
 
 ## Install
 
@@ -82,3 +90,18 @@ Optional: CJK normalization helpers (opencc + jaconv):
 ```bash
 pip install "name-variants[normalize]"
 ```
+
+The `[normalize]` extra installs:
+- **opencc-python-reimplemented** — converts Traditional Chinese input to Simplified before lookup (e.g. `陳` → `陈` programmatically, not just via the table's explicit Traditional variants)
+- **jaconv** — normalizes Japanese kana (katakana ↔ hiragana, full-width ↔ half-width)
+
+---
+
+## Related Projects
+
+- **[veil](https://github.com/SecurityRonin/veil)** — pseudonymization pipeline that uses `name-variants` for entity resolution before anonymization
+- **[winevt-forensic](https://github.com/SecurityRonin/winevt-forensic)** — Windows event log recovery and forensic parsing
+
+---
+
+[Privacy Policy](https://securityronin.github.io/name-variants/privacy/) · [Terms of Service](https://securityronin.github.io/name-variants/terms/) · © 2026 Security Ronin Ltd.
