@@ -1,5 +1,5 @@
-"""Tests for lookup_key(), lookup_all(), and ALL_TABLES completeness."""
-from name_variants import ALL_TABLES, lookup_all, lookup_key
+"""Tests for lookup_key(), lookup_all(), lookup_candidates(), and ALL_TABLES completeness."""
+from name_variants import ALL_TABLES, lookup_all, lookup_candidates, lookup_key
 
 # ── Table completeness ────────────────────────────────────────────────────────
 
@@ -140,6 +140,39 @@ def test_yitzhak_and_isaac():
 
 def test_celik_and_chelik():
     assert lookup_key("Celik") == lookup_key("çelik")
+
+
+# ── lookup_candidates — multi-script ambiguous romanizations ─────────────────
+
+def test_candidates_lee_returns_korean_chinese_vietnamese():
+    # "lee" legitimately appears in Korean 이, Chinese 李, and Vietnamese lê
+    result = lookup_candidates("Lee")
+    assert "이" in result
+    assert "李" in result
+    assert "lê" in result
+
+
+def test_candidates_ng_returns_both_chinese_surnames():
+    # "ng" is ambiguous between 黄 (Huang) and 吴 (Wu) in Hokkien/Cantonese
+    result = lookup_candidates("Ng")
+    assert "黄" in result
+    assert "吴" in result
+
+
+def test_candidates_unambiguous_returns_single():
+    # "nguyen" only appears under nguyễn
+    result = lookup_candidates("Nguyen")
+    assert result == ["nguyễn"]
+
+
+def test_candidates_unknown_returns_empty():
+    assert lookup_candidates("Smith") == []
+    assert lookup_candidates("") == []
+
+
+def test_lookup_key_still_wins_korean_for_lee():
+    # lookup_key must keep its single-best-match contract — Korean wins for "lee"
+    assert lookup_key("Lee") == "이"
 
 
 # ── Unknown names ─────────────────────────────────────────────────────────────
