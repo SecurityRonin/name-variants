@@ -46,7 +46,7 @@ INDIAN_NAMES_TAMIL: dict[str, list[str]] = {
     "லட்சுமி": ["lakshmi", "laxmi", "luxmi"],
     "மீனாட்சி": ["meenakshi", "minakshi", "meenachee"],
     "சரஸ்வதி": ["saraswati", "saraswathy", "sarasvati"],
-    "அம்பாள்": ["ambal", "ambal"],
+    "அம்பாள்": ["ambal"],
     "தேவி": ["devi", "thevi"],
     "கமலா": ["kamala", "kamla"],
     "ரேவதி": ["revathi", "revati"],
@@ -65,7 +65,7 @@ INDIAN_NAMES_TAMIL: dict[str, list[str]] = {
     "ஆதித்யா": ["aditya", "aaditya"],
     "விஜய்": ["vijay", "vijei"],
     "அஜித்": ["ajith", "ajit"],
-    "விஷால்": ["vishal", "vishal"],
+    "விஷால்": ["vishal"],
     "சிம்பு": ["simbu", "stmbu"],
     "தனுஷ்": ["dhanush", "danus"],
 }
