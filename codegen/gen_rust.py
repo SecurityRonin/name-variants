@@ -74,11 +74,12 @@ def build_flat_index(
 def build_variants_map(
     tables: list[tuple[str, dict[str, list[str]]]]
 ) -> dict[str, list[str]]:
-    """canonical_key → variants list (last-write-wins, same as build_flat_index)."""
+    """canonical_key → variants list (first-occurrence-wins, same as build_flat_index)."""
     variants_map: dict[str, list[str]] = {}
     for _name, table in tables:
         for canonical, variants in table.items():
-            variants_map[canonical] = variants
+            if canonical not in variants_map:
+                variants_map[canonical] = variants
     return variants_map
 
 
@@ -135,6 +136,10 @@ def main() -> None:
     index = build_flat_index(tables)
     variants_map = build_variants_map(tables)
     print(f"  flat index: {len(index)} entries, variants: {len(variants_map)} keys", file=sys.stderr)
+
+    missing = set(index.values()) - set(variants_map.keys())
+    if missing:
+        print(f"  WARNING: {len(missing)} canonical keys in INDEX have no VARIANTS entry: {sorted(missing)[:5]}...", file=sys.stderr)
 
     content = generate(index, variants_map)
     OUTPUT_PATH.write_text(content, encoding="utf-8")
