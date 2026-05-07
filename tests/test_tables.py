@@ -1,5 +1,4 @@
 """Table-level completeness and structural invariants."""
-import pytest
 from name_variants import ALL_TABLES
 from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
 

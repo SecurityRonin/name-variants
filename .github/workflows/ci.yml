@@ -17,6 +17,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install -e ".[dev]"
+      - run: ruff check name_variants/ tests/
       - run: pytest tests/ -v
 
   rust-tests:

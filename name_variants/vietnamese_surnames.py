@@ -72,12 +72,10 @@ VIETNAMESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "mạc": ["mac", "mak"],
     "vừa": ["vua", "vwa"],
     "bạch": ["bach", "bahk"],
-    "đỗ": ["do", "doe"],
     "cam": ["cam", "kahm"],
     "liêu": ["lieu", "lyew"],
     # ── Common given name components (appear standalone in LLM output) ─────
     "thị": ["thi", "thy"],      # female particle
-    "văn": ["van", "vahn"],     # male particle
     "thắng": ["thang", "thaing"],
     "minh": ["minh", "min"],
     "anh": ["anh", "ann"],
@@ -89,7 +87,6 @@ VIETNAMESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "nam": ["nam", "nahm"],
     "quang": ["quang", "kwang"],
     "long": ["long", "lohng"],
-    "đức": ["duc", "duk"],
     "hòa": ["hoa", "hwah"],
     "bình": ["binh", "bin"],
     "khoa": ["khoa", "kwah"],
@@ -97,7 +94,6 @@ VIETNAMESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "phương": ["phuong", "fwong"],
     "ngọc": ["ngoc", "nyok"],
     "lan": ["lan", "lahn"],
-    "mai": ["mai", "my"],
     "thu": ["thu", "too"],
     "loan": ["loan", "lwan"],
     "chi": ["chi", "chee"],

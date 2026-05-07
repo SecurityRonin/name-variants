@@ -148,9 +148,7 @@ JAPANESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "小泉": ["koizumi"],
     "安倍": ["abe"],
     "鳩山": ["hatoyama"],
-    "福田": ["fukuda"],
     "細川": ["hosokawa"],
     "竹下": ["takeshita"],
     "中曽根": ["nakasone"],
-    "田中": ["tanaka"],
 }

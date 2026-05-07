@@ -1,7 +1,5 @@
 """Tests for lookup_key(), lookup_all(), and ALL_TABLES completeness."""
-import pytest
-from name_variants import lookup_key, lookup_all, ALL_TABLES
-
+from name_variants import ALL_TABLES, lookup_all, lookup_key
 
 # ── Table completeness ────────────────────────────────────────────────────────
 

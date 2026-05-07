@@ -12,21 +12,21 @@ Usage:
 
 from __future__ import annotations
 
-from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
 from name_variants.arabic_names import ARABIC_NAME_VARIANTS
-from name_variants.japanese_surnames import JAPANESE_SURNAME_VARIANTS
-from name_variants.korean_surnames import KOREAN_SURNAME_VARIANTS
-from name_variants.vietnamese_surnames import VIETNAMESE_SURNAME_VARIANTS
+from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
+from name_variants.greek_names import GREEK_NAME_VARIANTS
+from name_variants.hebrew_names import HEBREW_NAME_VARIANTS
+from name_variants.indian_names_bengali import INDIAN_NAMES_BENGALI
 from name_variants.indian_names_hindi import INDIAN_NAMES_HINDI
 from name_variants.indian_names_tamil import INDIAN_NAMES_TAMIL
-from name_variants.indian_names_bengali import INDIAN_NAMES_BENGALI
-from name_variants.persian_names import PERSIAN_NAME_VARIANTS
-from name_variants.hebrew_names import HEBREW_NAME_VARIANTS
-from name_variants.thai_names import THAI_NAME_VARIANTS
-from name_variants.greek_names import GREEK_NAME_VARIANTS
-from name_variants.turkish_names import TURKISH_NAME_VARIANTS
-from name_variants.russian_surnames import RUSSIAN_SURNAME_VARIANTS
 from name_variants.indonesian_malay_names import INDONESIAN_MALAY_NAME_VARIANTS
+from name_variants.japanese_surnames import JAPANESE_SURNAME_VARIANTS
+from name_variants.korean_surnames import KOREAN_SURNAME_VARIANTS
+from name_variants.persian_names import PERSIAN_NAME_VARIANTS
+from name_variants.russian_surnames import RUSSIAN_SURNAME_VARIANTS
+from name_variants.thai_names import THAI_NAME_VARIANTS
+from name_variants.turkish_names import TURKISH_NAME_VARIANTS
+from name_variants.vietnamese_surnames import VIETNAMESE_SURNAME_VARIANTS
 
 ALL_TABLES: dict[str, dict[str, list[str]]] = {
     "chinese": CHINESE_SURNAME_VARIANTS,
