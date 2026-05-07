@@ -7,26 +7,55 @@ name = "name-variants"
 version = "0.1.0"
 description = "Multilingual name romanization lookup tables: Chinese, Japanese, Korean, Arabic, Vietnamese, Indian, Persian, Hebrew, Thai, Greek, Turkish, Russian, Indonesian/Malay"
 readme = "README.md"
-license = "MIT"
+license = { text = "MIT" }
 requires-python = ">=3.11"
-dependencies = []  # pure data — no runtime dependencies
+authors = [{ name = "SecurityRonin" }]
+keywords = [
+    "names", "romanization", "transliteration", "cjk", "arabic",
+    "multilingual", "nlp", "ner", "pseudonymization",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []
 
 [project.optional-dependencies]
 normalize = [
-    "opencc-python-reimplemented>=0.1",  # Traditional→Simplified Chinese
-    "jaconv>=0.3",                        # kana normalization
+    "opencc-python-reimplemented>=0.1",
+    "jaconv>=0.3",
 ]
 dev = [
     "pytest>=8.0",
     "ruff>=0.9",
+    "build>=1.0",
+    "twine>=5.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/SecurityRonin/name-variants"
+Repository = "https://github.com/SecurityRonin/name-variants"
+Issues = "https://github.com/SecurityRonin/name-variants/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["name_variants"]
 
+[tool.hatch.build.targets.sdist]
+include = ["name_variants/", "tests/", "README.md", "LICENSE"]
+
 [tool.ruff]
 target-version = "py311"
 line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
