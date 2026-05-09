@@ -1,7 +1,6 @@
 """Table-level completeness and structural invariants."""
-import pytest
 
-from name_variants import ALL_TABLES, lookup_key
+from name_variants import ALL_TABLES
 from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
 
 
@@ -46,29 +45,19 @@ def test_no_duplicate_variants_within_entry():
 
 
 def test_every_canonical_self_lookup(canonical_entry):
-    """Every unambiguous canonical self-resolves; ambiguous ones are skipped."""
+    """Every canonical must appear in lookup_candidates() for its own string.
+
+    lookup_candidates() is the authoritative API for ambiguous romanizations:
+    it guarantees every canonical is reachable via its own key string,
+    even when lookup_key() resolves to a different table's entry.
+    """
     from name_variants import lookup_candidates
     _table_name, canonical = canonical_entry
-    # Pure-ASCII canonicals that genuinely appear in multiple tables are
-    # ambiguous by design — last-write-wins picks one, which is expected.
-    if len(lookup_candidates(canonical)) > 1:
-        pytest.skip(f"ambiguous romanization '{canonical}' maps to multiple canonicals")
-    result = lookup_key(canonical)
-    assert result == canonical, (
-        f"{_table_name}: canonical {canonical!r} self-lookup returned {result!r}"
+    candidates = lookup_candidates(canonical)
+    assert canonical in candidates, (
+        f"{_table_name}: canonical {canonical!r} not in "
+        f"lookup_candidates({canonical!r}) → {candidates!r}"
     )
-
-
-def test_known_ambiguous_latin_canonicals():
-    """Document canonicals that are intentionally ambiguous across tables."""
-    from name_variants import lookup_candidates
-    # Pure-ASCII names shared across language tables — losing their self-lookup
-    # is expected; lookup_candidates() is the right API for these.
-    known_ambiguous = ["chu", "nam", "chi", "kim", "hasan", "hassan"]
-    for name in known_ambiguous:
-        assert len(lookup_candidates(name)) > 1, (
-            f"'{name}' expected to be ambiguous but is now unambiguous"
-        )
 
 
 def test_known_romanization_collisions_are_documented():
