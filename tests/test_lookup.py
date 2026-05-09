@@ -230,3 +230,192 @@ def test_lookup_all_multiword():
     result = lookup_all("Chan Wai Ming")
     assert result is not None
     assert result[0] == "陈"
+
+
+# ── Vietnamese (extended) ─────────────────────────────────────────────────────
+
+def test_le_variants():
+    assert lookup_key("Le") == lookup_key("lê")
+
+
+def test_pham_variants():
+    assert lookup_key("Pham") == lookup_key("phạm")
+
+
+def test_hoang_variants():
+    assert lookup_key("Hoang") == lookup_key("hoàng")
+
+
+# ── Arabic (extended) ─────────────────────────────────────────────────────────
+
+def test_ali_variants():
+    assert lookup_key("Ali") is not None
+
+
+def test_hassan_variants():
+    assert lookup_key("Hassan") == lookup_key("Hasan")
+
+
+def test_arabic_script_direct():
+    assert lookup_key("محمد") is not None
+
+
+# ── Russian (extended) ────────────────────────────────────────────────────────
+
+def test_sokolov_variants():
+    assert lookup_key("Sokolov") == lookup_key("Sokoloff")
+
+
+def test_petrov_variants():
+    assert lookup_key("Petrov") is not None
+
+
+def test_cyrillic_direct():
+    assert lookup_key("Иванов") is not None
+    assert lookup_key("Иванов") == lookup_key("Ivanov")
+
+
+# ── Edge cases ────────────────────────────────────────────────────────────────
+
+def test_whitespace_only_returns_none():
+    assert lookup_key("   ") is None
+
+
+def test_single_char_does_not_crash():
+    result = lookup_key("A")
+    assert result is None or isinstance(result, str)
+
+
+def test_numbers_return_none():
+    assert lookup_key("12345") is None
+
+
+def test_very_long_input_returns_none():
+    assert lookup_key("a" * 1000) is None
+
+
+def test_mixed_script_input():
+    # Token loop hits "陈" directly
+    assert lookup_key("Chan 陈") is not None
+
+
+def test_leading_trailing_whitespace_handled():
+    assert lookup_key("  Chan  ") == lookup_key("Chan")
+
+
+def test_case_insensitive_lookup():
+    assert lookup_key("CHAN") == lookup_key("chan")
+    assert lookup_key("Chan") == lookup_key("CHAN")
+
+
+# ── Multi-word token lookup (extended) ───────────────────────────────────────
+
+def test_multi_word_arabic():
+    assert lookup_key("Mohammed Al-Rashid") == lookup_key("Muhammad")
+
+
+def test_multi_word_japanese():
+    assert lookup_key("Sato Kenji") == lookup_key("Sato")
+
+
+def test_multi_word_no_match_returns_none():
+    assert lookup_key("Smith Johnson Williams") is None
+
+
+# ── Japanese ──────────────────────────────────────────────────────────────────
+
+def test_sato_lookup():
+    assert lookup_key("Sato") is not None
+    assert lookup_key("Satō") == lookup_key("Sato")  # macron variant
+
+
+def test_suzuki_lookup():
+    assert lookup_key("Suzuki") is not None
+
+
+def test_tanaka_lookup():
+    assert lookup_key("Tanaka") is not None
+
+
+def test_japanese_kanji_direct():
+    assert lookup_key("佐藤") is not None
+    assert lookup_key("佐藤") == lookup_key("Sato")
+
+
+# ── Indian names ──────────────────────────────────────────────────────────────
+
+def test_hindi_sharma_variants():
+    assert lookup_key("Sharma") is not None
+
+
+def test_hindi_singh_variants():
+    assert lookup_key("Singh") is not None
+
+
+def test_tamil_murugan_variants():
+    assert lookup_key("Murugan") is not None
+
+
+def test_bengali_chatterjee_variants():
+    assert lookup_key("Chatterjee") is not None
+    assert lookup_key("Chatterjee") == lookup_key("Chattopadhyay")
+
+
+# ── Thai ──────────────────────────────────────────────────────────────────────
+
+def test_thai_canonical_self_lookup():
+    from name_variants import ALL_TABLES
+    thai_table = ALL_TABLES["thai"]
+    assert len(thai_table) > 0
+    some_canonical = next(iter(thai_table))
+    assert lookup_key(some_canonical) == some_canonical
+
+
+def test_thai_romanization_lookup():
+    from name_variants import ALL_TABLES
+    for canonical, variants in ALL_TABLES["thai"].items():
+        if variants:
+            assert lookup_key(variants[0]) == canonical
+            break
+
+
+# ── Greek ─────────────────────────────────────────────────────────────────────
+
+def test_greek_papadopoulos_variants():
+    assert lookup_key("Papadopoulos") is not None
+
+
+def test_greek_canonical_self_lookup():
+    from name_variants import ALL_TABLES
+    some_canonical = next(iter(ALL_TABLES["greek"]))
+    assert lookup_key(some_canonical) == some_canonical
+
+
+# ── Turkish ───────────────────────────────────────────────────────────────────
+
+def test_turkish_yilmaz_variants():
+    assert lookup_key("Yilmaz") is not None
+    assert lookup_key("Yilmaz") == lookup_key("Yılmaz")
+
+
+# ── Persian ───────────────────────────────────────────────────────────────────
+
+def test_persian_mohammadi_variants():
+    assert lookup_key("Mohammadi") is not None
+
+
+# ── Hebrew ────────────────────────────────────────────────────────────────────
+
+def test_hebrew_cohen_variants():
+    assert lookup_key("Cohen") is not None
+    assert lookup_key("Cohen") == lookup_key("Kohen")
+
+
+# ── Indonesian/Malay ──────────────────────────────────────────────────────────
+
+def test_indonesian_santoso_variants():
+    assert lookup_key("Santoso") is not None
+
+
+def test_malay_rahman_variants():
+    assert lookup_key("Rahman") is not None
