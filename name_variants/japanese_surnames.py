@@ -8,7 +8,7 @@ Sources:
 """
 
 JAPANESE_SURNAME_VARIANTS: dict[str, list[str]] = {
-    "佐藤": ["sato", "satou", "satoh"],
+    "佐藤": ["sato", "satou", "satoh", "satō"],
     "鈴木": ["suzuki"],
     "高橋": ["takahashi"],
     "田中": ["tanaka"],

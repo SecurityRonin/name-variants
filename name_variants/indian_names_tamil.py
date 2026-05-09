@@ -17,6 +17,7 @@ INDIAN_NAMES_TAMIL: dict[str, list[str]] = {
     # ── Common Tamil surnames / family name components ──────────────────────
     "சுப்பிரமணியம்": ["subramaniam", "subramanian", "subramanyam", "subrahmanyam", "suppiramaniyam"],
     "வேலுசாமி": ["velusamy", "velaswamy", "veluchamy"],
+    "முருகன்": ["murugan", "murukan", "murughan"],
     "முருகேசன்": ["murugesan", "murugason", "murughesan"],
     "ராமசாமி": ["ramasamy", "ramaswamy", "ramasami"],
     "கிருஷ்ணசாமி": ["krishnaswamy", "krishnaswami", "krushnaswamy"],

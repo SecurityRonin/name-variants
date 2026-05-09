@@ -42,7 +42,7 @@ INDIAN_NAMES_BENGALI: dict[str, list[str]] = {
     "সিংহ": ["sinha", "singha", "siha"],
     "চৌধুরী": ["choudhury", "chowdhury", "chaudhury", "chaudhari"],
     "নাগ": ["nag", "naag"],
-    "চ্যাটার্জি": ["chaterjee", "chatterjee"],
+    "চ্যাটার্জি": ["chaterjee"],
     # ── Common Bengali given name components ────────────────────────────────
     "সুভাষ": ["subhash", "subhas"],
     "প্রদীপ": ["pradeep", "pradip"],

@@ -94,4 +94,10 @@ PERSIAN_NAME_VARIANTS: dict[str, list[str]] = {
     "ناهید": ["nahid", "naahid"],
     "نسرین": ["nasrin", "nassrin"],
     "گلی": ["goli", "golee"],
+    # ── Common surnames ───────────────────────────────────────────────────────
+    "محمدی": ["mohammadi", "mohamadi", "mahammadi"],
+    "احمدی": ["ahmadi", "ahmaady"],
+    "رضایی": ["rezaei", "rezaee", "razayi"],
+    "حسینی": ["hosseini", "hosseiny", "hussaini"],
+    "موسوی": ["mousavi", "moosavi", "musavi"],
 }

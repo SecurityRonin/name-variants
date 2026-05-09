@@ -88,4 +88,9 @@ HEBREW_NAME_VARIANTS: dict[str, list[str]] = {
     "שני": ["shani", "shaani"],
     "אלינור": ["elinor", "eleanor"],
     "נעה": ["noa", "no'a"],
+    # ── Common surnames ───────────────────────────────────────────────────────
+    "כהן": ["cohen", "kohen", "kohn", "cohn"],
+    "מזרחי": ["mizrahi", "mizrachi"],
+    "פרץ": ["peretz", "perets", "peres"],
+    "שפירא": ["shapira", "shapiro", "schapiro"],
 }
