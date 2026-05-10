@@ -5,7 +5,7 @@
 
 # name-variants
 
-**`"Chan"` is simultaneously 陈 and 찬 and ชาน — `lookup()` returns all of them.**
+**`"Chan"` is simultaneously 陈 and 찬 — `lookup()` returns all of them.**
 
 1,558 name entries across 18 language tables. Every romanization system produces a member of an equivalence class: no canonical form, no ordering dependency, no silent data loss. `share_cluster("Hsu", "Xu")` is `True`. `lookup("Chan")` returns a Chinese surname cluster *and* a Korean given-name cluster, sorted by bearer count.
 
@@ -23,7 +23,7 @@ A `NameCluster` is a frozenset of co-equal representations. `陈`, `陳`, `chen`
 from name_variants import lookup, share_cluster
 
 clusters = lookup("Chan")
-# [NameCluster(language='chinese', 68 forms),
+# [NameCluster(language='chinese', 8 forms),
 #  NameCluster(language='korean_given', 3 forms)]
 
 # Both Chinese scripts are in the same cluster — co-equal
@@ -47,7 +47,7 @@ assert len(clusters) == 2    # Chinese AND Korean, not one-or-the-other
 from name_variants import lookup
 
 lookup("Chan")
-# [NameCluster(language='chinese', 68 forms),
+# [NameCluster(language='chinese', 8 forms),
 #  NameCluster(language='korean_given', 3 forms)]
 
 lookup("Nguyen")
@@ -112,8 +112,8 @@ nv match Chan Chen          # true
 nv match Chan Kim           # false
 nv match --exit-code Chan Chen && echo same   # shell-scripting friendly
 
-nv cluster-csv names.csv --col name --out out.csv
-# adds name_cluster_id column (stable 12-char hex per cluster)
+nv canonicalize-csv names.csv --col name --out out.csv
+# adds {name}_canonical column
 
 nv dedupe names.csv --col name --out out.csv
 # adds cluster_id column grouping romanization variants
