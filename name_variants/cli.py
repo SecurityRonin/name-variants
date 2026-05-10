@@ -15,7 +15,8 @@ import sys
 
 import click
 
-from name_variants import lookup as _lookup_api, share_cluster
+from name_variants import lookup as _lookup_api
+from name_variants import share_cluster
 
 
 def _canonical_key(name: str) -> str:

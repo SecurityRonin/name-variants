@@ -1,6 +1,8 @@
 """Validate that all 18 data files use the rich NameEntry format."""
 import importlib
+
 import pytest
+
 from name_variants import ALL_TABLES
 
 

@@ -1,7 +1,7 @@
 """Tests for NameCluster and lookup() — the new core API."""
 import pytest
-from name_variants import NameCluster, lookup, share_cluster
 
+from name_variants import NameCluster, lookup, share_cluster
 
 # ── NameCluster basics ────────────────────────────────────────────────────────
 
