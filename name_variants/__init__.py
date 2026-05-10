@@ -89,21 +89,13 @@ _DIALECT_INDEX: dict[str, str] | None = None
 
 
 def _build_clusters() -> tuple[list["NameCluster"], dict[str, list["NameCluster"]]]:
-    from name_variants.frequencies import ALL_FREQUENCIES
-
     clusters: list[NameCluster] = []
     form_index: dict[str, list[NameCluster]] = {}
 
     for language, table in ALL_TABLES.items():
         for storage_key, entry in table.items():
-            # Support both old list format and new rich dict format
-            if isinstance(entry, dict):
-                forms_list: list[str] = entry["forms"]
-                frequency: int | None = entry.get("frequency")
-            else:
-                forms_list = entry  # type: ignore[assignment]
-                # Fall back to ALL_FREQUENCIES for old-format entries
-                frequency = ALL_FREQUENCIES.get(storage_key)
+            forms_list: list[str] = entry["forms"]
+            frequency: int | None = entry.get("frequency")
 
             forms = frozenset(
                 {storage_key}
@@ -204,17 +196,8 @@ def _build_dialect_index() -> dict[str, str]:
     index: dict[str, str] = {}
     for table in ALL_TABLES.values():
         for entry in table.values():
-            if isinstance(entry, dict):
-                for form, dialect in entry.get("dialects", {}).items():
-                    index[form.lower()] = dialect
-    # Fall back to legacy CHINESE_ROMANIZATION_DIALECTS if present (removed in Task 6)
-    try:
-        from name_variants.chinese_surnames import CHINESE_ROMANIZATION_DIALECTS
-        for form, dialect in CHINESE_ROMANIZATION_DIALECTS.items():
-            if form not in index:
-                index[form] = dialect
-    except ImportError:
-        pass
+            for form, dialect in entry.get("dialects", {}).items():
+                index[form.lower()] = dialect
     return index
 
 
