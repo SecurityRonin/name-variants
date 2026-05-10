@@ -13,6 +13,7 @@ Usage:
 from __future__ import annotations
 
 import unicodedata as _ud
+from dataclasses import dataclass
 
 from name_variants.arabic_names import ARABIC_NAME_VARIANTS
 from name_variants.chinese_given_names import CHINESE_GIVEN_NAME_VARIANTS
@@ -32,6 +33,28 @@ from name_variants.russian_surnames import RUSSIAN_SURNAME_VARIANTS
 from name_variants.thai_names import THAI_NAME_VARIANTS
 from name_variants.turkish_names import TURKISH_NAME_VARIANTS
 from name_variants.vietnamese_surnames import VIETNAMESE_SURNAME_VARIANTS
+
+@dataclass(frozen=True)
+class NameCluster:
+    """Equivalence class of name representations — all forms are co-equal."""
+
+    forms: frozenset[str]
+    language: str
+    frequency: int | None = None
+
+    def __contains__(self, text: str) -> bool:
+        t = text.strip()
+        return t in self.forms or t.lower() in self.forms
+
+    def __iter__(self):
+        return iter(self.forms)
+
+    def __len__(self) -> int:
+        return len(self.forms)
+
+    def __repr__(self) -> str:
+        return f"NameCluster(language={self.language!r}, {len(self.forms)} forms)"
+
 
 ALL_TABLES: dict[str, dict[str, list[str]]] = {
     # Surname / family-name tables first (win lookup_key() ties via last-write-wins later)
@@ -55,6 +78,38 @@ ALL_TABLES: dict[str, dict[str, list[str]]] = {
     "korean_given": KOREAN_GIVEN_NAME_VARIANTS,
     "japanese_given": JAPANESE_GIVEN_NAME_VARIANTS,
 }
+
+_CLUSTERS: list["NameCluster"] | None = None
+_FORM_INDEX: dict[str, list["NameCluster"]] | None = None
+
+
+def _build_clusters() -> tuple[list["NameCluster"], dict[str, list["NameCluster"]]]:
+    from name_variants.frequencies import ALL_FREQUENCIES
+
+    clusters: list[NameCluster] = []
+    form_index: dict[str, list[NameCluster]] = {}
+
+    for language, table in ALL_TABLES.items():
+        for storage_key, variants in table.items():
+            forms = frozenset(
+                {storage_key}
+                | {v.lower().strip() for v in variants if v.strip()}
+            )
+            freq = ALL_FREQUENCIES.get(storage_key)
+            cluster = NameCluster(forms=forms, language=language, frequency=freq)
+            clusters.append(cluster)
+            for form in forms:
+                form_index.setdefault(form, []).append(cluster)
+
+    return clusters, form_index
+
+
+def _get_form_index() -> dict[str, list["NameCluster"]]:
+    global _CLUSTERS, _FORM_INDEX
+    if _FORM_INDEX is None:
+        _CLUSTERS, _FORM_INDEX = _build_clusters()
+    return _FORM_INDEX
+
 
 # Lazy-built inverted index: romanization (lowercase) → canonical key (last-write-wins)
 _INDEX: dict[str, str] | None = None
@@ -177,6 +232,60 @@ def lookup_candidates(text: str) -> list[str]:
         _collect(token)
 
     return result
+
+
+def lookup(text: str) -> list[NameCluster]:
+    """
+    Return all NameClusters that contain this text as a member form.
+
+    Results are sorted by frequency descending (highest bearer count first).
+    Returns [] for unknown names or empty input.
+
+    Examples:
+        lookup("Chan")   → [NameCluster(chinese, ...), NameCluster(korean_given, ...)]
+        lookup("Nguyen") → [NameCluster(vietnamese, ...)]
+        lookup("Smith")  → []
+    """
+    if not text or not text.strip():
+        return []
+
+    idx = _get_form_index()
+    seen: set[int] = set()
+    result: list[NameCluster] = []
+
+    def _collect(key: str) -> None:
+        for cluster in idx.get(key, []):
+            cid = id(cluster)
+            if cid not in seen:
+                seen.add(cid)
+                result.append(cluster)
+
+    key = text.strip()
+    _collect(key)
+    key_lower = key.lower()
+    if key_lower != key:
+        _collect(key_lower)
+    for token in key_lower.split():
+        _collect(token)
+
+    result.sort(key=lambda c: c.frequency or 0, reverse=True)
+    return result
+
+
+def share_cluster(a: str, b: str) -> bool:
+    """
+    Return True iff both strings appear in any common NameCluster.
+
+    Returns False if either string is empty or unknown.
+
+    Examples:
+        share_cluster("Chan", "Chen")  → True
+        share_cluster("Chan", "Li")    → False
+    """
+    if not a or not b:
+        return False
+    a_set = set(lookup(a))
+    return any(c in a_set for c in lookup(b))
 
 
 def lookup_all(text: str) -> tuple[str, list[str]] | None:
@@ -320,6 +429,9 @@ def lookup_dialect(text: str) -> str | None:
 
 
 __all__ = [
+    "NameCluster",
+    "lookup",
+    "share_cluster",
     "lookup_key",
     "lookup_all",
     "lookup_candidates",
