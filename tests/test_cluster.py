@@ -11,11 +11,19 @@ def test_cluster_is_immutable():
         c.language = "other"  # type: ignore[misc]
 
 
-def test_cluster_contains_casefolded():
+def test_cluster_contains_casefolded_romanization():
     c = NameCluster(forms=frozenset({"陈", "chen", "chan"}), language="chinese")
     assert "Chan" in c      # casefolded match
     assert "CHEN" in c
+
+
+def test_cluster_contains_native_script():
+    c = NameCluster(forms=frozenset({"陈", "chen", "chan"}), language="chinese")
     assert "陈" in c        # direct script match
+
+
+def test_cluster_does_not_contain_different_script_form():
+    c = NameCluster(forms=frozenset({"陈", "chen", "chan"}), language="chinese")
     assert "陳" not in c    # different character — not in this cluster
 
 
@@ -79,9 +87,12 @@ def test_lookup_case_insensitive():
     assert lookup("CHAN") == lookup("Chan")
 
 
-def test_lookup_unknown_returns_empty():
+def test_lookup_unknown_name_returns_empty():
     assert lookup("Smith") == []
     assert lookup("Kowalski") == []
+
+
+def test_lookup_empty_string_returns_empty():
     assert lookup("") == []
 
 
@@ -136,9 +147,15 @@ def test_share_cluster_different_names():
     assert share_cluster("Chan", "Kim") is False
 
 
-def test_share_cluster_empty_returns_false():
+def test_share_cluster_left_empty_returns_false():
     assert share_cluster("", "Chan") is False
+
+
+def test_share_cluster_right_empty_returns_false():
     assert share_cluster("Chan", "") is False
+
+
+def test_share_cluster_both_empty_returns_false():
     assert share_cluster("", "") is False
 
 
@@ -150,6 +167,9 @@ def test_share_cluster_case_insensitive():
     assert share_cluster("CHAN", "chen") is True
 
 
-def test_share_cluster_korean_romanizations():
+def test_share_cluster_park_bak():
     assert share_cluster("Park", "Bak") is True
+
+
+def test_share_cluster_lee_yi():
     assert share_cluster("Lee", "Yi") is True
