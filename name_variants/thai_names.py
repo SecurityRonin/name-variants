@@ -88,6 +88,9 @@ THAI_NAME_VARIANTS: dict[str, dict] = {
     "บุญชัย": {
         "forms": ["boonchai", "bunchai"],
     },
+    "จัน": {
+        "forms": ["chan", "jan"],
+    },
     "ชาญชัย": {
         "forms": ["chanchai", "changchai"],
     },
