@@ -297,20 +297,6 @@ def language_distribution(text: str) -> dict[str, float]:
     return dist
 
 
-def lookup_dialect(text: str) -> str | None:
-    """
-    Return the romanization dialect/system for this variant string.
-
-    Returns one of: "mandarin_pinyin", "cantonese", "hokkien", "hakka",
-    "teochew", "wade_giles", "traditional", "simplified"
-
-    Returns None for non-Chinese names or untagged variants.
-    """
-    from name_variants.chinese_surnames import CHINESE_ROMANIZATION_DIALECTS
-
-    return CHINESE_ROMANIZATION_DIALECTS.get(text.lower().strip())
-
-
 __all__ = [
     "lookup_key",
     "lookup_all",
@@ -322,5 +308,4 @@ __all__ = [
     "get_frequency",
     "get_language_for_canonical",
     "language_distribution",
-    "lookup_dialect",
 ]

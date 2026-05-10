@@ -1,0 +1,28 @@
+name: WASM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: Build WASM package
+        run: wasm-pack build name-variants-rs --target web --out-dir ../name-variants-wasm/pkg
+
+      - name: Check wasm-bindgen exports
+        run: |
+          grep -q 'lookup_key' name-variants-wasm/pkg/name_variants.js
+          grep -q 'lookup_candidates' name-variants-wasm/pkg/name_variants.js
+          echo "WASM exports OK"
