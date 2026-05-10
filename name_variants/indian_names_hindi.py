@@ -16,244 +16,244 @@ Sources:
 """
 
 INDIAN_NAMES_HINDI: dict[str, dict] = {
-    'शर्मा': {
-        "forms": ['sharma', 'sarma', 'sherma'],
+    "शर्मा": {
+        "forms": ["sharma", "sarma", "sherma"],
     },
-    'सिंह': {
-        "forms": ['singh', 'sing'],
+    "सिंह": {
+        "forms": ["singh", "sing"],
     },
-    'वर्मा': {
-        "forms": ['varma', 'verma', 'varman'],
+    "वर्मा": {
+        "forms": ["varma", "verma", "varman"],
     },
-    'मिश्रा': {
-        "forms": ['mishra', 'misra', 'mitra'],
+    "मिश्रा": {
+        "forms": ["mishra", "misra", "mitra"],
     },
-    'श्रीवास्तव': {
-        "forms": ['srivastava', 'shrivastava', 'srivastav', 'shrivastav'],
+    "श्रीवास्तव": {
+        "forms": ["srivastava", "shrivastava", "srivastav", "shrivastav"],
     },
-    'पाठक': {
-        "forms": ['pathak', 'patak'],
+    "पाठक": {
+        "forms": ["pathak", "patak"],
     },
-    'तिवारी': {
-        "forms": ['tiwari', 'tivari', 'tewari'],
+    "तिवारी": {
+        "forms": ["tiwari", "tivari", "tewari"],
     },
-    'पांडे': {
-        "forms": ['pandey', 'pande', 'panday'],
+    "पांडे": {
+        "forms": ["pandey", "pande", "panday"],
     },
-    'दुबे': {
-        "forms": ['dubey', 'dube', 'dubé'],
+    "दुबे": {
+        "forms": ["dubey", "dube", "dubé"],
     },
-    'यादव': {
-        "forms": ['yadav', 'yadaw'],
+    "यादव": {
+        "forms": ["yadav", "yadaw"],
     },
-    'गुप्ता': {
-        "forms": ['gupta'],
+    "गुप्ता": {
+        "forms": ["gupta"],
     },
-    'जोशी': {
-        "forms": ['joshi', 'josi'],
+    "जोशी": {
+        "forms": ["joshi", "josi"],
     },
-    'अग्रवाल': {
-        "forms": ['agrawal', 'agarwal'],
+    "अग्रवाल": {
+        "forms": ["agrawal", "agarwal"],
     },
-    'चौधरी': {
-        "forms": ['chaudhary', 'chaudhury', 'choudhary', 'choudhury', 'chowdhury'],
+    "चौधरी": {
+        "forms": ["chaudhary", "chaudhury", "choudhary", "choudhury", "chowdhury"],
     },
-    'राय': {
-        "forms": ['rai', 'ray', 'roi'],
+    "राय": {
+        "forms": ["rai", "ray", "roi"],
     },
-    'कुमार': {
-        "forms": ['kumar', 'koomar'],
+    "कुमार": {
+        "forms": ["kumar", "koomar"],
     },
-    'खान': {
-        "forms": ['khan', 'kahn'],
+    "खान": {
+        "forms": ["khan", "kahn"],
     },
-    'त्रिपाठी': {
-        "forms": ['tripathi', 'tripati'],
+    "त्रिपाठी": {
+        "forms": ["tripathi", "tripati"],
     },
-    'दीक्षित': {
-        "forms": ['dixit', 'dikshit', 'dikshita'],
+    "दीक्षित": {
+        "forms": ["dixit", "dikshit", "dikshita"],
     },
-    'अवस्थी': {
-        "forms": ['awasthi', 'avasthi'],
+    "अवस्थी": {
+        "forms": ["awasthi", "avasthi"],
     },
-    'सक्सेना': {
-        "forms": ['saxena', 'saksena'],
+    "सक्सेना": {
+        "forms": ["saxena", "saksena"],
     },
-    'भार्गव': {
-        "forms": ['bhargava', 'bhargav'],
+    "भार्गव": {
+        "forms": ["bhargava", "bhargav"],
     },
-    'बाजपेई': {
-        "forms": ['bajpai', 'bajpei', 'bajpeyi'],
+    "बाजपेई": {
+        "forms": ["bajpai", "bajpei", "bajpeyi"],
     },
-    'राम': {
-        "forms": ['ram', 'raam'],
+    "राम": {
+        "forms": ["ram", "raam"],
     },
-    'कृष्ण': {
-        "forms": ['krishna', 'krishn', 'krushna'],
+    "कृष्ण": {
+        "forms": ["krishna", "krishn", "krushna"],
     },
-    'विष्णु': {
-        "forms": ['vishnu', 'bisnu'],
+    "विष्णु": {
+        "forms": ["vishnu", "bisnu"],
     },
-    'शिव': {
-        "forms": ['shiv', 'shiva', 'siva'],
+    "शिव": {
+        "forms": ["shiv", "shiva", "siva"],
     },
-    'देव': {
-        "forms": ['dev', 'deb'],
+    "देव": {
+        "forms": ["dev", "deb"],
     },
-    'प्रकाश': {
-        "forms": ['prakash', 'prakasam'],
+    "प्रकाश": {
+        "forms": ["prakash", "prakasam"],
     },
-    'मोहन': {
-        "forms": ['mohan', 'mohen'],
+    "मोहन": {
+        "forms": ["mohan", "mohen"],
     },
-    'लाल': {
-        "forms": ['lal', 'laal'],
+    "लाल": {
+        "forms": ["lal", "laal"],
     },
-    'चंद': {
-        "forms": ['chand', 'chandra'],
+    "चंद": {
+        "forms": ["chand", "chandra"],
     },
-    'नाथ': {
-        "forms": ['nath', 'natha'],
+    "नाथ": {
+        "forms": ["nath", "natha"],
     },
-    'दास': {
-        "forms": ['das', 'doss', 'dass'],
+    "दास": {
+        "forms": ["das", "doss", "dass"],
     },
-    'प्रसाद': {
-        "forms": ['prasad', 'prasada'],
+    "प्रसाद": {
+        "forms": ["prasad", "prasada"],
     },
-    'नारायण': {
-        "forms": ['narayan', 'narayana'],
+    "नारायण": {
+        "forms": ["narayan", "narayana"],
     },
-    'बाबू': {
-        "forms": ['babu', 'baboo'],
+    "बाबू": {
+        "forms": ["babu", "baboo"],
     },
-    'सुब्रमण्यम': {
-        "forms": ['subramaniam', 'subramanian', 'subramanyam', 'subrahmanyam'],
+    "सुब्रमण्यम": {
+        "forms": ["subramaniam", "subramanian", "subramanyam", "subrahmanyam"],
     },
-    'रमेश': {
-        "forms": ['ramesh'],
+    "रमेश": {
+        "forms": ["ramesh"],
     },
-    'सुरेश': {
-        "forms": ['suresh', 'sooresh'],
+    "सुरेश": {
+        "forms": ["suresh", "sooresh"],
     },
-    'महेश': {
-        "forms": ['mahesh'],
+    "महेश": {
+        "forms": ["mahesh"],
     },
-    'राजेश': {
-        "forms": ['rajesh'],
+    "राजेश": {
+        "forms": ["rajesh"],
     },
-    'दिनेश': {
-        "forms": ['dinesh'],
+    "दिनेश": {
+        "forms": ["dinesh"],
     },
-    'नरेश': {
-        "forms": ['naresh', 'narresh'],
+    "नरेश": {
+        "forms": ["naresh", "narresh"],
     },
-    'अनिल': {
-        "forms": ['anil', 'aneel'],
+    "अनिल": {
+        "forms": ["anil", "aneel"],
     },
-    'सुनील': {
-        "forms": ['sunil', 'suneel'],
+    "सुनील": {
+        "forms": ["sunil", "suneel"],
     },
-    'विनोद': {
-        "forms": ['vinod', 'binod'],
+    "विनोद": {
+        "forms": ["vinod", "binod"],
     },
-    'अरविंद': {
-        "forms": ['arvind', 'aravind', 'arvinda'],
+    "अरविंद": {
+        "forms": ["arvind", "aravind", "arvinda"],
     },
-    'विजय': {
-        "forms": ['vijay', 'bijay'],
+    "विजय": {
+        "forms": ["vijay", "bijay"],
     },
-    'अजय': {
-        "forms": ['ajay'],
+    "अजय": {
+        "forms": ["ajay"],
     },
-    'संजय': {
-        "forms": ['sanjay'],
+    "संजय": {
+        "forms": ["sanjay"],
     },
-    'रवि': {
-        "forms": ['ravi', 'rabi'],
+    "रवि": {
+        "forms": ["ravi", "rabi"],
     },
-    'अमित': {
-        "forms": ['amit', 'ameet'],
+    "अमित": {
+        "forms": ["amit", "ameet"],
     },
-    'पवन': {
-        "forms": ['pawan', 'pavan'],
+    "पवन": {
+        "forms": ["pawan", "pavan"],
     },
-    'ललित': {
-        "forms": ['lalit', 'laleet'],
+    "ललित": {
+        "forms": ["lalit", "laleet"],
     },
-    'आनंद': {
-        "forms": ['anand', 'ananda'],
+    "आनंद": {
+        "forms": ["anand", "ananda"],
     },
-    'संदीप': {
-        "forms": ['sandeep', 'sandip'],
+    "संदीप": {
+        "forms": ["sandeep", "sandip"],
     },
-    'अभिषेक': {
-        "forms": ['abhishek', 'abhisheck'],
+    "अभिषेक": {
+        "forms": ["abhishek", "abhisheck"],
     },
-    'मनोज': {
-        "forms": ['manoj', 'manodj'],
+    "मनोज": {
+        "forms": ["manoj", "manodj"],
     },
-    'प्रीति': {
-        "forms": ['preeti', 'priti', 'preety'],
+    "प्रीति": {
+        "forms": ["preeti", "priti", "preety"],
     },
-    'नीता': {
-        "forms": ['neeta', 'nita', 'neita'],
+    "नीता": {
+        "forms": ["neeta", "nita", "neita"],
     },
-    'सीता': {
-        "forms": ['sita', 'seeta'],
+    "सीता": {
+        "forms": ["sita", "seeta"],
     },
-    'गीता': {
-        "forms": ['gita', 'geeta'],
+    "गीता": {
+        "forms": ["gita", "geeta"],
     },
-    'सुनीता': {
-        "forms": ['sunita', 'suneeta'],
+    "सुनीता": {
+        "forms": ["sunita", "suneeta"],
     },
-    'रेखा': {
-        "forms": ['rekha'],
+    "रेखा": {
+        "forms": ["rekha"],
     },
-    'ममता': {
-        "forms": ['mamta', 'mamata'],
+    "ममता": {
+        "forms": ["mamta", "mamata"],
     },
-    'सविता': {
-        "forms": ['savita', 'savitta'],
+    "सविता": {
+        "forms": ["savita", "savitta"],
     },
-    'रीता': {
-        "forms": ['rita', 'reeta'],
+    "रीता": {
+        "forms": ["rita", "reeta"],
     },
-    'लता': {
-        "forms": ['lata', 'laata'],
+    "लता": {
+        "forms": ["lata", "laata"],
     },
-    'पूजा': {
-        "forms": ['pooja', 'puja'],
+    "पूजा": {
+        "forms": ["pooja", "puja"],
     },
-    'दीपा': {
-        "forms": ['deepa', 'dipa'],
+    "दीपा": {
+        "forms": ["deepa", "dipa"],
     },
-    'कविता': {
-        "forms": ['kavita', 'kavitha'],
+    "कविता": {
+        "forms": ["kavita", "kavitha"],
     },
-    'अनीता': {
-        "forms": ['anita', 'aneeta'],
+    "अनीता": {
+        "forms": ["anita", "aneeta"],
     },
-    'शोभा': {
-        "forms": ['shobha', 'shobhna'],
+    "शोभा": {
+        "forms": ["shobha", "shobhna"],
     },
-    'उषा': {
-        "forms": ['usha', 'oosha'],
+    "उषा": {
+        "forms": ["usha", "oosha"],
     },
-    'आशा': {
-        "forms": ['asha', 'aasha'],
+    "आशा": {
+        "forms": ["asha", "aasha"],
     },
-    'मीना': {
-        "forms": ['meena', 'mina'],
+    "मीना": {
+        "forms": ["meena", "mina"],
     },
-    'वीणा': {
-        "forms": ['veena', 'vina'],
+    "वीणा": {
+        "forms": ["veena", "vina"],
     },
-    'सरला': {
-        "forms": ['sarla', 'sarala'],
+    "सरला": {
+        "forms": ["sarla", "sarala"],
     },
-    'शांति': {
-        "forms": ['shanti', 'shanthi'],
+    "शांति": {
+        "forms": ["shanti", "shanthi"],
     },
 }

@@ -17,246 +17,246 @@ Sources:
 """
 
 PERSIAN_NAME_VARIANTS: dict[str, dict] = {
-    'محمد': {
-        "forms": ['mohammad', 'muhammad', 'mohammed', 'mohamed', 'mohamad'],
+    "محمد": {
+        "forms": ["mohammad", "muhammad", "mohammed", "mohamed", "mohamad"],
         "frequency": 150_000_000,
     },
-    'علی': {
-        "forms": ['ali', 'aly'],
+    "علی": {
+        "forms": ["ali", "aly"],
     },
-    'حسین': {
-        "forms": ['hossein', 'hussein', 'husain', 'hosein'],
+    "حسین": {
+        "forms": ["hossein", "hussein", "husain", "hosein"],
     },
-    'رضا': {
-        "forms": ['reza', 'riza', 'ridha', 'reda'],
+    "رضا": {
+        "forms": ["reza", "riza", "ridha", "reda"],
     },
-    'احمد': {
-        "forms": ['ahmad', 'ahmed', 'ahmaad'],
+    "احمد": {
+        "forms": ["ahmad", "ahmed", "ahmaad"],
     },
-    'حسن': {
-        "forms": ['hasan', 'hassan'],
+    "حسن": {
+        "forms": ["hasan", "hassan"],
         "frequency": 10_000_000,
     },
-    'مهدی': {
-        "forms": ['mahdi', 'mehdi', 'mehdy'],
+    "مهدی": {
+        "forms": ["mahdi", "mehdi", "mehdy"],
     },
-    'امیر': {
-        "forms": ['amir', 'ameer'],
+    "امیر": {
+        "forms": ["amir", "ameer"],
     },
-    'محسن': {
-        "forms": ['mohsen', 'muhsin', 'mohssen'],
+    "محسن": {
+        "forms": ["mohsen", "muhsin", "mohssen"],
     },
-    'علیرضا': {
-        "forms": ['alireza', 'ali-reza', 'aliriza'],
+    "علیرضا": {
+        "forms": ["alireza", "ali-reza", "aliriza"],
     },
-    'میلاد': {
-        "forms": ['milad', 'milaad'],
+    "میلاد": {
+        "forms": ["milad", "milaad"],
     },
-    'آرش': {
-        "forms": ['arash', 'aarash'],
+    "آرش": {
+        "forms": ["arash", "aarash"],
     },
-    'سینا': {
-        "forms": ['sina', 'seena'],
+    "سینا": {
+        "forms": ["sina", "seena"],
     },
-    'داریوش': {
-        "forms": ['dariush', 'daryush', 'dariusch'],
+    "داریوش": {
+        "forms": ["dariush", "daryush", "dariusch"],
     },
-    'فرهاد': {
-        "forms": ['farhad', 'farhaad'],
+    "فرهاد": {
+        "forms": ["farhad", "farhaad"],
     },
-    'کامران': {
-        "forms": ['kamran', 'kamraan'],
+    "کامران": {
+        "forms": ["kamran", "kamraan"],
     },
-    'بهرام': {
-        "forms": ['bahram', 'bahraum'],
+    "بهرام": {
+        "forms": ["bahram", "bahraum"],
     },
-    'شاهرام': {
-        "forms": ['shahram', 'shahraum'],
+    "شاهرام": {
+        "forms": ["shahram", "shahraum"],
     },
-    'فریدون': {
-        "forms": ['fereydoon', 'fereydoun', 'faridon', 'faridun'],
+    "فریدون": {
+        "forms": ["fereydoon", "fereydoun", "faridon", "faridun"],
     },
-    'کیانوش': {
-        "forms": ['kianoush', 'kianoosh', 'kianush'],
+    "کیانوش": {
+        "forms": ["kianoush", "kianoosh", "kianush"],
     },
-    'پیمان': {
-        "forms": ['peyman', 'payman'],
+    "پیمان": {
+        "forms": ["peyman", "payman"],
     },
-    'پویا': {
-        "forms": ['pouya', 'puya'],
+    "پویا": {
+        "forms": ["pouya", "puya"],
     },
-    'رامین': {
-        "forms": ['ramin', 'raamin'],
+    "رامین": {
+        "forms": ["ramin", "raamin"],
     },
-    'نیما': {
-        "forms": ['nima', 'neema'],
+    "نیما": {
+        "forms": ["nima", "neema"],
     },
-    'سامان': {
-        "forms": ['saman', 'saaman'],
+    "سامان": {
+        "forms": ["saman", "saaman"],
     },
-    'بهزاد': {
-        "forms": ['behzad', 'bahzad'],
+    "بهزاد": {
+        "forms": ["behzad", "bahzad"],
     },
-    'کاوه': {
-        "forms": ['kaveh', 'kavé'],
+    "کاوه": {
+        "forms": ["kaveh", "kavé"],
     },
-    'سهراب': {
-        "forms": ['sohrab', 'sohrob'],
+    "سهراب": {
+        "forms": ["sohrab", "sohrob"],
     },
-    'مازیار': {
-        "forms": ['maziar', 'mazyar'],
+    "مازیار": {
+        "forms": ["maziar", "mazyar"],
     },
-    'ناصر': {
-        "forms": ['nasser', 'nasir'],
+    "ناصر": {
+        "forms": ["nasser", "nasir"],
     },
-    'منصور': {
-        "forms": ['mansour', 'mansur', 'manssur'],
+    "منصور": {
+        "forms": ["mansour", "mansur", "manssur"],
     },
-    'خسرو': {
-        "forms": ['khosrow', 'khosrau', 'kosrow'],
+    "خسرو": {
+        "forms": ["khosrow", "khosrau", "kosrow"],
     },
-    'ایرج': {
-        "forms": ['iraj', 'eeaj'],
+    "ایرج": {
+        "forms": ["iraj", "eeaj"],
     },
-    'جمشید': {
-        "forms": ['jamshid', 'djamshid'],
+    "جمشید": {
+        "forms": ["jamshid", "djamshid"],
     },
-    'شاپور': {
-        "forms": ['shapour', 'shapur'],
+    "شاپور": {
+        "forms": ["shapour", "shapur"],
     },
-    'کورش': {
-        "forms": ['koroush', 'cyrus', 'koorosh'],
+    "کورش": {
+        "forms": ["koroush", "cyrus", "koorosh"],
     },
-    'اردشیر': {
-        "forms": ['ardeshir', 'ardashir'],
+    "اردشیر": {
+        "forms": ["ardeshir", "ardashir"],
     },
-    'هوشنگ': {
-        "forms": ['houshang', 'hooshangh'],
+    "هوشنگ": {
+        "forms": ["houshang", "hooshangh"],
     },
-    'مهران': {
-        "forms": ['mehran', 'mahran'],
+    "مهران": {
+        "forms": ["mehran", "mahran"],
     },
-    'وحید': {
-        "forms": ['vahid', 'wahid'],
+    "وحید": {
+        "forms": ["vahid", "wahid"],
     },
-    'عباس': {
-        "forms": ['abbas', 'abas'],
+    "عباس": {
+        "forms": ["abbas", "abas"],
     },
-    'جواد': {
-        "forms": ['javad', 'djavad'],
+    "جواد": {
+        "forms": ["javad", "djavad"],
     },
-    'صادق': {
-        "forms": ['sadegh', 'sadeq'],
+    "صادق": {
+        "forms": ["sadegh", "sadeq"],
     },
-    'اصغر': {
-        "forms": ['asghar', 'asgar'],
+    "اصغر": {
+        "forms": ["asghar", "asgar"],
     },
-    'اکبر': {
-        "forms": ['akbar', 'akber'],
+    "اکبر": {
+        "forms": ["akbar", "akber"],
     },
-    'تقی': {
-        "forms": ['taghi', 'taqui'],
+    "تقی": {
+        "forms": ["taghi", "taqui"],
     },
-    'حمید': {
-        "forms": ['hamid', 'hameed'],
+    "حمید": {
+        "forms": ["hamid", "hameed"],
     },
-    'کریم': {
-        "forms": ['karim', 'kareem'],
+    "کریم": {
+        "forms": ["karim", "kareem"],
     },
-    'مجید': {
-        "forms": ['majid', 'majeed'],
+    "مجید": {
+        "forms": ["majid", "majeed"],
     },
-    'فاطمه': {
-        "forms": ['fateme', 'fatemeh', 'fatime'],
+    "فاطمه": {
+        "forms": ["fateme", "fatemeh", "fatime"],
     },
-    'زهرا': {
-        "forms": ['zahra', 'zehra'],
+    "زهرا": {
+        "forms": ["zahra", "zehra"],
     },
-    'مریم': {
-        "forms": ['maryam', 'mariam'],
+    "مریم": {
+        "forms": ["maryam", "mariam"],
     },
-    'زینب': {
-        "forms": ['zeinab', 'zaynab', 'zainab'],
+    "زینب": {
+        "forms": ["zeinab", "zaynab", "zainab"],
     },
-    'نرگس': {
-        "forms": ['narges', 'nargess', 'nargis'],
+    "نرگس": {
+        "forms": ["narges", "nargess", "nargis"],
     },
-    'شیرین': {
-        "forms": ['shirin', 'shireen'],
+    "شیرین": {
+        "forms": ["shirin", "shireen"],
     },
-    'پریسا': {
-        "forms": ['parisa', 'pareesa'],
+    "پریسا": {
+        "forms": ["parisa", "pareesa"],
     },
-    'الناز': {
-        "forms": ['elnaz', 'elnaaz'],
+    "الناز": {
+        "forms": ["elnaz", "elnaaz"],
     },
-    'نگار': {
-        "forms": ['negar', 'negaar'],
+    "نگار": {
+        "forms": ["negar", "negaar"],
     },
-    'شادی': {
-        "forms": ['shadi', 'shaadi'],
+    "شادی": {
+        "forms": ["shadi", "shaadi"],
     },
-    'آذر': {
-        "forms": ['azar', 'aazar'],
+    "آذر": {
+        "forms": ["azar", "aazar"],
     },
-    'مهناز': {
-        "forms": ['mahnaz', 'mahnaaz'],
+    "مهناز": {
+        "forms": ["mahnaz", "mahnaaz"],
     },
-    'ملیحه': {
-        "forms": ['maliheh', 'malihe'],
+    "ملیحه": {
+        "forms": ["maliheh", "malihe"],
     },
-    'سمیرا': {
-        "forms": ['samira', 'sameera'],
+    "سمیرا": {
+        "forms": ["samira", "sameera"],
     },
-    'بهاره': {
-        "forms": ['bahareh', 'bahar'],
+    "بهاره": {
+        "forms": ["bahareh", "bahar"],
     },
-    'گلناز': {
-        "forms": ['golnaz', 'golnaaz'],
+    "گلناز": {
+        "forms": ["golnaz", "golnaaz"],
     },
-    'مهسا': {
-        "forms": ['mahsa', 'mahsaa'],
+    "مهسا": {
+        "forms": ["mahsa", "mahsaa"],
     },
-    'سپیده': {
-        "forms": ['sepideh', 'spideh'],
+    "سپیده": {
+        "forms": ["sepideh", "spideh"],
     },
-    'رویا': {
-        "forms": ['roya', 'ruya'],
+    "رویا": {
+        "forms": ["roya", "ruya"],
     },
-    'فریبا': {
-        "forms": ['fariba', 'farieba'],
+    "فریبا": {
+        "forms": ["fariba", "farieba"],
     },
-    'منیره': {
-        "forms": ['monireh', 'monirehh'],
+    "منیره": {
+        "forms": ["monireh", "monirehh"],
     },
-    'پروانه': {
-        "forms": ['parvaneh', 'parvane'],
+    "پروانه": {
+        "forms": ["parvaneh", "parvane"],
     },
-    'طاهره': {
-        "forms": ['tahereh', 'tahere', 'tahera'],
+    "طاهره": {
+        "forms": ["tahereh", "tahere", "tahera"],
     },
-    'ناهید': {
-        "forms": ['nahid', 'naahid'],
+    "ناهید": {
+        "forms": ["nahid", "naahid"],
     },
-    'نسرین': {
-        "forms": ['nasrin', 'nassrin'],
+    "نسرین": {
+        "forms": ["nasrin", "nassrin"],
     },
-    'گلی': {
-        "forms": ['goli', 'golee'],
+    "گلی": {
+        "forms": ["goli", "golee"],
     },
-    'محمدی': {
-        "forms": ['mohammadi', 'mohamadi', 'mahammadi'],
+    "محمدی": {
+        "forms": ["mohammadi", "mohamadi", "mahammadi"],
     },
-    'احمدی': {
-        "forms": ['ahmadi', 'ahmaady'],
+    "احمدی": {
+        "forms": ["ahmadi", "ahmaady"],
     },
-    'رضایی': {
-        "forms": ['rezaei', 'rezaee', 'razayi'],
+    "رضایی": {
+        "forms": ["rezaei", "rezaee", "razayi"],
     },
-    'حسینی': {
-        "forms": ['hosseini', 'hosseiny', 'hussaini'],
+    "حسینی": {
+        "forms": ["hosseini", "hosseiny", "hussaini"],
     },
-    'موسوی': {
-        "forms": ['mousavi', 'moosavi', 'musavi'],
+    "موسوی": {
+        "forms": ["mousavi", "moosavi", "musavi"],
     },
 }

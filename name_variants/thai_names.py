@@ -19,208 +19,208 @@ Sources:
 """
 
 THAI_NAME_VARIANTS: dict[str, dict] = {
-    'สมชาย': {
-        "forms": ['somchai', 'somjai', 'somchaai'],
+    "สมชาย": {
+        "forms": ["somchai", "somjai", "somchaai"],
     },
-    'ประยุทธ์': {
-        "forms": ['prayuth', 'prayut', 'prayudh', 'prayooth'],
+    "ประยุทธ์": {
+        "forms": ["prayuth", "prayut", "prayudh", "prayooth"],
     },
-    'ทักษิณ': {
-        "forms": ['thaksin', 'takshin', 'taxin'],
+    "ทักษิณ": {
+        "forms": ["thaksin", "takshin", "taxin"],
     },
-    'สุรยุทธ์': {
-        "forms": ['surayuth', 'surayud'],
+    "สุรยุทธ์": {
+        "forms": ["surayuth", "surayud"],
     },
-    'วิชัย': {
-        "forms": ['wichai', 'vichai', 'witchai'],
+    "วิชัย": {
+        "forms": ["wichai", "vichai", "witchai"],
     },
-    'สมศักดิ์': {
-        "forms": ['somsak', 'somksak'],
+    "สมศักดิ์": {
+        "forms": ["somsak", "somksak"],
     },
-    'ชาตรี': {
-        "forms": ['chatree', 'chatri'],
+    "ชาตรี": {
+        "forms": ["chatree", "chatri"],
     },
-    'อานันท์': {
-        "forms": ['anand', 'anan', 'arnant'],
+    "อานันท์": {
+        "forms": ["anand", "anan", "arnant"],
     },
-    'ธนากร': {
-        "forms": ['thanakorn', 'tanakorn'],
+    "ธนากร": {
+        "forms": ["thanakorn", "tanakorn"],
     },
-    'ภูมิ': {
-        "forms": ['poom', 'phoom', 'bhum'],
+    "ภูมิ": {
+        "forms": ["poom", "phoom", "bhum"],
     },
-    'กฤษณ์': {
-        "forms": ['krit', 'krich', 'krish'],
+    "กฤษณ์": {
+        "forms": ["krit", "krich", "krish"],
     },
-    'วรวุฒิ': {
-        "forms": ['worawut', 'vorawut'],
+    "วรวุฒิ": {
+        "forms": ["worawut", "vorawut"],
     },
-    'เอกชัย': {
-        "forms": ['ekachai', 'akechai'],
+    "เอกชัย": {
+        "forms": ["ekachai", "akechai"],
     },
-    'นพดล': {
-        "forms": ['nopadol', 'noppadon'],
+    "นพดล": {
+        "forms": ["nopadol", "noppadon"],
     },
-    'พิทักษ์': {
-        "forms": ['phitak', 'pitak'],
+    "พิทักษ์": {
+        "forms": ["phitak", "pitak"],
     },
-    'ชัยวัฒน์': {
-        "forms": ['chaiwat', 'chaivat'],
+    "ชัยวัฒน์": {
+        "forms": ["chaiwat", "chaivat"],
     },
-    'สิทธิชัย': {
-        "forms": ['sittchai', 'sittichai'],
+    "สิทธิชัย": {
+        "forms": ["sittchai", "sittichai"],
     },
-    'วสันต์': {
-        "forms": ['wasan', 'vasan'],
+    "วสันต์": {
+        "forms": ["wasan", "vasan"],
     },
-    'ศิริชัย': {
-        "forms": ['sirichai', 'serichai'],
+    "ศิริชัย": {
+        "forms": ["sirichai", "serichai"],
     },
-    'ประสิทธิ์': {
-        "forms": ['prasit', 'prasith'],
+    "ประสิทธิ์": {
+        "forms": ["prasit", "prasith"],
     },
-    'ไพบูลย์': {
-        "forms": ['paiboon', 'paibul'],
+    "ไพบูลย์": {
+        "forms": ["paiboon", "paibul"],
     },
-    'บุญมี': {
-        "forms": ['boonmee', 'bunmee'],
+    "บุญมี": {
+        "forms": ["boonmee", "bunmee"],
     },
-    'บุญชัย': {
-        "forms": ['boonchai', 'bunchai'],
+    "บุญชัย": {
+        "forms": ["boonchai", "bunchai"],
     },
-    'ชาญชัย': {
-        "forms": ['chanchai', 'changchai'],
+    "ชาญชัย": {
+        "forms": ["chanchai", "changchai"],
     },
-    'สุพจน์': {
-        "forms": ['suphot', 'supoch'],
+    "สุพจน์": {
+        "forms": ["suphot", "supoch"],
     },
-    'สมหญิง': {
-        "forms": ['somying'],
+    "สมหญิง": {
+        "forms": ["somying"],
     },
-    'นงนุช': {
-        "forms": ['nongnuch', 'nongnooch'],
+    "นงนุช": {
+        "forms": ["nongnuch", "nongnooch"],
     },
-    'อรทัย': {
-        "forms": ['orathai', 'aurathai'],
+    "อรทัย": {
+        "forms": ["orathai", "aurathai"],
     },
-    'สุมาลี': {
-        "forms": ['sumalee', 'sumali'],
+    "สุมาลี": {
+        "forms": ["sumalee", "sumali"],
     },
-    'วิไลวรรณ': {
-        "forms": ['wilaiwan', 'vilaivan'],
+    "วิไลวรรณ": {
+        "forms": ["wilaiwan", "vilaivan"],
     },
-    'ปรียา': {
-        "forms": ['priya', 'preya'],
+    "ปรียา": {
+        "forms": ["priya", "preya"],
     },
-    'กนกวรรณ': {
-        "forms": ['kanokwan', 'kanokvarn'],
+    "กนกวรรณ": {
+        "forms": ["kanokwan", "kanokvarn"],
     },
-    'ศิริพร': {
-        "forms": ['siriporn', 'siripon'],
+    "ศิริพร": {
+        "forms": ["siriporn", "siripon"],
     },
-    'มณีรัตน์': {
-        "forms": ['maneerat', 'manerat'],
+    "มณีรัตน์": {
+        "forms": ["maneerat", "manerat"],
     },
-    'สุภาพร': {
-        "forms": ['supaporn', 'supapone'],
+    "สุภาพร": {
+        "forms": ["supaporn", "supapone"],
     },
-    'ทิพวรรณ': {
-        "forms": ['thippawan', 'tippawan'],
+    "ทิพวรรณ": {
+        "forms": ["thippawan", "tippawan"],
     },
-    'บุษบา': {
-        "forms": ['butsaba', 'bussaba'],
+    "บุษบา": {
+        "forms": ["butsaba", "bussaba"],
     },
-    'พรทิพย์': {
-        "forms": ['porntip', 'pontip', 'porntipp'],
+    "พรทิพย์": {
+        "forms": ["porntip", "pontip", "porntipp"],
     },
-    'จันทรา': {
-        "forms": ['chantra', 'jantara'],
+    "จันทรา": {
+        "forms": ["chantra", "jantara"],
     },
-    'ดาวเรือง': {
-        "forms": ['daorueang', 'daoreang'],
+    "ดาวเรือง": {
+        "forms": ["daorueang", "daoreang"],
     },
-    'เพ็ญพักตร์': {
-        "forms": ['penpak', 'penpag'],
+    "เพ็ญพักตร์": {
+        "forms": ["penpak", "penpag"],
     },
-    'มาลัย': {
-        "forms": ['malai', 'maalai'],
+    "มาลัย": {
+        "forms": ["malai", "maalai"],
     },
-    'ชูใจ': {
-        "forms": ['choosai', 'chujai'],
+    "ชูใจ": {
+        "forms": ["choosai", "chujai"],
     },
-    'รัตนา': {
-        "forms": ['rattana', 'ratana'],
+    "รัตนา": {
+        "forms": ["rattana", "ratana"],
     },
-    'อมรา': {
-        "forms": ['amora', 'amra'],
+    "อมรา": {
+        "forms": ["amora", "amra"],
     },
-    'ลดาวัลย์': {
-        "forms": ['ladawan', 'ladaval'],
+    "ลดาวัลย์": {
+        "forms": ["ladawan", "ladaval"],
     },
-    'นภาพร': {
-        "forms": ['naphaporn', 'napaporn'],
+    "นภาพร": {
+        "forms": ["naphaporn", "napaporn"],
     },
-    'ศุภรา': {
-        "forms": ['suphara', 'supara'],
+    "ศุภรา": {
+        "forms": ["suphara", "supara"],
     },
-    'พัชรา': {
-        "forms": ['patchara', 'patchra'],
+    "พัชรา": {
+        "forms": ["patchara", "patchra"],
     },
-    'อุษา': {
-        "forms": ['usa', 'usha'],
+    "อุษา": {
+        "forms": ["usa", "usha"],
     },
-    'ศรี': {
-        "forms": ['sri', 'si', 'see'],
+    "ศรี": {
+        "forms": ["sri", "si", "see"],
     },
-    'ไทย': {
-        "forms": ['thai', 'tai'],
+    "ไทย": {
+        "forms": ["thai", "tai"],
     },
-    'วัน': {
-        "forms": ['wan', 'van'],
+    "วัน": {
+        "forms": ["wan", "van"],
     },
-    'ดี': {
-        "forms": ['dee', 'di'],
+    "ดี": {
+        "forms": ["dee", "di"],
     },
-    'สุข': {
-        "forms": ['suk', 'sook'],
+    "สุข": {
+        "forms": ["suk", "sook"],
     },
-    'ใจ': {
-        "forms": ['jai', 'chai'],
+    "ใจ": {
+        "forms": ["jai", "chai"],
     },
-    'พร': {
-        "forms": ['porn', 'pon', 'phon'],
+    "พร": {
+        "forms": ["porn", "pon", "phon"],
     },
-    'ชัย': {
-        "forms": ['chai'],
+    "ชัย": {
+        "forms": ["chai"],
     },
-    'ดวง': {
-        "forms": ['duang', 'doung'],
+    "ดวง": {
+        "forms": ["duang", "doung"],
     },
-    'แก้ว': {
-        "forms": ['kaew', 'keo'],
+    "แก้ว": {
+        "forms": ["kaew", "keo"],
     },
-    'ทอง': {
-        "forms": ['thong', 'tong'],
+    "ทอง": {
+        "forms": ["thong", "tong"],
     },
-    'รัก': {
-        "forms": ['rak', 'rack'],
+    "รัก": {
+        "forms": ["rak", "rack"],
     },
-    'นิ': {
-        "forms": ['ni', 'nee'],
+    "นิ": {
+        "forms": ["ni", "nee"],
     },
-    'มณี': {
-        "forms": ['manee', 'mani'],
+    "มณี": {
+        "forms": ["manee", "mani"],
     },
-    'รุ่ง': {
-        "forms": ['rung', 'roong'],
+    "รุ่ง": {
+        "forms": ["rung", "roong"],
     },
-    'เรือง': {
-        "forms": ['rueang', 'reang'],
+    "เรือง": {
+        "forms": ["rueang", "reang"],
     },
-    'แสง': {
-        "forms": ['saeng', 'sang'],
+    "แสง": {
+        "forms": ["saeng", "sang"],
     },
-    'อร': {
-        "forms": ['on', 'orn'],
+    "อร": {
+        "forms": ["on", "orn"],
     },
 }

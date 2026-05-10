@@ -1,4 +1,5 @@
 """Validate that all 18 data files use the rich NameEntry format."""
+
 import importlib
 
 import pytest
@@ -43,16 +44,21 @@ def test_frequency_is_positive_int_when_present():
 
 def test_dialects_is_str_str_dict_when_present():
     valid_dialects = {
-        "mandarin_pinyin", "cantonese", "hokkien", "hakka",
-        "teochew", "wade_giles", "traditional", "simplified", "postal",
+        "mandarin_pinyin",
+        "cantonese",
+        "hokkien",
+        "hakka",
+        "teochew",
+        "wade_giles",
+        "traditional",
+        "simplified",
+        "postal",
     }
     for table_name, table in ALL_TABLES.items():
         for key, entry in table.items():
             if "dialects" in entry:
                 d = entry["dialects"]
-                assert isinstance(d, dict), (
-                    f"{table_name}[{key!r}]: dialects must be a dict"
-                )
+                assert isinstance(d, dict), f"{table_name}[{key!r}]: dialects must be a dict"
                 for form, dialect in d.items():
                     assert isinstance(form, str) and isinstance(dialect, str), (
                         f"{table_name}[{key!r}]: dialects values must be str->str"
@@ -69,6 +75,7 @@ def test_frequencies_module_deleted():
 
 def test_chinese_romanization_dialects_removed():
     from name_variants import chinese_surnames
+
     assert not hasattr(chinese_surnames, "CHINESE_ROMANIZATION_DIALECTS"), (
         "CHINESE_ROMANIZATION_DIALECTS should be removed from chinese_surnames.py"
     )
@@ -76,6 +83,7 @@ def test_chinese_romanization_dialects_removed():
 
 def test_lookup_dialect_works_without_separate_dict():
     from name_variants import lookup_dialect
+
     assert lookup_dialect("chen") == "mandarin_pinyin"
     assert lookup_dialect("chou") == "wade_giles"
     assert lookup_dialect("chan") == "cantonese"

@@ -31,6 +31,7 @@ def _canonical_key(name: str) -> str:
         return name.strip()
     # Find the storage key: the form that appears as a key in the source table.
     from name_variants import ALL_TABLES
+
     cluster = clusters[0]
     lang = cluster.language
     table = ALL_TABLES.get(lang, {})

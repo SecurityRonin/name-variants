@@ -25,9 +25,7 @@ def test_minimum_entry_counts():
     }
     for table_name, minimum in minimums.items():
         count = len(ALL_TABLES[table_name])
-        assert count >= minimum, (
-            f"{table_name}: only {count} entries, expected >= {minimum}"
-        )
+        assert count >= minimum, f"{table_name}: only {count} entries, expected >= {minimum}"
 
 
 def test_no_empty_variant_lists():
@@ -47,6 +45,7 @@ def test_no_duplicate_variants_within_entry():
 def test_every_canonical_self_lookup(canonical_entry):
     """Every canonical must appear in lookup() clusters for its own string."""
     from name_variants import lookup
+
     _table_name, canonical = canonical_entry
     clusters = lookup(canonical)
     assert any(canonical in c for c in clusters), (
@@ -61,6 +60,9 @@ def test_known_romanization_collisions_are_documented():
     黄 and 吴). These are acceptable — assert they exist so we know the table
     is realistic, not sanitized.
     """
-    ng_entries = [char for char, entry in CHINESE_SURNAME_VARIANTS.items()
-                  if "ng" in (entry["forms"] if isinstance(entry, dict) else entry)]
+    ng_entries = [
+        char
+        for char, entry in CHINESE_SURNAME_VARIANTS.items()
+        if "ng" in (entry["forms"] if isinstance(entry, dict) else entry)
+    ]
     assert len(ng_entries) >= 2, "'ng' should be ambiguous across Chinese surnames"

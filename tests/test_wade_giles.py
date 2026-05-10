@@ -1,4 +1,5 @@
 """Tests for Wade-Giles and postal Chinese surname romanizations."""
+
 from name_variants import lookup, lookup_dialect, share_cluster
 
 

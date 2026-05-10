@@ -1,4 +1,5 @@
 """Tests for the .nv pandas Series accessor."""
+
 import pytest
 
 pd = pytest.importorskip("pandas")
@@ -31,8 +32,8 @@ def test_nv_share_cluster_with_same():
     a = pd.Series(["Chan", "Park"])
     b = pd.Series(["Chen", "Bak"])
     result = a.nv.share_cluster_with(b)
-    assert result[0]   # Chan/Chen share chinese cluster
-    assert result[1]   # Park/Bak share korean cluster
+    assert result[0]  # Chan/Chen share chinese cluster
+    assert result[1]  # Park/Bak share korean cluster
 
 
 def test_nv_share_cluster_with_different():

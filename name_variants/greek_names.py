@@ -15,184 +15,184 @@ Sources:
 """
 
 GREEK_NAME_VARIANTS: dict[str, dict] = {
-    'Κωνσταντίνος': {
-        "forms": ['konstantinos', 'constantine', 'costas', 'kostas'],
+    "Κωνσταντίνος": {
+        "forms": ["konstantinos", "constantine", "costas", "kostas"],
     },
-    'Γεώργιος': {
-        "forms": ['georgios', 'george', 'giorgos', 'georgis'],
+    "Γεώργιος": {
+        "forms": ["georgios", "george", "giorgos", "georgis"],
     },
-    'Χρήστος': {
-        "forms": ['christos', 'hristos', 'chris'],
+    "Χρήστος": {
+        "forms": ["christos", "hristos", "chris"],
     },
-    'Νικόλαος': {
-        "forms": ['nikolaos', 'nicholas', 'nikos', 'nikolas'],
+    "Νικόλαος": {
+        "forms": ["nikolaos", "nicholas", "nikos", "nikolas"],
     },
-    'Δημήτριος': {
-        "forms": ['dimitrios', 'demetrius', 'dimitris', 'demitrios'],
+    "Δημήτριος": {
+        "forms": ["dimitrios", "demetrius", "dimitris", "demitrios"],
     },
-    'Ιωάννης': {
-        "forms": ['ioannis', 'john', 'giannis', 'yannis'],
+    "Ιωάννης": {
+        "forms": ["ioannis", "john", "giannis", "yannis"],
     },
-    'Ανδρέας': {
-        "forms": ['andreas', 'andrew', 'andres'],
+    "Ανδρέας": {
+        "forms": ["andreas", "andrew", "andres"],
     },
-    'Σταύρος': {
-        "forms": ['stavros'],
+    "Σταύρος": {
+        "forms": ["stavros"],
     },
-    'Αλέξανδρος': {
-        "forms": ['alexandros', 'alexander', 'alex'],
+    "Αλέξανδρος": {
+        "forms": ["alexandros", "alexander", "alex"],
     },
-    'Παναγιώτης': {
-        "forms": ['panagiotis', 'panayiotis', 'panos'],
+    "Παναγιώτης": {
+        "forms": ["panagiotis", "panayiotis", "panos"],
     },
-    'Αθανάσιος': {
-        "forms": ['athanasios', 'thanasis', 'thanos', 'nasios'],
+    "Αθανάσιος": {
+        "forms": ["athanasios", "thanasis", "thanos", "nasios"],
     },
-    'Βασίλειος': {
-        "forms": ['vasileios', 'vasilis', 'vasily', 'basil'],
+    "Βασίλειος": {
+        "forms": ["vasileios", "vasilis", "vasily", "basil"],
     },
-    'Ευάγγελος': {
-        "forms": ['evangelos', 'vangelis', 'angelos'],
+    "Ευάγγελος": {
+        "forms": ["evangelos", "vangelis", "angelos"],
     },
-    'Μιχαήλ': {
-        "forms": ['michael', 'michail', 'mihail'],
+    "Μιχαήλ": {
+        "forms": ["michael", "michail", "mihail"],
     },
-    'Θεόδωρος': {
-        "forms": ['theodoros', 'theodore'],
+    "Θεόδωρος": {
+        "forms": ["theodoros", "theodore"],
     },
-    'Σπυρίδων': {
-        "forms": ['spyridon', 'spyros', 'spiro'],
+    "Σπυρίδων": {
+        "forms": ["spyridon", "spyros", "spiro"],
     },
-    'Ελευθέριος': {
-        "forms": ['eleftherios', 'eleutherios', 'lefteris'],
+    "Ελευθέριος": {
+        "forms": ["eleftherios", "eleutherios", "lefteris"],
     },
-    'Αντώνιος': {
-        "forms": ['antonios', 'antonis', 'anthony'],
+    "Αντώνιος": {
+        "forms": ["antonios", "antonis", "anthony"],
     },
-    'Λάμπρος': {
-        "forms": ['lambros'],
+    "Λάμπρος": {
+        "forms": ["lambros"],
     },
-    'Μάριος': {
-        "forms": ['marios', 'mario'],
+    "Μάριος": {
+        "forms": ["marios", "mario"],
     },
-    'Πέτρος': {
-        "forms": ['petros', 'peter', 'petro'],
+    "Πέτρος": {
+        "forms": ["petros", "peter", "petro"],
     },
-    'Θωμάς': {
-        "forms": ['thomas', 'tomas'],
+    "Θωμάς": {
+        "forms": ["thomas", "tomas"],
     },
-    'Νέστωρ': {
-        "forms": ['nestor'],
+    "Νέστωρ": {
+        "forms": ["nestor"],
     },
-    'Αχιλλέας': {
-        "forms": ['achilleas', 'achilles'],
+    "Αχιλλέας": {
+        "forms": ["achilleas", "achilles"],
     },
-    'Οδυσσέας': {
-        "forms": ['odysseas', 'odysseus', 'ulysses'],
+    "Οδυσσέας": {
+        "forms": ["odysseas", "odysseus", "ulysses"],
     },
-    'Ηρακλής': {
-        "forms": ['iraklís', 'herakles', 'hercules'],
+    "Ηρακλής": {
+        "forms": ["iraklís", "herakles", "hercules"],
     },
-    'Αγαμέμνων': {
-        "forms": ['agamemnon'],
+    "Αγαμέμνων": {
+        "forms": ["agamemnon"],
     },
-    'Αριστείδης': {
-        "forms": ['aristeidis', 'aristides'],
+    "Αριστείδης": {
+        "forms": ["aristeidis", "aristides"],
     },
-    'Θεμιστοκλής': {
-        "forms": ['themistocles', 'themistoklis'],
+    "Θεμιστοκλής": {
+        "forms": ["themistocles", "themistoklis"],
     },
-    'Μαρία': {
-        "forms": ['maria', 'mary'],
+    "Μαρία": {
+        "forms": ["maria", "mary"],
     },
-    'Ελένη': {
-        "forms": ['eleni', 'helen', 'elena'],
+    "Ελένη": {
+        "forms": ["eleni", "helen", "elena"],
     },
-    'Κατερίνα': {
-        "forms": ['katerina', 'catherine', 'katrina'],
+    "Κατερίνα": {
+        "forms": ["katerina", "catherine", "katrina"],
     },
-    'Αναστασία': {
-        "forms": ['anastasia', 'natasha'],
+    "Αναστασία": {
+        "forms": ["anastasia", "natasha"],
     },
-    'Σοφία': {
-        "forms": ['sofia', 'sophia'],
+    "Σοφία": {
+        "forms": ["sofia", "sophia"],
     },
-    'Ειρήνη': {
-        "forms": ['eirini', 'irene', 'irini'],
+    "Ειρήνη": {
+        "forms": ["eirini", "irene", "irini"],
     },
-    'Παρασκευή': {
-        "forms": ['paraskevi', 'voula'],
+    "Παρασκευή": {
+        "forms": ["paraskevi", "voula"],
     },
-    'Βασιλική': {
-        "forms": ['vasiliki', 'vicky'],
+    "Βασιλική": {
+        "forms": ["vasiliki", "vicky"],
     },
-    'Χριστίνα': {
-        "forms": ['christina', 'kristina'],
+    "Χριστίνα": {
+        "forms": ["christina", "kristina"],
     },
-    'Δήμητρα': {
-        "forms": ['dimitra', 'demeter'],
+    "Δήμητρα": {
+        "forms": ["dimitra", "demeter"],
     },
-    'Αθηνά': {
-        "forms": ['athena', 'athina'],
+    "Αθηνά": {
+        "forms": ["athena", "athina"],
     },
-    'Ολυμπία': {
-        "forms": ['olympia'],
+    "Ολυμπία": {
+        "forms": ["olympia"],
     },
-    'Κλεοπάτρα': {
-        "forms": ['kleopatra', 'cleopatra'],
+    "Κλεοπάτρα": {
+        "forms": ["kleopatra", "cleopatra"],
     },
-    'Αφροδίτη': {
-        "forms": ['afroditi', 'aphrodite'],
+    "Αφροδίτη": {
+        "forms": ["afroditi", "aphrodite"],
     },
-    'Αγγελική': {
-        "forms": ['angeliki', 'angelica'],
+    "Αγγελική": {
+        "forms": ["angeliki", "angelica"],
     },
-    'Μαγδαληνή': {
-        "forms": ['magdalini', 'magdalene'],
+    "Μαγδαληνή": {
+        "forms": ["magdalini", "magdalene"],
     },
-    'Φωτεινή': {
-        "forms": ['foteini', 'photini'],
+    "Φωτεινή": {
+        "forms": ["foteini", "photini"],
     },
-    'Ευθυμία': {
-        "forms": ['efthimia', 'euthimia'],
+    "Ευθυμία": {
+        "forms": ["efthimia", "euthimia"],
     },
-    'Χαρίκλεια': {
-        "forms": ['hariklia', 'charikleia'],
+    "Χαρίκλεια": {
+        "forms": ["hariklia", "charikleia"],
     },
-    'Κυριακή': {
-        "forms": ['kyriaki', 'kyria'],
+    "Κυριακή": {
+        "forms": ["kyriaki", "kyria"],
     },
-    'Παπαδόπουλος': {
-        "forms": ['papadopoulos', 'papadopulos'],
+    "Παπαδόπουλος": {
+        "forms": ["papadopoulos", "papadopulos"],
     },
-    'Παπαδημητρίου': {
-        "forms": ['papadimitriou'],
+    "Παπαδημητρίου": {
+        "forms": ["papadimitriou"],
     },
-    'Γεωργίου': {
-        "forms": ['georgiou', 'georgios'],
+    "Γεωργίου": {
+        "forms": ["georgiou", "georgios"],
     },
-    'Νικολάου': {
-        "forms": ['nikolaou', 'nikolaos'],
+    "Νικολάου": {
+        "forms": ["nikolaou", "nikolaos"],
     },
-    'Αντωνίου': {
-        "forms": ['antoniou', 'antonios'],
+    "Αντωνίου": {
+        "forms": ["antoniou", "antonios"],
     },
-    'Δημητρίου': {
-        "forms": ['dimitriou', 'demetriou'],
+    "Δημητρίου": {
+        "forms": ["dimitriou", "demetriou"],
     },
-    'Χριστοδούλου': {
-        "forms": ['christodoulou'],
+    "Χριστοδούλου": {
+        "forms": ["christodoulou"],
     },
-    'Αναστασίου': {
-        "forms": ['anastasiou'],
+    "Αναστασίου": {
+        "forms": ["anastasiou"],
     },
-    'Κωνσταντίνου': {
-        "forms": ['konstantinou', 'constantinou'],
+    "Κωνσταντίνου": {
+        "forms": ["konstantinou", "constantinou"],
     },
-    'Σταυρίδης': {
-        "forms": ['stavridis', 'stavrides'],
+    "Σταυρίδης": {
+        "forms": ["stavridis", "stavrides"],
     },
-    'Καραγιάννης': {
-        "forms": ['karagiannis', 'caragiannis'],
+    "Καραγιάννης": {
+        "forms": ["karagiannis", "caragiannis"],
     },
 }

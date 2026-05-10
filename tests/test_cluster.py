@@ -1,9 +1,11 @@
 """Tests for NameCluster and lookup() — the new core API."""
+
 import pytest
 
 from name_variants import NameCluster, lookup, share_cluster
 
 # ── NameCluster basics ────────────────────────────────────────────────────────
+
 
 def test_cluster_is_immutable():
     c = NameCluster(forms=frozenset({"陈", "chen", "chan"}), language="chinese")
@@ -13,18 +15,18 @@ def test_cluster_is_immutable():
 
 def test_cluster_contains_casefolded_romanization():
     c = NameCluster(forms=frozenset({"陈", "chen", "chan"}), language="chinese")
-    assert "Chan" in c      # casefolded match
+    assert "Chan" in c  # casefolded match
     assert "CHEN" in c
 
 
 def test_cluster_contains_native_script():
     c = NameCluster(forms=frozenset({"陈", "chen", "chan"}), language="chinese")
-    assert "陈" in c        # direct script match
+    assert "陈" in c  # direct script match
 
 
 def test_cluster_does_not_contain_different_script_form():
     c = NameCluster(forms=frozenset({"陈", "chen", "chan"}), language="chinese")
-    assert "陳" not in c    # different character — not in this cluster
+    assert "陳" not in c  # different character — not in this cluster
 
 
 def test_cluster_iteration():
@@ -54,6 +56,7 @@ def test_cluster_frequency_optional():
 
 # ── lookup() ─────────────────────────────────────────────────────────────────
 
+
 def test_lookup_returns_list():
     result = lookup("Chan")
     assert isinstance(result, list)
@@ -70,16 +73,14 @@ def test_lookup_chan_chinese_cluster_contains_both_scripts():
     clusters = lookup("Chan")
     chinese = next(c for c in clusters if c.language == "chinese")
     assert "陈" in chinese
-    assert "陳" in chinese     # Traditional form also in the cluster
+    assert "陳" in chinese  # Traditional form also in the cluster
 
 
 def test_lookup_chan_has_korean_given_cluster():
     # 찬 (praise) has "chan" as its Revised Romanization — both are valid
     clusters = lookup("Chan")
     langs = [c.language for c in clusters]
-    assert "korean_given" in langs, (
-        f"Expected korean_given in lookup('Chan'), got: {langs}"
-    )
+    assert "korean_given" in langs, f"Expected korean_given in lookup('Chan'), got: {langs}"
 
 
 def test_lookup_case_insensitive():
@@ -134,6 +135,7 @@ def test_lookup_sorted_by_frequency_desc():
 
 
 # ── share_cluster() ───────────────────────────────────────────────────────────
+
 
 def test_share_cluster_same_chinese():
     assert share_cluster("Chan", "Chen") is True

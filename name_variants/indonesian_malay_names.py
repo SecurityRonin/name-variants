@@ -23,235 +23,235 @@ Sources:
 """
 
 INDONESIAN_MALAY_NAME_VARIANTS: dict[str, dict] = {
-    'sukarno': {
-        "forms": ['sukarno', 'soekarno'],
+    "sukarno": {
+        "forms": ["sukarno", "soekarno"],
     },
-    'suharto': {
-        "forms": ['suharto', 'soeharto'],
+    "suharto": {
+        "forms": ["suharto", "soeharto"],
     },
-    'susilo': {
-        "forms": ['susilo', 'soesilo'],
+    "susilo": {
+        "forms": ["susilo", "soesilo"],
     },
-    'suryadi': {
-        "forms": ['suryadi', 'soerjadi'],
+    "suryadi": {
+        "forms": ["suryadi", "soerjadi"],
     },
-    'subagio': {
-        "forms": ['subagio', 'soebagio'],
+    "subagio": {
+        "forms": ["subagio", "soebagio"],
     },
-    'sutrisno': {
-        "forms": ['sutrisno', 'soetrisno'],
+    "sutrisno": {
+        "forms": ["sutrisno", "soetrisno"],
     },
-    'sudirman': {
-        "forms": ['sudirman', 'soedirman'],
+    "sudirman": {
+        "forms": ["sudirman", "soedirman"],
     },
-    'sugiyono': {
-        "forms": ['sugiyono', 'soegiyono'],
+    "sugiyono": {
+        "forms": ["sugiyono", "soegiyono"],
     },
-    'sumarsono': {
-        "forms": ['sumarsono', 'soemarsono'],
+    "sumarsono": {
+        "forms": ["sumarsono", "soemarsono"],
     },
-    'sunarso': {
-        "forms": ['sunarso', 'soenarso'],
+    "sunarso": {
+        "forms": ["sunarso", "soenarso"],
     },
-    'supartono': {
-        "forms": ['supartono', 'soepartono'],
+    "supartono": {
+        "forms": ["supartono", "soepartono"],
     },
-    'subroto': {
-        "forms": ['subroto', 'soebroto'],
+    "subroto": {
+        "forms": ["subroto", "soebroto"],
     },
-    'surya': {
-        "forms": ['surya', 'soerya'],
+    "surya": {
+        "forms": ["surya", "soerya"],
     },
-    'suryono': {
-        "forms": ['suryono', 'soerjono'],
+    "suryono": {
+        "forms": ["suryono", "soerjono"],
     },
-    'sutopo': {
-        "forms": ['sutopo', 'soetopo'],
+    "sutopo": {
+        "forms": ["sutopo", "soetopo"],
     },
-    'joko': {
-        "forms": ['joko', 'djoko'],
+    "joko": {
+        "forms": ["joko", "djoko"],
     },
-    'jokowi': {
-        "forms": ['jokowi', 'djokowi'],
+    "jokowi": {
+        "forms": ["jokowi", "djokowi"],
     },
-    'juanda': {
-        "forms": ['juanda', 'djuanda'],
+    "juanda": {
+        "forms": ["juanda", "djuanda"],
     },
-    'jaksa': {
-        "forms": ['jaksa', 'djaksa'],
+    "jaksa": {
+        "forms": ["jaksa", "djaksa"],
     },
-    'jakarta': {
-        "forms": ['jakarta', 'djakarta'],
+    "jakarta": {
+        "forms": ["jakarta", "djakarta"],
     },
-    'jenderal': {
-        "forms": ['jenderal', 'djenderal'],
+    "jenderal": {
+        "forms": ["jenderal", "djenderal"],
     },
-    'nasution': {
-        "forms": ['nasution', 'nasoetion'],
+    "nasution": {
+        "forms": ["nasution", "nasoetion"],
     },
-    'situmorang': {
-        "forms": ['situmorang', 'sitoemorang'],
+    "situmorang": {
+        "forms": ["situmorang", "sitoemorang"],
     },
-    'simatupang': {
-        "forms": ['simatupang', 'simatoepang'],
+    "simatupang": {
+        "forms": ["simatupang", "simatoepang"],
     },
-    'lumbantobing': {
-        "forms": ['lumbantobing', 'loembantoebing'],
+    "lumbantobing": {
+        "forms": ["lumbantobing", "loembantoebing"],
     },
-    'simbolon': {
-        "forms": ['simbolon', 'simboeloen'],
+    "simbolon": {
+        "forms": ["simbolon", "simboeloen"],
     },
-    'panjaitan': {
-        "forms": ['panjaitan', 'pandjaitan'],
+    "panjaitan": {
+        "forms": ["panjaitan", "pandjaitan"],
     },
-    'simanjuntak': {
-        "forms": ['simanjuntak', 'simandjoentak'],
+    "simanjuntak": {
+        "forms": ["simanjuntak", "simandjoentak"],
     },
-    'pakpahan': {
-        "forms": ['pakpahan'],
+    "pakpahan": {
+        "forms": ["pakpahan"],
     },
-    'hutapea': {
-        "forms": ['hutapea', 'hoetapea'],
+    "hutapea": {
+        "forms": ["hutapea", "hoetapea"],
     },
-    'nainggolan': {
-        "forms": ['nainggolan', 'naingolan'],
+    "nainggolan": {
+        "forms": ["nainggolan", "naingolan"],
     },
-    'sinaga': {
-        "forms": ['sinaga'],
+    "sinaga": {
+        "forms": ["sinaga"],
     },
-    'rajagukguk': {
-        "forms": ['rajagukguk', 'radjagoekoek'],
+    "rajagukguk": {
+        "forms": ["rajagukguk", "radjagoekoek"],
     },
-    'ahmad': {
-        "forms": ['ahmad', 'ahmed'],
+    "ahmad": {
+        "forms": ["ahmad", "ahmed"],
     },
-    'mohd': {
-        "forms": ['mohd', 'md'],
+    "mohd": {
+        "forms": ["mohd", "md"],
     },
-    'abd': {
-        "forms": ['abd', 'ab'],
+    "abd": {
+        "forms": ["abd", "ab"],
     },
-    'rahman': {
-        "forms": ['rahman'],
+    "rahman": {
+        "forms": ["rahman"],
     },
-    'rahim': {
-        "forms": ['rahim', 'raheem'],
+    "rahim": {
+        "forms": ["rahim", "raheem"],
     },
-    'aziz': {
-        "forms": ['aziz', 'azees'],
+    "aziz": {
+        "forms": ["aziz", "azees"],
     },
-    'hamid': {
-        "forms": ['hamid', 'hameed'],
+    "hamid": {
+        "forms": ["hamid", "hameed"],
     },
-    'hassan': {
-        "forms": ['hassan', 'hasan'],
+    "hassan": {
+        "forms": ["hassan", "hasan"],
     },
-    'ibrahim': {
-        "forms": ['ibrahim', 'ebrahim'],
+    "ibrahim": {
+        "forms": ["ibrahim", "ebrahim"],
     },
-    'ismail': {
-        "forms": ['ismail', 'esmail'],
+    "ismail": {
+        "forms": ["ismail", "esmail"],
     },
-    'abdullah': {
-        "forms": ['abdullah', 'abdallah'],
+    "abdullah": {
+        "forms": ["abdullah", "abdallah"],
     },
-    'razak': {
-        "forms": ['razak', 'razack'],
+    "razak": {
+        "forms": ["razak", "razack"],
     },
-    'mahathir': {
-        "forms": ['mahathir', 'mahatheer'],
+    "mahathir": {
+        "forms": ["mahathir", "mahatheer"],
     },
-    'anwar': {
-        "forms": ['anwar', 'anwaar'],
+    "anwar": {
+        "forms": ["anwar", "anwaar"],
     },
-    'budi': {
-        "forms": ['budi', 'boedi'],
+    "budi": {
+        "forms": ["budi", "boedi"],
     },
-    'dewi': {
-        "forms": ['dewi', 'dewie'],
+    "dewi": {
+        "forms": ["dewi", "dewie"],
     },
-    'sri': {
-        "forms": ['sri', 'srie'],
+    "sri": {
+        "forms": ["sri", "srie"],
     },
-    'eko': {
-        "forms": ['eko', 'eco'],
+    "eko": {
+        "forms": ["eko", "eco"],
     },
-    'agus': {
-        "forms": ['agus', 'agoes'],
+    "agus": {
+        "forms": ["agus", "agoes"],
     },
-    'hendra': {
-        "forms": ['hendra'],
+    "hendra": {
+        "forms": ["hendra"],
     },
-    'rini': {
-        "forms": ['rini', 'reenie'],
+    "rini": {
+        "forms": ["rini", "reenie"],
     },
-    'sari': {
-        "forms": ['sari', 'sarie'],
+    "sari": {
+        "forms": ["sari", "sarie"],
     },
-    'wati': {
-        "forms": ['wati', 'watie'],
+    "wati": {
+        "forms": ["wati", "watie"],
     },
-    'yanti': {
-        "forms": ['yanti', 'janti'],
+    "yanti": {
+        "forms": ["yanti", "janti"],
     },
-    'purnomo': {
-        "forms": ['purnomo', 'poernomo'],
+    "purnomo": {
+        "forms": ["purnomo", "poernomo"],
     },
-    'pranowo': {
-        "forms": ['pranowo'],
+    "pranowo": {
+        "forms": ["pranowo"],
     },
-    'wahyudi': {
-        "forms": ['wahyudi', 'wahjoedi'],
+    "wahyudi": {
+        "forms": ["wahyudi", "wahjoedi"],
     },
-    'priyono': {
-        "forms": ['priyono', 'prijono'],
+    "priyono": {
+        "forms": ["priyono", "prijono"],
     },
-    'santoso': {
-        "forms": ['santoso', 'santoeso'],
+    "santoso": {
+        "forms": ["santoso", "santoeso"],
     },
-    'handoyo': {
-        "forms": ['handoyo', 'handojo'],
+    "handoyo": {
+        "forms": ["handoyo", "handojo"],
     },
-    'widodo': {
-        "forms": ['widodo'],
+    "widodo": {
+        "forms": ["widodo"],
     },
-    'suprapto': {
-        "forms": ['suprapto', 'soeprapto'],
+    "suprapto": {
+        "forms": ["suprapto", "soeprapto"],
     },
-    'rahayu': {
-        "forms": ['rahayu', 'rahajoe'],
+    "rahayu": {
+        "forms": ["rahayu", "rahajoe"],
     },
-    'susanti': {
-        "forms": ['susanti', 'soesanti'],
+    "susanti": {
+        "forms": ["susanti", "soesanti"],
     },
-    'kurniawan': {
-        "forms": ['kurniawan', 'koerniawan'],
+    "kurniawan": {
+        "forms": ["kurniawan", "koerniawan"],
     },
-    'cahyono': {
-        "forms": ['cahyono', 'cahjono'],
+    "cahyono": {
+        "forms": ["cahyono", "cahjono"],
     },
-    'nugroho': {
-        "forms": ['nugroho', 'noegroho'],
+    "nugroho": {
+        "forms": ["nugroho", "noegroho"],
     },
-    'wibowo': {
-        "forms": ['wibowo', 'wibobo'],
+    "wibowo": {
+        "forms": ["wibowo", "wibobo"],
     },
-    'hartono': {
-        "forms": ['hartono'],
+    "hartono": {
+        "forms": ["hartono"],
     },
-    'gunawan': {
-        "forms": ['gunawan', 'goenawan'],
+    "gunawan": {
+        "forms": ["gunawan", "goenawan"],
     },
-    'setiawan': {
-        "forms": ['setiawan', 'setijawan'],
+    "setiawan": {
+        "forms": ["setiawan", "setijawan"],
     },
-    'kusuma': {
-        "forms": ['kusuma', 'koesoema'],
+    "kusuma": {
+        "forms": ["kusuma", "koesoema"],
     },
-    'saputra': {
-        "forms": ['saputra', 'sapoetra'],
+    "saputra": {
+        "forms": ["saputra", "sapoetra"],
     },
-    'pratama': {
-        "forms": ['pratama'],
+    "pratama": {
+        "forms": ["pratama"],
     },
 }

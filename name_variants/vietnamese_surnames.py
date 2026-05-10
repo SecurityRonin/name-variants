@@ -22,271 +22,271 @@ Sources:
 """
 
 VIETNAMESE_SURNAME_VARIANTS: dict[str, dict] = {
-    'nguyễn': {
-        "forms": ['nguyen', 'nguyên', 'nguyn'],
+    "nguyễn": {
+        "forms": ["nguyen", "nguyên", "nguyn"],
         "frequency": 39_000_000,
     },
-    'trần': {
-        "forms": ['tran', 'trần', 'trant'],
+    "trần": {
+        "forms": ["tran", "trần", "trant"],
         "frequency": 11_000_000,
     },
-    'lê': {
-        "forms": ['le', 'lee', 'lê'],
+    "lê": {
+        "forms": ["le", "lee", "lê"],
         "frequency": 9_500_000,
     },
-    'phạm': {
-        "forms": ['pham', 'phan'],
+    "phạm": {
+        "forms": ["pham", "phan"],
         "frequency": 7_500_000,
     },
-    'hoàng': {
-        "forms": ['hoang', 'hong', 'hwang'],
+    "hoàng": {
+        "forms": ["hoang", "hong", "hwang"],
         "frequency": 5_100_000,
     },
-    'huỳnh': {
-        "forms": ['huynh', 'huyhn', 'huynt'],
+    "huỳnh": {
+        "forms": ["huynh", "huyhn", "huynt"],
         "frequency": 3_900_000,
     },
-    'phan': {
-        "forms": ['phan'],
+    "phan": {
+        "forms": ["phan"],
         "frequency": 1_500_000,
     },
-    'vũ': {
-        "forms": ['vu', 'voo', 'wu'],
+    "vũ": {
+        "forms": ["vu", "voo", "wu"],
         "frequency": 1_600_000,
     },
-    'võ': {
-        "forms": ['vo', 'voh'],
+    "võ": {
+        "forms": ["vo", "voh"],
         "frequency": 1_200_000,
     },
-    'đặng': {
-        "forms": ['dang', 'dặng'],
+    "đặng": {
+        "forms": ["dang", "dặng"],
         "frequency": 1_100_000,
     },
-    'bùi': {
-        "forms": ['bui', 'buj'],
+    "bùi": {
+        "forms": ["bui", "buj"],
         "frequency": 1_000_000,
     },
-    'đỗ': {
-        "forms": ['do', 'doe'],
+    "đỗ": {
+        "forms": ["do", "doe"],
         "frequency": 950_000,
     },
-    'hồ': {
-        "forms": ['ho', 'hoh'],
+    "hồ": {
+        "forms": ["ho", "hoh"],
         "frequency": 900_000,
     },
-    'ngô': {
-        "forms": ['ngo', 'ngoh'],
+    "ngô": {
+        "forms": ["ngo", "ngoh"],
         "frequency": 850_000,
     },
-    'dương': {
-        "forms": ['duong', 'dong'],
+    "dương": {
+        "forms": ["duong", "dong"],
         "frequency": 800_000,
     },
-    'lý': {
-        "forms": ['ly', 'li'],
+    "lý": {
+        "forms": ["ly", "li"],
     },
-    'trịnh': {
-        "forms": ['trinh', 'trịnh'],
+    "trịnh": {
+        "forms": ["trinh", "trịnh"],
     },
-    'đinh': {
-        "forms": ['dinh'],
+    "đinh": {
+        "forms": ["dinh"],
     },
-    'lưu': {
-        "forms": ['luu', 'lyu', 'lu'],
+    "lưu": {
+        "forms": ["luu", "lyu", "lu"],
     },
-    'phùng': {
-        "forms": ['phung', 'fung'],
+    "phùng": {
+        "forms": ["phung", "fung"],
     },
-    'đoàn': {
-        "forms": ['doan', 'joan'],
+    "đoàn": {
+        "forms": ["doan", "joan"],
     },
-    'vương': {
-        "forms": ['vuong', 'vuonh'],
+    "vương": {
+        "forms": ["vuong", "vuonh"],
     },
-    'trương': {
-        "forms": ['truong', 'trương'],
+    "trương": {
+        "forms": ["truong", "trương"],
     },
-    'tô': {
-        "forms": ['to', 'toh'],
+    "tô": {
+        "forms": ["to", "toh"],
     },
-    'đào': {
-        "forms": ['dao', 'dow'],
+    "đào": {
+        "forms": ["dao", "dow"],
     },
-    'hà': {
-        "forms": ['ha', 'hah'],
+    "hà": {
+        "forms": ["ha", "hah"],
     },
-    'mai': {
-        "forms": ['mai', 'my'],
+    "mai": {
+        "forms": ["mai", "my"],
     },
-    'tạ': {
-        "forms": ['ta', 'tar'],
+    "tạ": {
+        "forms": ["ta", "tar"],
     },
-    'thái': {
-        "forms": ['thai', 'thi'],
+    "thái": {
+        "forms": ["thai", "thi"],
     },
-    'lâm': {
-        "forms": ['lam', 'lahm'],
+    "lâm": {
+        "forms": ["lam", "lahm"],
     },
-    'quách': {
-        "forms": ['quach', 'kwach'],
+    "quách": {
+        "forms": ["quach", "kwach"],
     },
-    'chu': {
-        "forms": ['chu', 'choo'],
+    "chu": {
+        "forms": ["chu", "choo"],
     },
-    'kiều': {
-        "forms": ['kieu', 'kew'],
+    "kiều": {
+        "forms": ["kieu", "kew"],
     },
-    'lương': {
-        "forms": ['luong', 'lyong'],
+    "lương": {
+        "forms": ["luong", "lyong"],
     },
-    'thạch': {
-        "forms": ['thach', 'tahk'],
+    "thạch": {
+        "forms": ["thach", "tahk"],
     },
-    'khúc': {
-        "forms": ['khuc', 'kook'],
+    "khúc": {
+        "forms": ["khuc", "kook"],
     },
-    'đức': {
-        "forms": ['duc', 'duk'],
+    "đức": {
+        "forms": ["duc", "duk"],
     },
-    'văn': {
-        "forms": ['van', 'vahn'],
+    "văn": {
+        "forms": ["van", "vahn"],
     },
-    'sơn': {
-        "forms": ['son', 'sohn'],
+    "sơn": {
+        "forms": ["son", "sohn"],
     },
-    'ninh': {
-        "forms": ['ninh', 'nin'],
+    "ninh": {
+        "forms": ["ninh", "nin"],
     },
-    'lại': {
-        "forms": ['lai', 'lie'],
+    "lại": {
+        "forms": ["lai", "lie"],
     },
-    'trọng': {
-        "forms": ['trong', 'trung'],
+    "trọng": {
+        "forms": ["trong", "trung"],
     },
-    'hùng': {
-        "forms": ['hung', 'hoong'],
+    "hùng": {
+        "forms": ["hung", "hoong"],
     },
-    'khổng': {
-        "forms": ['khong', 'kong'],
+    "khổng": {
+        "forms": ["khong", "kong"],
     },
-    'doãn': {
-        "forms": ['doan', 'dwan'],
+    "doãn": {
+        "forms": ["doan", "dwan"],
     },
-    'tống': {
-        "forms": ['tong', 'song'],
+    "tống": {
+        "forms": ["tong", "song"],
     },
-    'mạc': {
-        "forms": ['mac', 'mak'],
+    "mạc": {
+        "forms": ["mac", "mak"],
     },
-    'vừa': {
-        "forms": ['vua', 'vwa'],
+    "vừa": {
+        "forms": ["vua", "vwa"],
     },
-    'bạch': {
-        "forms": ['bach', 'bahk'],
+    "bạch": {
+        "forms": ["bach", "bahk"],
     },
-    'cam': {
-        "forms": ['cam', 'kahm'],
+    "cam": {
+        "forms": ["cam", "kahm"],
     },
-    'liêu': {
-        "forms": ['lieu', 'lyew'],
+    "liêu": {
+        "forms": ["lieu", "lyew"],
     },
-    'thị': {
-        "forms": ['thi', 'thy'],
+    "thị": {
+        "forms": ["thi", "thy"],
     },
-    'thắng': {
-        "forms": ['thang', 'thaing'],
+    "thắng": {
+        "forms": ["thang", "thaing"],
     },
-    'minh': {
-        "forms": ['minh', 'min'],
+    "minh": {
+        "forms": ["minh", "min"],
     },
-    'anh': {
-        "forms": ['anh', 'ann'],
+    "anh": {
+        "forms": ["anh", "ann"],
     },
-    'hương': {
-        "forms": ['huong', 'hwong'],
+    "hương": {
+        "forms": ["huong", "hwong"],
     },
-    'linh': {
-        "forms": ['linh', 'lin'],
+    "linh": {
+        "forms": ["linh", "lin"],
     },
-    'dũng': {
-        "forms": ['dung', 'zoong'],
+    "dũng": {
+        "forms": ["dung", "zoong"],
     },
-    'tuấn': {
-        "forms": ['tuan', 'twahn'],
+    "tuấn": {
+        "forms": ["tuan", "twahn"],
     },
-    'hải': {
-        "forms": ['hai', 'hy'],
+    "hải": {
+        "forms": ["hai", "hy"],
     },
-    'nam': {
-        "forms": ['nam', 'nahm'],
+    "nam": {
+        "forms": ["nam", "nahm"],
     },
-    'quang': {
-        "forms": ['quang', 'kwang'],
+    "quang": {
+        "forms": ["quang", "kwang"],
     },
-    'long': {
-        "forms": ['long', 'lohng'],
+    "long": {
+        "forms": ["long", "lohng"],
     },
-    'hòa': {
-        "forms": ['hoa', 'hwah'],
+    "hòa": {
+        "forms": ["hoa", "hwah"],
     },
-    'bình': {
-        "forms": ['binh', 'bin'],
+    "bình": {
+        "forms": ["binh", "bin"],
     },
-    'khoa': {
-        "forms": ['khoa', 'kwah'],
+    "khoa": {
+        "forms": ["khoa", "kwah"],
     },
-    'thành': {
-        "forms": ['thanh', 'tahn'],
+    "thành": {
+        "forms": ["thanh", "tahn"],
     },
-    'phương': {
-        "forms": ['phuong', 'fwong'],
+    "phương": {
+        "forms": ["phuong", "fwong"],
     },
-    'ngọc': {
-        "forms": ['ngoc', 'nyok'],
+    "ngọc": {
+        "forms": ["ngoc", "nyok"],
     },
-    'lan': {
-        "forms": ['lan', 'lahn'],
+    "lan": {
+        "forms": ["lan", "lahn"],
     },
-    'thu': {
-        "forms": ['thu', 'too'],
+    "thu": {
+        "forms": ["thu", "too"],
     },
-    'loan': {
-        "forms": ['loan', 'lwan'],
+    "loan": {
+        "forms": ["loan", "lwan"],
     },
-    'chi': {
-        "forms": ['chi', 'chee'],
+    "chi": {
+        "forms": ["chi", "chee"],
     },
-    'nga': {
-        "forms": ['nga', 'nyah'],
+    "nga": {
+        "forms": ["nga", "nyah"],
     },
-    'diễm': {
-        "forms": ['diem', 'dyem'],
+    "diễm": {
+        "forms": ["diem", "dyem"],
     },
-    'nhung': {
-        "forms": ['nhung', 'noong'],
+    "nhung": {
+        "forms": ["nhung", "noong"],
     },
-    'trang': {
-        "forms": ['trang', 'chahng'],
+    "trang": {
+        "forms": ["trang", "chahng"],
     },
-    'uyên': {
-        "forms": ['uyen', 'wien'],
+    "uyên": {
+        "forms": ["uyen", "wien"],
     },
-    'thúy': {
-        "forms": ['thuy', 'twee'],
+    "thúy": {
+        "forms": ["thuy", "twee"],
     },
-    'xuân': {
-        "forms": ['xuan', 'swan'],
+    "xuân": {
+        "forms": ["xuan", "swan"],
     },
-    'kim': {
-        "forms": ['kim', 'gim'],
+    "kim": {
+        "forms": ["kim", "gim"],
     },
-    'hồng': {
-        "forms": ['hong', 'hoong'],
+    "hồng": {
+        "forms": ["hong", "hoong"],
     },
-    'yến': {
-        "forms": ['yen', 'yenn'],
+    "yến": {
+        "forms": ["yen", "yenn"],
     },
-    'ly': {
-        "forms": ['ly'],
+    "ly": {
+        "forms": ["ly"],
     },
 }

@@ -1,4 +1,5 @@
 """Tests for the nv CLI (lookup, match, canonicalize-csv, dedupe commands)."""
+
 import csv
 
 import pytest
@@ -13,6 +14,7 @@ def runner():
 
 
 # ── nv lookup ─────────────────────────────────────────────────────────────────
+
 
 def test_lookup_known(runner):
     result = runner.invoke(cli, ["lookup", "Chan"])
@@ -33,6 +35,7 @@ def test_lookup_multiword(runner):
 
 
 # ── nv match ──────────────────────────────────────────────────────────────────
+
 
 def test_match_same_name(runner):
     result = runner.invoke(cli, ["match", "Chan", "Chen"])
@@ -57,11 +60,11 @@ def test_match_exit_code_different(runner):
 
 # ── nv canonicalize-csv ───────────────────────────────────────────────────────
 
+
 def _write_csv(tmp_path, rows, headers=("id", "name")):
     p = tmp_path / "input.csv"
     p.write_text(
-        "\n".join([",".join(headers)] + [",".join(str(v) for v in r) for r in rows])
-        + "\n"
+        "\n".join([",".join(headers)] + [",".join(str(v) for v in r) for r in rows]) + "\n"
     )
     return str(p)
 
@@ -73,7 +76,7 @@ def test_canonicalize_csv_adds_column(runner, tmp_path):
     assert result.exit_code == 0
     rows = list(csv.DictReader(open(out)))
     assert rows[0]["name_canonical"] == "陈"
-    assert rows[1]["name_canonical"] == "Smith"   # passthrough for unknown
+    assert rows[1]["name_canonical"] == "Smith"  # passthrough for unknown
     assert rows[2]["name_canonical"] == "박"
 
 
@@ -101,10 +104,18 @@ def test_canonicalize_csv_missing_col_error(runner, tmp_path):
 
 # ── nv dedupe ─────────────────────────────────────────────────────────────────
 
+
 def test_dedupe_adds_cluster_id(runner, tmp_path):
-    src = _write_csv(tmp_path, [
-        ("1", "Chan"), ("2", "Chen"), ("3", "Smith"), ("4", "Park"), ("5", "Bak"),
-    ])
+    src = _write_csv(
+        tmp_path,
+        [
+            ("1", "Chan"),
+            ("2", "Chen"),
+            ("3", "Smith"),
+            ("4", "Park"),
+            ("5", "Bak"),
+        ],
+    )
     out = str(tmp_path / "out.csv")
     result = runner.invoke(cli, ["dedupe", src, "--col", "name", "--out", out])
     assert result.exit_code == 0

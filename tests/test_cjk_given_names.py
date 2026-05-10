@@ -1,7 +1,9 @@
 """Feature 7: CJK given-name tables — RED/GREEN tests."""
+
 from name_variants import ALL_TABLES, lookup
 
 # ── Table presence ────────────────────────────────────────────────────────────
+
 
 def test_chinese_given_table_present():
     assert "chinese_given" in ALL_TABLES
@@ -19,6 +21,7 @@ def test_japanese_given_table_present():
 
 
 # ── Chinese given-name lookups ────────────────────────────────────────────────
+
 
 def test_chinese_given_ming():
     assert lookup("明") != []
@@ -40,6 +43,7 @@ def test_chinese_given_yang():
 
 # ── Korean given-name lookups ─────────────────────────────────────────────────
 
+
 def test_korean_given_jae():
     # 재 (Jae) — common given name component
     assert lookup("재") != [] or lookup("Jae") != []
@@ -55,6 +59,7 @@ def test_korean_given_ji():
 
 # ── Japanese given-name lookups ───────────────────────────────────────────────
 
+
 def test_japanese_given_kenji():
     assert lookup("Kenji") != []
 
@@ -68,6 +73,7 @@ def test_japanese_given_haruto():
 
 
 # ── Round-trip test ───────────────────────────────────────────────────────────
+
 
 def test_all_given_canonicals_self_lookup():
     for table_name in ["chinese_given", "korean_given", "japanese_given"]:

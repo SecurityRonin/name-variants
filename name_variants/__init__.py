@@ -97,10 +97,7 @@ def _build_clusters() -> tuple[list[NameCluster], dict[str, list[NameCluster]]]:
             forms_list: list[str] = entry["forms"]
             frequency: int | None = entry.get("frequency")
 
-            forms = frozenset(
-                {storage_key}
-                | {v.lower().strip() for v in forms_list if v.strip()}
-            )
+            forms = frozenset({storage_key} | {v.lower().strip() for v in forms_list if v.strip()})
             cluster = NameCluster(forms=forms, language=language, frequency=frequency)
             clusters.append(cluster)
             for form in forms:
@@ -114,7 +111,6 @@ def _get_form_index() -> dict[str, list[NameCluster]]:
     if _FORM_INDEX is None:
         _CLUSTERS, _FORM_INDEX = _build_clusters()
     return _FORM_INDEX
-
 
 
 def lookup(text: str) -> list[NameCluster]:
@@ -170,7 +166,6 @@ def share_cluster(a: str, b: str) -> bool:
     return any(c in a_set for c in lookup(b))
 
 
-
 def normalize(text: str, *, strip_diacritics: bool = False) -> str:
     """
     NFC + casefold + collapse whitespace + strip Unicode format characters.
@@ -189,7 +184,6 @@ def normalize(text: str, *, strip_diacritics: bool = False) -> str:
         text = "".join(ch for ch in text if _ud.category(ch) != "Mn")
         text = _ud.normalize("NFC", text)
     return text
-
 
 
 def _build_dialect_index() -> dict[str, str]:

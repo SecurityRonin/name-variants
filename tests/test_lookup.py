@@ -1,15 +1,30 @@
 """Tests for lookup(), share_cluster(), and ALL_TABLES completeness."""
+
 from name_variants import ALL_TABLES, lookup, share_cluster
 
 # ── Table completeness ────────────────────────────────────────────────────────
 
+
 def test_all_tables_present():
     expected = {
-        "chinese", "arabic", "japanese", "korean", "vietnamese",
-        "indian_hindi", "indian_tamil", "indian_bengali",
-        "persian", "hebrew", "thai", "greek", "turkish",
-        "russian", "indonesian_malay",
-        "chinese_given", "korean_given", "japanese_given",
+        "chinese",
+        "arabic",
+        "japanese",
+        "korean",
+        "vietnamese",
+        "indian_hindi",
+        "indian_tamil",
+        "indian_bengali",
+        "persian",
+        "hebrew",
+        "thai",
+        "greek",
+        "turkish",
+        "russian",
+        "indonesian_malay",
+        "chinese_given",
+        "korean_given",
+        "japanese_given",
     }
     assert set(ALL_TABLES.keys()) == expected
 
@@ -32,6 +47,7 @@ def test_all_keys_nonempty():
 
 
 # ── Chinese lookups ───────────────────────────────────────────────────────────
+
 
 def test_chan_and_chen_same_key():
     assert share_cluster("Chan", "Chen")
@@ -78,6 +94,7 @@ def test_different_chinese_surnames_different_keys():
 
 # ── Korean lookups ────────────────────────────────────────────────────────────
 
+
 def test_park_and_bak_same_key():
     assert share_cluster("Park", "Bak")
 
@@ -98,6 +115,7 @@ def test_jung_and_chung_same_key():
 
 # ── Vietnamese lookups ────────────────────────────────────────────────────────
 
+
 def test_nguyen_stripped():
     assert lookup("Nguyen") != []
     assert share_cluster("Nguyen", "nguyễn")
@@ -108,6 +126,7 @@ def test_tran_stripped():
 
 
 # ── Arabic lookups ────────────────────────────────────────────────────────────
+
 
 def test_muhammad_variants():
     assert share_cluster("Muhammad", "Mohammed")
@@ -120,6 +139,7 @@ def test_fatima_variants():
 
 # ── Russian lookups ───────────────────────────────────────────────────────────
 
+
 def test_ivanov_and_ivanoff():
     assert share_cluster("Ivanov", "Ivanoff")
 
@@ -130,17 +150,20 @@ def test_dostoevsky_variants():
 
 # ── Hebrew lookups ────────────────────────────────────────────────────────────
 
+
 def test_yitzhak_and_isaac():
     assert share_cluster("Yitzhak", "Isaac")
 
 
 # ── Turkish lookups ───────────────────────────────────────────────────────────
 
+
 def test_celik_and_chelik():
     assert share_cluster("Celik", "çelik")
 
 
 # ── lookup — multi-script ambiguous romanizations ─────────────────────────────
+
 
 def test_candidates_lee_returns_korean_chinese_vietnamese():
     # "lee" legitimately appears in Korean 이, Chinese 李, and Vietnamese lê
@@ -172,6 +195,7 @@ def test_candidates_unknown_returns_empty():
 
 # ── Unknown names ─────────────────────────────────────────────────────────────
 
+
 def test_unknown_returns_empty():
     assert lookup("Kowalski") == []
     assert lookup("Smith") == []
@@ -183,6 +207,7 @@ def test_empty_string_returns_empty():
 
 
 # ── Token-level lookup in multi-word names ────────────────────────────────────
+
 
 def test_chan_in_full_name():
     # "Chan Wai Ming" → "Chan" token matches → returns Chinese surname cluster
@@ -199,6 +224,7 @@ def test_park_in_full_name():
 
 
 # ── lookup — cluster contents ─────────────────────────────────────────────────
+
 
 def test_lookup_returns_cluster_with_variants():
     clusters = lookup("Chan")
@@ -226,6 +252,7 @@ def test_lookup_multiword():
 
 # ── Vietnamese (extended) ─────────────────────────────────────────────────────
 
+
 def test_le_variants():
     assert share_cluster("Le", "lê")
 
@@ -239,6 +266,7 @@ def test_hoang_variants():
 
 
 # ── Arabic (extended) ─────────────────────────────────────────────────────────
+
 
 def test_ali_variants():
     assert lookup("Ali") != []
@@ -254,6 +282,7 @@ def test_arabic_script_direct():
 
 # ── Russian (extended) ────────────────────────────────────────────────────────
 
+
 def test_sokolov_variants():
     assert share_cluster("Sokolov", "Sokoloff")
 
@@ -268,6 +297,7 @@ def test_cyrillic_direct():
 
 
 # ── Edge cases ────────────────────────────────────────────────────────────────
+
 
 def test_whitespace_only_returns_empty():
     assert lookup("   ") == []
@@ -302,6 +332,7 @@ def test_case_insensitive_lookup():
 
 # ── Multi-word token lookup (extended) ───────────────────────────────────────
 
+
 def test_multi_word_arabic():
     assert share_cluster("Mohammed Al-Rashid", "Muhammad")
 
@@ -315,6 +346,7 @@ def test_multi_word_no_match_returns_empty():
 
 
 # ── Japanese ──────────────────────────────────────────────────────────────────
+
 
 def test_sato_lookup():
     assert lookup("Sato") != []
@@ -336,6 +368,7 @@ def test_japanese_kanji_direct():
 
 # ── Indian names ──────────────────────────────────────────────────────────────
 
+
 def test_hindi_sharma_variants():
     assert lookup("Sharma") != []
 
@@ -355,8 +388,10 @@ def test_bengali_chatterjee_variants():
 
 # ── Thai ──────────────────────────────────────────────────────────────────────
 
+
 def test_thai_canonical_self_lookup():
     from name_variants import ALL_TABLES
+
     thai_table = ALL_TABLES["thai"]
     assert len(thai_table) > 0
     some_canonical = next(iter(thai_table))
@@ -365,6 +400,7 @@ def test_thai_canonical_self_lookup():
 
 def test_thai_romanization_lookup():
     from name_variants import ALL_TABLES
+
     for canonical, entry in ALL_TABLES["thai"].items():
         forms = entry["forms"] if isinstance(entry, dict) else entry
         if forms:
@@ -374,17 +410,20 @@ def test_thai_romanization_lookup():
 
 # ── Greek ─────────────────────────────────────────────────────────────────────
 
+
 def test_greek_papadopoulos_variants():
     assert lookup("Papadopoulos") != []
 
 
 def test_greek_canonical_self_lookup():
     from name_variants import ALL_TABLES
+
     some_canonical = next(iter(ALL_TABLES["greek"]))
     assert any(some_canonical in c for c in lookup(some_canonical))
 
 
 # ── Turkish ───────────────────────────────────────────────────────────────────
+
 
 def test_turkish_yilmaz_variants():
     assert lookup("Yilmaz") != []
@@ -393,11 +432,13 @@ def test_turkish_yilmaz_variants():
 
 # ── Persian ───────────────────────────────────────────────────────────────────
 
+
 def test_persian_mohammadi_variants():
     assert lookup("Mohammadi") != []
 
 
 # ── Hebrew ────────────────────────────────────────────────────────────────────
+
 
 def test_hebrew_cohen_variants():
     assert lookup("Cohen") != []
@@ -405,6 +446,7 @@ def test_hebrew_cohen_variants():
 
 
 # ── Indonesian/Malay ──────────────────────────────────────────────────────────
+
 
 def test_indonesian_santoso_variants():
     assert lookup("Santoso") != []

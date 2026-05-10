@@ -1,9 +1,11 @@
 """Tests for normalize() and share_cluster() utility functions."""
+
 import unicodedata
 
 from name_variants import normalize, share_cluster
 
 # ── normalize ─────────────────────────────────────────────────────────────────
+
 
 def test_normalize_casefold():
     assert normalize("CHAN") == "chan"
@@ -66,6 +68,7 @@ def test_normalize_whitespace_only():
 
 
 # ── share_cluster ─────────────────────────────────────────────────────────────
+
 
 def test_is_variant_same_chinese():
     assert share_cluster("Chan", "Chen") is True

@@ -15,229 +15,229 @@ Sources:
 """
 
 HEBREW_NAME_VARIANTS: dict[str, dict] = {
-    'יצחק': {
-        "forms": ['yitzhak', 'yitzchak', 'isaac', 'izak', 'yizhak'],
+    "יצחק": {
+        "forms": ["yitzhak", "yitzchak", "isaac", "izak", "yizhak"],
     },
-    'משה': {
-        "forms": ['moshe', 'moses', 'moishe'],
+    "משה": {
+        "forms": ["moshe", "moses", "moishe"],
     },
-    'אברהם': {
-        "forms": ['avraham', 'abraham', 'avrahim'],
+    "אברהם": {
+        "forms": ["avraham", "abraham", "avrahim"],
     },
-    'יוסף': {
-        "forms": ['yosef', 'joseph', 'yossef'],
+    "יוסף": {
+        "forms": ["yosef", "joseph", "yossef"],
     },
-    'דוד': {
-        "forms": ['david', 'daveed', 'davyd'],
+    "דוד": {
+        "forms": ["david", "daveed", "davyd"],
     },
-    'יעקב': {
-        "forms": ['yaakov', 'jacob', 'jakob'],
+    "יעקב": {
+        "forms": ["yaakov", "jacob", "jakob"],
     },
-    'אהרון': {
-        "forms": ['aaron', 'aharon', 'aron'],
+    "אהרון": {
+        "forms": ["aaron", "aharon", "aron"],
     },
-    'שמואל': {
-        "forms": ['shmuel', 'samuel', 'schmuel'],
+    "שמואל": {
+        "forms": ["shmuel", "samuel", "schmuel"],
     },
-    'בנימין': {
-        "forms": ['binyamin', 'benjamin', 'benyamin'],
+    "בנימין": {
+        "forms": ["binyamin", "benjamin", "benyamin"],
     },
-    'שלמה': {
-        "forms": ['shlomo', 'solomon', 'shlomoh'],
+    "שלמה": {
+        "forms": ["shlomo", "solomon", "shlomoh"],
     },
-    'חיים': {
-        "forms": ['chaim', 'haim', 'hayim', 'hayyim'],
+    "חיים": {
+        "forms": ["chaim", "haim", "hayim", "hayyim"],
     },
-    'מנחם': {
-        "forms": ['menachem', 'menahem', 'menakhem'],
+    "מנחם": {
+        "forms": ["menachem", "menahem", "menakhem"],
     },
-    'אריה': {
-        "forms": ['aryeh', 'arye', 'arie'],
+    "אריה": {
+        "forms": ["aryeh", "arye", "arie"],
     },
-    'אליעזר': {
-        "forms": ['eliezer', 'eleazar', 'eliazar'],
+    "אליעזר": {
+        "forms": ["eliezer", "eleazar", "eliazar"],
     },
-    'זאב': {
-        "forms": ['zeev', 'zev', "ze'ev"],
+    "זאב": {
+        "forms": ["zeev", "zev", "ze'ev"],
     },
-    'נחמן': {
-        "forms": ['nachman', 'nahman'],
+    "נחמן": {
+        "forms": ["nachman", "nahman"],
     },
-    'ברוך': {
-        "forms": ['baruch', 'boruch', 'barukh'],
+    "ברוך": {
+        "forms": ["baruch", "boruch", "barukh"],
     },
-    'פינחס': {
-        "forms": ['pinchas', 'phinehas', 'pinhas'],
+    "פינחס": {
+        "forms": ["pinchas", "phinehas", "pinhas"],
     },
-    'גדליה': {
-        "forms": ['gedaliah', 'gedalya'],
+    "גדליה": {
+        "forms": ["gedaliah", "gedalya"],
     },
-    'ישראל': {
-        "forms": ['israel', 'yisrael', "yisra'el"],
+    "ישראל": {
+        "forms": ["israel", "yisrael", "yisra'el"],
     },
-    'נתן': {
-        "forms": ['natan', 'nathan'],
+    "נתן": {
+        "forms": ["natan", "nathan"],
     },
-    'אלי': {
-        "forms": ['eli', 'elie', 'ely'],
+    "אלי": {
+        "forms": ["eli", "elie", "ely"],
     },
-    'גיל': {
-        "forms": ['gil', 'geel'],
+    "גיל": {
+        "forms": ["gil", "geel"],
     },
-    'עמיר': {
-        "forms": ['amir', 'ameer'],
+    "עמיר": {
+        "forms": ["amir", "ameer"],
     },
-    'רון': {
-        "forms": ['ron', 'ronn'],
+    "רון": {
+        "forms": ["ron", "ronn"],
     },
-    'אייל': {
-        "forms": ['eyal', 'ayyal'],
+    "אייל": {
+        "forms": ["eyal", "ayyal"],
     },
-    'ניר': {
-        "forms": ['nir', 'neer'],
+    "ניר": {
+        "forms": ["nir", "neer"],
     },
-    'ידין': {
-        "forms": ['yadin', 'yaadin'],
+    "ידין": {
+        "forms": ["yadin", "yaadin"],
     },
-    'עמוס': {
-        "forms": ['amos', 'amoss'],
+    "עמוס": {
+        "forms": ["amos", "amoss"],
     },
-    'יגאל': {
-        "forms": ['yigal', 'yigael'],
+    "יגאל": {
+        "forms": ["yigal", "yigael"],
     },
-    'אביגדור': {
-        "forms": ['avigdor', 'avigdore'],
+    "אביגדור": {
+        "forms": ["avigdor", "avigdore"],
     },
-    'צבי': {
-        "forms": ['tzvi', 'zvi', 'tsvi'],
+    "צבי": {
+        "forms": ["tzvi", "zvi", "tsvi"],
     },
-    'אחיעזר': {
-        "forms": ['achiezer', "ahi'ezer"],
+    "אחיעזר": {
+        "forms": ["achiezer", "ahi'ezer"],
     },
-    'מתתיהו': {
-        "forms": ['mattityahu', 'matthias', 'matityahu'],
+    "מתתיהו": {
+        "forms": ["mattityahu", "matthias", "matityahu"],
     },
-    'עקיבא': {
-        "forms": ['akiva', 'aqiva'],
+    "עקיבא": {
+        "forms": ["akiva", "aqiva"],
     },
-    'שמעון': {
-        "forms": ['shimon', 'simeon', 'simon'],
+    "שמעון": {
+        "forms": ["shimon", "simeon", "simon"],
     },
-    'לוי': {
-        "forms": ['levi', 'levy'],
+    "לוי": {
+        "forms": ["levi", "levy"],
     },
-    'ראובן': {
-        "forms": ['reuven', 'reuben', 'ruben'],
+    "ראובן": {
+        "forms": ["reuven", "reuben", "ruben"],
     },
-    'יהודה': {
-        "forms": ['yehuda', 'judah', 'yehudah'],
+    "יהודה": {
+        "forms": ["yehuda", "judah", "yehudah"],
     },
-    'גדעון': {
-        "forms": ['gideon', 'gidon'],
+    "גדעון": {
+        "forms": ["gideon", "gidon"],
     },
-    'אלדד': {
-        "forms": ['eldad', 'eldaad'],
+    "אלדד": {
+        "forms": ["eldad", "eldaad"],
     },
-    'שרה': {
-        "forms": ['sarah', 'sara'],
+    "שרה": {
+        "forms": ["sarah", "sara"],
     },
-    'רבקה': {
-        "forms": ['rivka', 'rebekah', 'rebecca'],
+    "רבקה": {
+        "forms": ["rivka", "rebekah", "rebecca"],
     },
-    'רחל': {
-        "forms": ['rachel', 'rahel'],
+    "רחל": {
+        "forms": ["rachel", "rahel"],
     },
-    'לאה': {
-        "forms": ['leah', 'lea'],
+    "לאה": {
+        "forms": ["leah", "lea"],
     },
-    'מרים': {
-        "forms": ['miriam', 'maryam'],
+    "מרים": {
+        "forms": ["miriam", "maryam"],
     },
-    'דינה': {
-        "forms": ['dinah', 'dina'],
+    "דינה": {
+        "forms": ["dinah", "dina"],
     },
-    'תמר': {
-        "forms": ['tamar', 'tamara'],
+    "תמר": {
+        "forms": ["tamar", "tamara"],
     },
-    'דבורה': {
-        "forms": ['devorah', 'deborah', 'dvora'],
+    "דבורה": {
+        "forms": ["devorah", "deborah", "dvora"],
     },
-    'חנה': {
-        "forms": ['hanna', 'hannah', 'chana'],
+    "חנה": {
+        "forms": ["hanna", "hannah", "chana"],
     },
-    'שולמית': {
-        "forms": ['shulamit', 'shulamith'],
+    "שולמית": {
+        "forms": ["shulamit", "shulamith"],
     },
-    'ציפורה': {
-        "forms": ['tzipora', 'zipporah', 'tsippora'],
+    "ציפורה": {
+        "forms": ["tzipora", "zipporah", "tsippora"],
     },
-    'נעמי': {
-        "forms": ['naomi', "no'omi"],
+    "נעמי": {
+        "forms": ["naomi", "no'omi"],
     },
-    'אסתר': {
-        "forms": ['esther', 'ester'],
+    "אסתר": {
+        "forms": ["esther", "ester"],
     },
-    'רות': {
-        "forms": ['ruth', 'rut'],
+    "רות": {
+        "forms": ["ruth", "rut"],
     },
-    'יעל': {
-        "forms": ['yael', 'jael'],
+    "יעל": {
+        "forms": ["yael", "jael"],
     },
-    'גלית': {
-        "forms": ['galit', 'galeet'],
+    "גלית": {
+        "forms": ["galit", "galeet"],
     },
-    'עינת': {
-        "forms": ['einat', 'aynat'],
+    "עינת": {
+        "forms": ["einat", "aynat"],
     },
-    'רוני': {
-        "forms": ['roni', 'ronni'],
+    "רוני": {
+        "forms": ["roni", "ronni"],
     },
-    'טלי': {
-        "forms": ['tali', 'talee'],
+    "טלי": {
+        "forms": ["tali", "talee"],
     },
-    'מיכל': {
-        "forms": ['michal', 'mickel'],
+    "מיכל": {
+        "forms": ["michal", "mickel"],
     },
-    'שירה': {
-        "forms": ['shira', 'sheerah'],
+    "שירה": {
+        "forms": ["shira", "sheerah"],
     },
-    'יפה': {
-        "forms": ['yafa', 'jaffa'],
+    "יפה": {
+        "forms": ["yafa", "jaffa"],
     },
-    'ענת': {
-        "forms": ['anat', 'anath'],
+    "ענת": {
+        "forms": ["anat", "anath"],
     },
-    'נילי': {
-        "forms": ['nili', 'neeli'],
+    "נילי": {
+        "forms": ["nili", "neeli"],
     },
-    'אורית': {
-        "forms": ['orit', 'oreet'],
+    "אורית": {
+        "forms": ["orit", "oreet"],
     },
-    'דליה': {
-        "forms": ['dalia', 'dalya'],
+    "דליה": {
+        "forms": ["dalia", "dalya"],
     },
-    'ליאת': {
-        "forms": ['liat', 'lyat'],
+    "ליאת": {
+        "forms": ["liat", "lyat"],
     },
-    'שני': {
-        "forms": ['shani', 'shaani'],
+    "שני": {
+        "forms": ["shani", "shaani"],
     },
-    'אלינור': {
-        "forms": ['elinor', 'eleanor'],
+    "אלינור": {
+        "forms": ["elinor", "eleanor"],
     },
-    'נעה': {
-        "forms": ['noa', "no'a"],
+    "נעה": {
+        "forms": ["noa", "no'a"],
     },
-    'כהן': {
-        "forms": ['cohen', 'kohen', 'kohn', 'cohn'],
+    "כהן": {
+        "forms": ["cohen", "kohen", "kohn", "cohn"],
     },
-    'מזרחי': {
-        "forms": ['mizrahi', 'mizrachi'],
+    "מזרחי": {
+        "forms": ["mizrahi", "mizrachi"],
     },
-    'פרץ': {
-        "forms": ['peretz', 'perets', 'peres'],
+    "פרץ": {
+        "forms": ["peretz", "perets", "peres"],
     },
-    'שפירא': {
-        "forms": ['shapira', 'shapiro', 'schapiro'],
+    "שפירא": {
+        "forms": ["shapira", "shapiro", "schapiro"],
     },
 }
