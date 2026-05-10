@@ -3,9 +3,8 @@
 Canonical keys are kanji (single or compound) or katakana for kana-only names.
 Variants are romanizations (lowercase).
 
-Note: romanizations that conflict with the 15 surname/family-name tables have
-been removed so that lookup_key() continues to prefer surname canonicals.
-The canonical kanji/katakana characters are always reachable via lookup_candidates().
+Genuine romanization ambiguity is a feature: lookup() returns ALL matching
+clusters.  Macron forms (ō, ū) and bare forms (o, u) coexist where applicable.
 """
 
 JAPANESE_GIVEN_NAME_VARIANTS: dict[str, list[str]] = {

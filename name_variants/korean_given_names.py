@@ -3,9 +3,8 @@
 Canonical keys are Hangul syllables (single or compound).
 Variants are romanizations (lowercase).
 
-Note: romanizations that conflict with the 15 surname/family-name tables have
-been removed so that lookup_key() continues to prefer surname canonicals.
-The canonical Hangul characters are always reachable via lookup_candidates().
+Genuine romanization ambiguity is a feature: lookup() returns ALL matching
+clusters, so no romanization should be stripped to avoid collisions.
 """
 
 KOREAN_GIVEN_NAME_VARIANTS: dict[str, list[str]] = {
@@ -42,25 +41,25 @@ KOREAN_GIVEN_NAME_VARIANTS: dict[str, list[str]] = {
     "태": ["tae"],
     "선": ["seon", "sen"],
     "환": ["hwan", "hwon"],
-    "우": ["wu"],
+    "우": ["wu", "woo", "u"],
     "도": ["doh"],
-    "찬": ["chahn"],
+    "찬": ["chan", "chahn"],
     "빈": ["been"],
     "인": ["in", "een"],
     "석": ["seok", "suk", "seck"],
     "한": ["hahn"],
     "상": ["sahng"],
     "오": ["oh"],
-    "창": ["chahng"],
+    "창": ["chang", "chahng"],
     "안": ["ahn"],
     "승": ["seung"],
     "국": ["guk", "kuk"],
     "병": ["byung", "byeong", "byong"],
     "길": ["gil"],
-    "광": ["gwang"],
+    "광": ["gwang", "kwang"],
     "봉": ["bong", "bohng"],
-    "용": ["ryong"],
-    "가": ["ga"],
+    "용": ["yong", "ryong"],
+    "가": ["ga", "ka"],
     "다": ["da"],
     "라": ["ra", "la"],
     "마": ["ma"],
