@@ -222,7 +222,13 @@ pip install "name-variants[pandas]"      # pandas Series .nv accessor
 
 ## Optional native extension (Rust/PyO3)
 
-Pre-built wheels for Python 3.11–3.13 on Linux and macOS:
+A Rust/PyO3 extension lives in `name-variants-py/` and is tested in CI, but is not shipped via PyPI. Build it locally if you need the lower-level `_native` interface:
+
+```bash
+pip install maturin
+maturin build --manifest-path name-variants-py/Cargo.toml --interpreter python3.11
+pip install target/wheels/*.whl
+```
 
 ```python
 from name_variants import _native
@@ -230,14 +236,6 @@ from name_variants import _native
 _native.lookup("Chan")
 # [{"language": "chinese", "forms": ["陈", "陳", "chan", "chen", ...]},
 #  {"language": "korean_given", "forms": ["찬", "chan", "chahn"]}]
-```
-
-Build from source:
-
-```bash
-pip install maturin
-maturin build --manifest-path name-variants-py/Cargo.toml --interpreter python3.11
-pip install target/wheels/*.whl
 ```
 
 ---
