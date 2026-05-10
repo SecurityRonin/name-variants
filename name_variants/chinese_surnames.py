@@ -141,6 +141,7 @@ CHINESE_ROMANIZATION_DIALECTS: dict[str, str] = {
     "chai": "cantonese",
     # 许 (Xǔ)
     "xu": "mandarin_pinyin",
+    "hsu": "wade_giles",
     "hui": "cantonese",
     "kho": "hokkien",
     "khoo": "hokkien",
@@ -154,6 +155,7 @@ CHINESE_ROMANIZATION_DIALECTS: dict[str, str] = {
     "關": "traditional",
     # 叶 (Yè)
     "ye": "mandarin_pinyin",
+    "yeh": "wade_giles",
     "yap": "cantonese",
     "ip": "cantonese",
     "yip": "cantonese",
@@ -161,6 +163,7 @@ CHINESE_ROMANIZATION_DIALECTS: dict[str, str] = {
     "葉": "traditional",
     # 郭 (Guō)
     "guo": "mandarin_pinyin",
+    "kuo": "wade_giles",
     "kwok": "cantonese",
     "kuok": "cantonese",
     "kok": "hokkien",
@@ -181,6 +184,26 @@ CHINESE_ROMANIZATION_DIALECTS: dict[str, str] = {
     "soh": "hokkien",
     "see": "hokkien",
     "蘇": "traditional",
+    # 曹 (Cáo)
+    "cao": "mandarin_pinyin",
+    "tsao": "wade_giles",
+    # 高 (Gāo)
+    "gao": "mandarin_pinyin",
+    "kao": "wade_giles",
+    # 谢 (Xiè)
+    "xie": "mandarin_pinyin",
+    "hsieh": "wade_giles",
+    "tse": "cantonese",
+    # 朱 (Zhū)
+    "zhu": "mandarin_pinyin",
+    # 宋 (Sòng)
+    "song": "mandarin_pinyin",
+    "sung": "wade_giles",
+    "soong": "wade_giles",
+    # 钱 (Qián)
+    "qian": "mandarin_pinyin",
+    "chien": "wade_giles",
+    "tsien": "wade_giles",
 }
 
 CHINESE_SURNAME_VARIANTS: dict[str, list[str]] = {
@@ -196,17 +219,17 @@ CHINESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "吴": ["吳", "wu", "ng", "goh", "ngo", "woo", "ou"],
     "周": ["zhou", "chow", "jou", "chu", "chou", "tsou", "chau"],
     # ── 11-50 ────────────────────────────────────────────────────────────────
-    "徐": ["xu", "hui", "tsui", "chui", "kho", "khoo", "zee"],
+    "徐": ["xu", "hsu", "hui", "tsui", "chui", "kho", "khoo", "zee"],
     "孙": ["sun", "suen", "soon"],
     "马": ["ma", "mah"],
     "朱": ["zhu", "chu", "choo"],
     "胡": ["hu", "woo", "foo"],
-    "郭": ["guo", "kwok", "kuok", "kok", "quek"],
+    "郭": ["guo", "kuo", "kwok", "kuok", "kok", "quek"],
     "何": ["he", "ho", "hoe"],
-    "高": ["gao", "ko", "cao", "koh"],
+    "高": ["gao", "kao", "ko", "cao", "koh"],
     "林": ["lin", "lim", "lam", "ling", "lum"],
     "郑": ["鄭", "zheng", "cheng", "teh", "tay", "tee", "ching", "zeng"],
-    "谢": ["謝", "xie", "tse", "chia", "sia", "ze"],
+    "谢": ["謝", "xie", "hsieh", "tse", "chia", "sia", "ze"],
     "罗": ["羅", "luo", "lo", "law", "loh"],
     "梁": ["liang", "leung", "neo"],
     "宋": ["song", "soong", "sung"],
@@ -215,7 +238,7 @@ CHINESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     "韩": ["韓", "han", "hon", "hann"],
     "冯": ["馮", "feng", "fung", "fong", "hong", "foong"],
     "邓": ["鄧", "deng", "tang", "teng", "ding"],
-    "曹": ["cao", "chou", "cho"],
+    "曹": ["cao", "tsao", "chou", "cho"],
     "彭": ["peng", "phang", "pheng"],
     "曾": ["zeng", "tsang", "tseng"],
     "萧": ["蕭", "xiao", "hsiao", "siu", "sieu", "sew"],
@@ -229,7 +252,7 @@ CHINESE_SURNAME_VARIANTS: dict[str, list[str]] = {
     # ── 51-100 ────────────────────────────────────────────────────────────────
     "余": ["yu", "yee", "ee"],
     "苏": ["蘇", "su", "soo", "soh", "see"],
-    "叶": ["葉", "ye", "yap", "ip", "yip", "jip"],
+    "叶": ["葉", "ye", "yeh", "yap", "ip", "yip", "jip"],
     "吕": ["呂", "lu", "lui", "loo", "lv"],
     "魏": ["wei", "ngai"],
     "程": ["cheng", "ching"],
