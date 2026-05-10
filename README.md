@@ -1,78 +1,90 @@
 [![PyPI](https://img.shields.io/pypi/v/name-variants?style=flat-square)](https://pypi.org/project/name-variants/)
-[![Stars](https://img.shields.io/github/stars/SecurityRonin/name-variants?style=flat-square)](https://github.com/SecurityRonin/name-variants/stargazers)
 [![Tests](https://img.shields.io/github/actions/workflow/status/SecurityRonin/name-variants/ci.yml?style=flat-square&label=tests)](https://github.com/SecurityRonin/name-variants/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-h4x0r-ea4aaa?logo=github-sponsors&style=flat-square)](https://github.com/sponsors/h4x0r)
 
 # name-variants
 
-**Multilingual name romanization equivalence classes.** `"Chan"` is simultaneously 陈 (Chinese surname) _and_ 찬 (Korean given name) _and_ whatever else it might be — `lookup()` returns all of them.
+**`"Chan"` is simultaneously 陈 and 찬 and ชาน — `lookup()` returns all of them.**
 
-Covers 18 language tables: Chinese (surnames + given names), Korean (surnames + given names), Japanese (surnames + given names), Arabic, Vietnamese, Indian (Hindi/Tamil/Bengali), Persian, Hebrew, Thai, Greek, Turkish, Russian, Indonesian/Malay.
-
----
-
-## Core concept
-
-Every name entry is a `NameCluster` — an equivalence class where all representations are **co-equal members**:
-
-```
-陈  陳  chen  chan  tan  tan  ...   ← all in one Chinese surname cluster
-찬  chan  chahn                     ← all in one Korean given-name cluster
-```
-
-`lookup("Chan")` returns **both** clusters. No privileged "canonical" form. 陈 and 陳 (Simplified vs Traditional) are equals.
-
----
-
-## Installation
+1,558 name entries across 18 language tables. Every romanization system produces a member of an equivalence class: no canonical form, no ordering dependency, no silent data loss. `share_cluster("Hsu", "Xu")` is `True`. `lookup("Chan")` returns a Chinese surname cluster *and* a Korean given-name cluster, sorted by bearer count.
 
 ```bash
 pip install name-variants
 ```
 
-Optional extras:
-
-```bash
-pip install "name-variants[normalize]"   # opencc (Traditional↔Simplified) + jaconv
-pip install "name-variants[pandas]"      # pandas Series accessor
-```
-
 ---
 
-## Usage
+## The core idea
 
-### lookup() — the primary API
+A `NameCluster` is a frozenset of co-equal representations. `陈`, `陳`, `chen`, `chan`, `tan`, `ong` are all members of the same Chinese surname cluster — none is more "real" than another. `lookup()` returns every cluster that contains your query, sorted by frequency:
 
 ```python
-from name_variants import lookup, share_cluster, NameCluster
+from name_variants import lookup, share_cluster
 
 clusters = lookup("Chan")
 # [NameCluster(language='chinese', 68 forms),
 #  NameCluster(language='korean_given', 3 forms)]
 
-for c in clusters:
-    print(c.language, sorted(c.forms)[:5])
-# chinese   ['chan', 'chen', 'tan', '陈', '陳', ...]
-# korean_given ['chan', 'chahn', '찬']
-
-# All forms are co-equal — both scripts present
+# Both Chinese scripts are in the same cluster — co-equal
 assert "陈" in clusters[0]   # Simplified
-assert "陳" in clusters[0]   # Traditional — same cluster
+assert "陳" in clusters[0]   # Traditional
 
 # Membership is case-insensitive
 assert "CHAN" in clusters[0]
-assert "Chan" in clusters[0]
+
+# Ambiguity is surfaced, not suppressed
+assert len(clusters) == 2    # Chinese AND Korean, not one-or-the-other
 ```
+
+---
+
+## API
+
+### lookup() — all matching clusters
+
+```python
+from name_variants import lookup
+
+lookup("Chan")
+# [NameCluster(language='chinese', 68 forms),
+#  NameCluster(language='korean_given', 3 forms)]
+
+lookup("Nguyen")
+# [NameCluster(language='vietnamese', 4 forms)]
+
+lookup("Smith")
+# []
+```
+
+Results are sorted by `frequency` descending — most statistically likely interpretation first.
 
 ### share_cluster() — equivalence check
 
 ```python
+from name_variants import share_cluster
+
 share_cluster("Chan", "Chen")        # True  — same Chinese cluster
 share_cluster("Chou", "Zhou")        # True  — Wade-Giles = Pinyin
 share_cluster("Chiang", "Jiang")     # True  — Chiang Kai-shek / 蒋介石
-share_cluster("Hsu", "Xu")           # True  — Taiwan diaspora form
+share_cluster("Hsu", "Xu")           # True  — Taiwan diaspora romanization
+share_cluster("Tsao", "Cao")         # True  — Ts'ao Ts'ao / 曹操
 share_cluster("Chan", "Kim")         # False — different names
 share_cluster("", "Chan")            # False — empty input
+```
+
+### lookup_dialect() — Chinese romanization system tag
+
+```python
+from name_variants import lookup_dialect
+
+lookup_dialect("chen")   # "mandarin_pinyin"
+lookup_dialect("chan")   # "cantonese"
+lookup_dialect("tan")    # "hokkien"
+lookup_dialect("chou")   # "wade_giles"
+lookup_dialect("hsu")    # "wade_giles"
+lookup_dialect("陳")     # "traditional"
+lookup_dialect("Smith")  # None
 ```
 
 ### normalize() — text preprocessing
@@ -85,67 +97,20 @@ normalize("Nguyễn", strip_diacritics=True) # "nguyen"
 normalize("chan​")                          # strips zero-width spaces
 ```
 
-### lookup_dialect() — Chinese romanization system tag
-
-```python
-from name_variants import lookup_dialect
-
-lookup_dialect("chan")    # "cantonese"
-lookup_dialect("chen")    # "mandarin_pinyin"
-lookup_dialect("chou")    # "wade_giles"
-lookup_dialect("hsu")     # "wade_giles"
-lookup_dialect("tsao")    # "wade_giles"
-lookup_dialect("陳")      # "traditional"
-```
-
----
-
-## Romanization systems covered
-
-| System | Examples |
-|---|---|
-| Mandarin Pinyin | Zhou, Zhang, Wang, Xu |
-| Wade-Giles | Chou, Chang, Wang, Hsu, Tsao, Kuo, Hsieh |
-| Cantonese (Jyutping/Yale) | Chan, Wong, Ng, Lam, Tsui |
-| Hokkien/Min Nan | Tan, Ng, Lim, Goh |
-| Hakka | Fong, Thong |
-| Teochew | Teo, Ng |
-| Traditional characters | 陳, 劉, 張, 楊, 趙 |
-
----
-
-## NameCluster reference
-
-```python
-@dataclass(frozen=True)
-class NameCluster:
-    forms: frozenset[str]    # all representations — co-equal
-    language: str            # "chinese", "korean", "vietnamese", etc.
-    frequency: int | None    # approximate global bearer count
-
-    def __contains__(self, text: str) -> bool  # case-insensitive
-    def __iter__(self)                          # iterate all forms
-    def __len__(self)
-```
-
-`lookup()` returns clusters sorted by `frequency` descending, so the most statistically likely interpretation comes first.
-
 ---
 
 ## CLI
 
 ```bash
-pip install name-variants  # includes the nv command
-
 nv lookup Chan
 # [chinese] (~90M bearers)
-#   陈  陳  chan  chen  ...
+#   陈  陳  chan  chen  tan  ...
 # [korean_given]
 #   찬  chan  chahn
 
 nv match Chan Chen          # true
 nv match Chan Kim           # false
-nv match --exit-code Chan Chen && echo same  # shell-scripting friendly
+nv match --exit-code Chan Chen && echo same   # shell-scripting friendly
 
 nv cluster-csv names.csv --col name --out out.csv
 # adds name_cluster_id column (stable 12-char hex per cluster)
@@ -161,7 +126,6 @@ nv dedupe names.csv --col name --out out.csv
 ```python
 import pandas as pd
 import name_variants  # registers .nv accessor
-from name_variants import NameCluster
 
 s = pd.Series(["Chan", "Chen", "Smith", "Park"])
 
@@ -182,44 +146,87 @@ b = pd.Series(["Chen", "Bak"])
 a.nv.share_cluster_with(b)   # [True, True]
 ```
 
+Install the extra: `pip install "name-variants[pandas]"`
+
 ---
 
 ## Language tables
 
-| Key | Coverage |
-|---|---|
-| `chinese` | ~500 surnames, Pinyin + Wade-Giles + Cantonese + Hokkien + Traditional |
-| `chinese_given` | ~120 common given-name characters |
-| `arabic` | ~200 names, multiple transliteration systems |
-| `japanese` | ~200 surnames (Hepburn + macron variants) |
-| `japanese_given` | ~107 common given-name kanji |
-| `korean` | ~150 surnames (Revised Romanization + McCune-Reischauer) |
-| `korean_given` | ~70 common given-name syllables |
-| `vietnamese` | ~50 surnames with diacritics and stripped forms |
-| `indian_hindi` | ~200 names |
-| `indian_tamil` | ~150 names |
-| `indian_bengali` | ~150 names |
-| `persian` | ~150 names |
-| `hebrew` | ~150 names |
-| `thai` | ~100 names |
-| `greek` | ~100 names |
-| `turkish` | ~80 names (with dotted-I variants) |
-| `russian` | ~150 surnames (multiple transliteration systems) |
-| `indonesian_malay` | ~120 names |
+| Language | Entries | Coverage |
+|---|---|---|
+| `chinese` | 140 | Pinyin + Wade-Giles + Cantonese + Hokkien + Hakka + Teochew + Traditional |
+| `japanese` | 143 | Hepburn + macron variants |
+| `korean` | 100 | Revised Romanization + McCune-Reischauer |
+| `arabic` | 92 | Multiple transliteration systems |
+| `vietnamese` | 84 | Diacritics + stripped forms |
+| `russian` | 79 | Multiple transliteration systems |
+| `indonesian_malay` | 77 | — |
+| `persian` | 80 | — |
+| `indian_hindi` | 80 | — |
+| `hebrew` | 75 | — |
+| `turkish` | 74 | Dotted-İ variants |
+| `greek` | 60 | — |
+| `thai` | 68 | — |
+| `indian_bengali` | 56 | — |
+| `indian_tamil` | 53 | — |
+| `chinese_given` | 120 | Common given-name characters with Pinyin |
+| `korean_given` | 70 | Common given-name syllables |
+| `japanese_given` | 107 | Common given-name kanji |
 
 ```python
 from name_variants import ALL_TABLES
-print(list(ALL_TABLES.keys()))  # all 18 table names
+list(ALL_TABLES.keys())   # all 18 table names
+```
+
+---
+
+## Chinese romanization systems
+
+| System | Examples |
+|---|---|
+| Mandarin Pinyin | Zhou, Zhang, Wang, Xu |
+| Wade-Giles | Chou, Chang, Wang, Hsu, Tsao, Kuo, Hsieh |
+| Cantonese (Jyutping/Yale) | Chan, Wong, Ng, Lam, Tsui |
+| Hokkien/Min Nan | Tan, Ng, Lim, Goh |
+| Hakka | Fong, Thong |
+| Teochew | Teo, Ng |
+| Postal romanization | Peking, Nanking, Chungking |
+| Traditional characters | 陳, 劉, 張, 楊, 趙 |
+
+---
+
+## NameCluster reference
+
+```python
+@dataclass(frozen=True)
+class NameCluster:
+    forms: frozenset[str]    # all representations — co-equal
+    language: str            # "chinese", "korean", "vietnamese", etc.
+    frequency: int | None    # approximate global bearer count
+
+    def __contains__(self, text: str) -> bool  # case-insensitive
+    def __iter__(self)                          # iterate all forms
+    def __len__(self)
+```
+
+---
+
+## Optional extras
+
+```bash
+pip install "name-variants[normalize]"   # opencc (Traditional↔Simplified) + jaconv
+pip install "name-variants[pandas]"      # pandas Series .nv accessor
 ```
 
 ---
 
 ## Optional native extension (Rust/PyO3)
 
-A compiled Rust extension ships pre-built wheels for Python 3.11–3.13 on Linux and macOS:
+Pre-built wheels for Python 3.11–3.13 on Linux and macOS:
 
 ```python
 from name_variants import _native
+
 _native.lookup("Chan")
 # [{"language": "chinese", "forms": ["陈", "陳", "chan", "chen", ...]},
 #  {"language": "korean_given", "forms": ["찬", "chan", "chahn"]}]
@@ -235,13 +242,11 @@ pip install target/wheels/*.whl
 
 ---
 
-## Design
+## Why equivalence classes instead of a canonical key?
 
-**Why equivalence classes instead of a canonical key?**
+Early versions returned one "canonical" form per romanization string. This forced a false choice: `"Chan"` had to map to either `陈` *or* `찬`, not both. Table ordering became load-bearing — whichever table was imported last won. Romanizations had to be stripped from given-name tables to prevent collisions.
 
-Early versions used a `lookup_key()` that returned one "canonical" form per romanization string. This forced a false choice: `"Chan"` had to map to either `陈` _or_ `찬`, not both. Table ordering became load-bearing, and romanizations were silently stripped from given-name tables to avoid collisions.
-
-The `NameCluster` model eliminates this: every romanization system's output (Pinyin, Wade-Giles, Cantonese, Hokkien…) is just another form in the `frozenset`. `lookup()` returns all matching clusters. Ambiguity is surfaced, not suppressed.
+The `NameCluster` model eliminates this: every romanization system's output is just another member of a frozenset. `lookup()` returns all matching clusters. Ambiguity is surfaced, not suppressed. The most likely interpretation comes first by frequency.
 
 ---
 
@@ -254,7 +259,22 @@ pip install -e ".[dev]"
 pytest
 ```
 
-Data files are in `name_variants/*_names.py` and `name_variants/*_surnames.py`. Each file is a plain Python dict — easy to read and edit. PRs adding missing variants or new romanization systems are welcome.
+Data files are in `name_variants/*_names.py` and `name_variants/*_surnames.py`. Each entry is a plain Python dict — easy to read and edit:
+
+```python
+"陈": {
+    "forms": ["陳", "chen", "chan", "tan", ...],
+    "frequency": 90_000_000,
+    "dialects": {
+        "chen": "mandarin_pinyin",
+        "chan": "cantonese",
+        "tan":  "hokkien",
+        "陳":   "traditional",
+    },
+},
+```
+
+Adding a new variant is one edit to one entry — forms, frequency, and dialect tag colocated.
 
 ---
 
