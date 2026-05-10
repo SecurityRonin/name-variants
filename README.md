@@ -219,26 +219,6 @@ pip install "name-variants[pandas]"   # pandas Series .nv accessor
 
 ---
 
-## Optional native extension (Rust/PyO3)
-
-A Rust/PyO3 extension lives in `name-variants-py/` and is tested in CI, but is not shipped via PyPI. Build it locally if you need the lower-level `_native` interface:
-
-```bash
-pip install maturin
-maturin build --manifest-path name-variants-py/Cargo.toml --interpreter python3.11
-pip install target/wheels/*.whl
-```
-
-```python
-from name_variants import _native
-
-_native.lookup("Chan")
-# [{"language": "chinese", "forms": ["陈", "陳", "chan", "chen", ...]},
-#  {"language": "korean_given", "forms": ["찬", "chan", "chahn"]}]
-```
-
----
-
 ## Why equivalence classes instead of a canonical key?
 
 Early versions returned one "canonical" form per romanization string. This forced a false choice: `"Chan"` had to map to either `陈` *or* `찬`, not both. Table ordering became load-bearing — whichever table was imported last won. Romanizations had to be stripped from given-name tables to prevent collisions.
