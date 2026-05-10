@@ -278,4 +278,4 @@ Adding a new variant is one edit to one entry — forms, frequency, and dialect 
 
 ---
 
-*MIT License · Built for NLP, NER, and entity deduplication pipelines.*
+[Privacy Policy](https://securityronin.com/privacy/) · [Terms of Service](https://securityronin.com/terms/) · © 2026 Security Ronin Ltd

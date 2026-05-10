@@ -35,7 +35,8 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
         },
     },
     '张': {
-        "forms": ['張', 'zhang', 'chang', 'cheung', 'cheong', 'teo', 'tio', 'chong', 'chung', 'jeung'],
+        "forms": ['張', 'zhang', 'chang', 'cheung', 'cheong', 'teo', 'tio', 'chong', 'chung',
+                  'jeung'],
         "frequency": 87_500_000,
         "dialects": {
             'chang': 'wade_giles',

@@ -2,10 +2,9 @@
 import pytest
 
 pd = pytest.importorskip("pandas")
-import pandas as pd  # noqa: E402
 
-import name_variants.pandas_ext  # noqa: F401 — registers .nv accessor
-from name_variants import NameCluster
+import name_variants.pandas_ext  # noqa: E402, F401 — registers .nv accessor
+from name_variants import NameCluster  # noqa: E402
 
 
 def test_nv_lookup_returns_list_of_clusters():

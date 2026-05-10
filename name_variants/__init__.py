@@ -14,13 +14,6 @@ import unicodedata as _ud
 from dataclasses import dataclass
 from typing import NotRequired, TypedDict
 
-
-class NameEntry(TypedDict):
-    forms: list[str]
-    frequency: NotRequired[int]
-    dialects: NotRequired[dict[str, str]]
-
-
 from name_variants.arabic_names import ARABIC_NAME_VARIANTS
 from name_variants.chinese_given_names import CHINESE_GIVEN_NAME_VARIANTS
 from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
@@ -39,6 +32,13 @@ from name_variants.russian_surnames import RUSSIAN_SURNAME_VARIANTS
 from name_variants.thai_names import THAI_NAME_VARIANTS
 from name_variants.turkish_names import TURKISH_NAME_VARIANTS
 from name_variants.vietnamese_surnames import VIETNAMESE_SURNAME_VARIANTS
+
+
+class NameEntry(TypedDict):
+    forms: list[str]
+    frequency: NotRequired[int]
+    dialects: NotRequired[dict[str, str]]
+
 
 @dataclass(frozen=True)
 class NameCluster:
@@ -83,12 +83,12 @@ ALL_TABLES: dict[str, dict[str, list[str]]] = {
     "japanese_given": JAPANESE_GIVEN_NAME_VARIANTS,
 }
 
-_CLUSTERS: list["NameCluster"] | None = None
-_FORM_INDEX: dict[str, list["NameCluster"]] | None = None
+_CLUSTERS: list[NameCluster] | None = None
+_FORM_INDEX: dict[str, list[NameCluster]] | None = None
 _DIALECT_INDEX: dict[str, str] | None = None
 
 
-def _build_clusters() -> tuple[list["NameCluster"], dict[str, list["NameCluster"]]]:
+def _build_clusters() -> tuple[list[NameCluster], dict[str, list[NameCluster]]]:
     clusters: list[NameCluster] = []
     form_index: dict[str, list[NameCluster]] = {}
 
@@ -109,7 +109,7 @@ def _build_clusters() -> tuple[list["NameCluster"], dict[str, list["NameCluster"
     return clusters, form_index
 
 
-def _get_form_index() -> dict[str, list["NameCluster"]]:
+def _get_form_index() -> dict[str, list[NameCluster]]:
     global _CLUSTERS, _FORM_INDEX
     if _FORM_INDEX is None:
         _CLUSTERS, _FORM_INDEX = _build_clusters()

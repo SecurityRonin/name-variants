@@ -6,8 +6,34 @@ on:
   pull_request:
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "ruff>=0.9"
+      - run: ruff check name_variants/ tests/
+      - run: ruff format --check name_variants/ tests/
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "bandit[toml]>=1.7" "pip-audit>=2.7"
+      - run: pip install -e "."
+      - name: SAST — bandit
+        run: bandit -c pyproject.toml -r name_variants/ -ll
+      - name: Dependency audit — pip-audit
+        run: pip-audit
+
   python-tests:
     runs-on: ubuntu-latest
+    needs: [lint, security]
     strategy:
       matrix:
         python-version: ["3.11", "3.12", "3.13"]
@@ -17,7 +43,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install -e ".[dev]"
-      - run: ruff check name_variants/ tests/
       - run: pytest tests/ -v
 
   rust-tests:
@@ -35,6 +60,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: pip install -e "."
       - run: python codegen/gen_rust.py
       - name: Fail if generated.rs changed
         run: |
