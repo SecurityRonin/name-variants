@@ -1,8 +1,8 @@
 """Tests for the Pandas .nv Series accessor."""
 import pytest
 
-pd = pytest.importorskip("pandas")
-import pandas as pd  # noqa: E402 — after importorskip
+pytest.importorskip("pandas")
+import pandas as pd  # noqa: E402 — after importorskip guard
 
 
 @pytest.fixture(autouse=True)
@@ -84,15 +84,15 @@ def test_nv_is_variant_of_same():
     s1 = pd.Series(["Chan", "Park"])
     s2 = pd.Series(["Chen", "Bak"])
     result = s1.nv.is_variant_of(s2)
-    assert result[0] is True
-    assert result[1] is True
+    assert result[0]        # Chan ~ Chen
+    assert result[1]        # Park ~ Bak
 
 
 def test_nv_is_variant_of_different():
     s1 = pd.Series(["Chan"])
     s2 = pd.Series(["Kim"])
     result = s1.nv.is_variant_of(s2)
-    assert result[0] is False
+    assert not result[0]    # Chan ≁ Kim
 
 
 def test_nv_is_variant_of_preserves_index():

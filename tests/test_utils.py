@@ -3,7 +3,6 @@ import unicodedata
 
 from name_variants import canonicalize, is_variant, normalize
 
-
 # ── normalize ─────────────────────────────────────────────────────────────────
 
 def test_normalize_casefold():

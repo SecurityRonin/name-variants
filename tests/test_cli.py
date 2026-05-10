@@ -1,6 +1,5 @@
 """Tests for the nv CLI (lookup, match, canonicalize-csv, dedupe commands)."""
 import csv
-import io
 
 import pytest
 from click.testing import CliRunner
