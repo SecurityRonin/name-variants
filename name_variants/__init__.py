@@ -12,6 +12,8 @@ Usage:
 
 from __future__ import annotations
 
+import unicodedata as _ud
+
 from name_variants.arabic_names import ARABIC_NAME_VARIANTS
 from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
 from name_variants.greek_names import GREEK_NAME_VARIANTS
@@ -187,4 +189,63 @@ def lookup_all(text: str) -> tuple[str, list[str]] | None:
     return key, variants
 
 
-__all__ = ["lookup_key", "lookup_all", "lookup_candidates", "ALL_TABLES"]
+def normalize(text: str, *, strip_diacritics: bool = False) -> str:
+    """
+    NFC + casefold + collapse whitespace + strip Unicode format characters.
+
+    strip_diacritics=True additionally removes combining marks (NFD→strip Mn→NFC),
+    e.g. "Nguyễn" → "nguyen".  Default False preserves diacritics for round-trip
+    lookup.
+    """
+    # Strip Unicode format characters (zero-width spaces, BOM, soft hyphens, …)
+    text = "".join(ch for ch in text if _ud.category(ch) != "Cf")
+    text = _ud.normalize("NFC", text)
+    text = text.casefold()
+    text = " ".join(text.split())
+    if strip_diacritics:
+        text = _ud.normalize("NFD", text)
+        text = "".join(ch for ch in text if _ud.category(ch) != "Mn")
+        text = _ud.normalize("NFC", text)
+    return text
+
+
+def canonicalize(text: str, fallback: str = "passthrough") -> str:
+    """
+    Return the canonical key for a name, or apply fallback for unknown names.
+
+    Unlike lookup_key(), this never returns None.
+
+    fallback="passthrough"  → return text.strip() as-is (default)
+    fallback="lower"        → return text.lower().strip()
+    """
+    key = lookup_key(text)
+    if key is not None:
+        return key
+    if fallback == "lower":
+        return text.lower().strip()
+    return text.strip()
+
+
+def is_variant(a: str, b: str) -> bool:
+    """
+    Return True iff both strings resolve to the same canonical key.
+
+    Returns False if either string is empty or unknown.
+    """
+    if not a or not b:
+        return False
+    ka = lookup_key(a)
+    if ka is None:
+        return False
+    return ka == lookup_key(b)
+
+
+__all__ = [
+    "lookup_key",
+    "lookup_all",
+    "lookup_candidates",
+    "ALL_TABLES",
+    "normalize",
+    "canonicalize",
+    "is_variant",
+]
