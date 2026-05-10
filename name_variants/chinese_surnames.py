@@ -1,9 +1,9 @@
 """
 Chinese surname lookup: Simplified Han → romanization variants.
-Traditional forms reduce to Simplified via opencc before lookup.
 Covers Mandarin (Pinyin), Cantonese (Jyutping/Yale), Hokkien/Teochew/Hakka, Wade-Giles.
 
-Key: always Simplified character. Traditional 陳 → opencc → 陈 → lookup.
+Key: always Simplified character. Traditional forms (e.g. 陳) are included as
+co-equal members of the same cluster — both scripts resolve via the form index.
 Romanizations: all lowercase.
 
 Sources:

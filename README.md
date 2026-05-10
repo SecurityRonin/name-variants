@@ -214,8 +214,7 @@ class NameCluster:
 ## Optional extras
 
 ```bash
-pip install "name-variants[normalize]"   # opencc (Traditional↔Simplified) + jaconv
-pip install "name-variants[pandas]"      # pandas Series .nv accessor
+pip install "name-variants[pandas]"   # pandas Series .nv accessor
 ```
 
 ---
