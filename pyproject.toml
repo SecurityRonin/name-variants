@@ -63,3 +63,12 @@ select = ["E", "F", "W", "I", "UP"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.maturin]
+# Build the optional native extension; does not replace hatchling for pure-Python builds.
+# Usage: maturin build --manifest-path name-variants-py/Cargo.toml
+#        then pip install the resulting wheel, or:
+#        maturin develop --manifest-path name-variants-py/Cargo.toml
+module-name = "name_variants._native"
+python-source = "."
+manifest-path = "name-variants-py/Cargo.toml"

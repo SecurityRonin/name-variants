@@ -5,6 +5,9 @@
 
 mod generated;
 
+#[cfg(target_arch = "wasm32")]
+mod wasm;
+
 /// Return the canonical script-form key for a name, or `None` if unknown.
 ///
 /// Matching order:
@@ -57,6 +60,49 @@ pub fn lookup_all(text: &str) -> Option<(&'static str, &'static [&'static str])>
     let key = lookup_key(text)?;
     let variants = generated::VARIANTS.get(key)?;
     Some((key, variants))
+}
+
+/// Return all canonical keys that list this romanization as a variant.
+///
+/// Unlike [`lookup_key`], which returns one result via first-write-wins,
+/// this returns every canonical key across all 15 language tables that
+/// lists the input as a variant — ordered by table iteration order.
+///
+/// # Examples
+/// ```
+/// use name_variants::lookup_candidates;
+/// let candidates = lookup_candidates("Lee");
+/// assert!(candidates.contains(&"李"));
+/// assert!(candidates.contains(&"이"));
+/// assert!(lookup_candidates("Smith").is_empty());
+/// ```
+pub fn lookup_candidates(text: &str) -> Vec<&'static str> {
+    if text.is_empty() {
+        return Vec::new();
+    }
+    let mut seen: std::collections::HashSet<&'static str> = std::collections::HashSet::new();
+    let mut result: Vec<&'static str> = Vec::new();
+
+    let mut collect = |lookup_key: &str| {
+        if let Some(cands) = generated::CANDIDATES.get(lookup_key) {
+            for &c in *cands {
+                if seen.insert(c) {
+                    result.push(c);
+                }
+            }
+        }
+    };
+
+    let key = text.trim();
+    collect(key);
+    let key_lower = key.to_lowercase();
+    if key_lower != key {
+        collect(key_lower.as_str());
+    }
+    for token in key_lower.split_whitespace() {
+        collect(token);
+    }
+    result
 }
 
 #[cfg(test)]
@@ -157,5 +203,25 @@ mod tests {
     #[test]
     fn lookup_all_unknown_returns_none() {
         assert!(lookup_all("Smith").is_none());
+    }
+
+    // ── lookup_candidates ─────────────────────────────────────────────────────
+    #[test]
+    fn lookup_candidates_lee_returns_multiple_scripts() {
+        let result = lookup_candidates("Lee");
+        assert!(result.contains(&"李"), "should contain Chinese 李");
+        assert!(result.contains(&"이"), "should contain Korean 이");
+    }
+
+    #[test]
+    fn lookup_candidates_unknown_returns_empty() {
+        assert!(lookup_candidates("Smith").is_empty());
+        assert!(lookup_candidates("").is_empty());
+    }
+
+    #[test]
+    fn lookup_candidates_unambiguous_returns_one() {
+        let result = lookup_candidates("Nguyen");
+        assert!(!result.is_empty());
     }
 }

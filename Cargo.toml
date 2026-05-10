@@ -1,0 +1,3 @@
+[workspace]
+members = ["name-variants-rs", "name-variants-py"]
+resolver = "2"

@@ -83,12 +83,44 @@ def build_variants_map(
     return variants_map
 
 
+def build_candidates_map(
+    tables: list[tuple[str, dict[str, list[str]]]]
+) -> dict[str, list[str]]:
+    """variant_lowercase → [all canonical keys that list it as a variant].
+
+    Mirrors Python _build_index() candidates logic:
+    - Each canonical maps to itself (for direct script-form lookup).
+    - Each romanization variant (lowercased) maps to every canonical that has it.
+    - Order matches table iteration order; duplicates are deduplicated preserving first.
+    """
+    candidates: dict[str, list[str]] = {}
+
+    def _add(lookup_key: str, canonical: str) -> None:
+        lst = candidates.setdefault(lookup_key, [])
+        if canonical not in lst:
+            lst.append(canonical)
+
+    for _name, table in tables:
+        for canonical, variants in table.items():
+            # canonical maps to itself
+            _add(canonical, canonical)
+            for variant in variants:
+                v = variant.lower().strip()
+                if v:
+                    _add(v, canonical)
+    return candidates
+
+
 def escape_rust_str(s: str) -> str:
     """Escape a string for use in a Rust string literal."""
     return s.replace("\\", "\\\\").replace('"', '\\"')
 
 
-def generate(index: dict[str, str], variants_map: dict[str, list[str]]) -> str:
+def generate(
+    index: dict[str, str],
+    variants_map: dict[str, list[str]],
+    candidates_map: dict[str, list[str]],
+) -> str:
     """Render the Rust generated.rs content."""
     # INDEX entries (variant → canonical)
     index_entries = "\n".join(
@@ -96,14 +128,19 @@ def generate(index: dict[str, str], variants_map: dict[str, list[str]]) -> str:
         for k, v in sorted(index.items())
     )
 
-    # VARIANTS entries (canonical → &[variants])
-    def fmt_variants(vs: list[str]) -> str:
+    # VARIANTS / CANDIDATES entries (key → &[values])
+    def fmt_list(vs: list[str]) -> str:
         items = ", ".join(f'"{escape_rust_str(v)}"' for v in vs)
         return f"&[{items}]"
 
     variants_entries = "\n".join(
-        f'    "{escape_rust_str(k)}" => {fmt_variants(vs)},'
+        f'    "{escape_rust_str(k)}" => {fmt_list(vs)},'
         for k, vs in sorted(variants_map.items())
+    )
+
+    candidates_entries = "\n".join(
+        f'    "{escape_rust_str(k)}" => {fmt_list(vs)},'
+        for k, vs in sorted(candidates_map.items())
     )
 
     return f"""\
@@ -113,6 +150,7 @@ def generate(index: dict[str, str], variants_map: dict[str, list[str]]) -> str:
 //
 // INDEX entries: {len(index)}
 // VARIANTS entries: {len(variants_map)}
+// CANDIDATES entries: {len(candidates_map)}
 
 use phf::phf_map;
 
@@ -122,6 +160,10 @@ pub(crate) static INDEX: phf::Map<&'static str, &'static str> = phf_map! {{
 
 pub(crate) static VARIANTS: phf::Map<&'static str, &'static [&'static str]> = phf_map! {{
 {variants_entries}
+}};
+
+pub(crate) static CANDIDATES: phf::Map<&'static str, &'static [&'static str]> = phf_map! {{
+{candidates_entries}
 }};
 """
 
@@ -135,13 +177,22 @@ def main() -> None:
 
     index = build_flat_index(tables)
     variants_map = build_variants_map(tables)
-    print(f"  flat index: {len(index)} entries, variants: {len(variants_map)} keys", file=sys.stderr)
+    candidates_map = build_candidates_map(tables)
+    print(
+        f"  flat index: {len(index)} entries, variants: {len(variants_map)} keys,"
+        f" candidates: {len(candidates_map)} keys",
+        file=sys.stderr,
+    )
 
     missing = set(index.values()) - set(variants_map.keys())
     if missing:
-        print(f"  WARNING: {len(missing)} canonical keys in INDEX have no VARIANTS entry: {sorted(missing)[:5]}...", file=sys.stderr)
+        print(
+            f"  WARNING: {len(missing)} canonical keys in INDEX have no VARIANTS entry:"
+            f" {sorted(missing)[:5]}...",
+            file=sys.stderr,
+        )
 
-    content = generate(index, variants_map)
+    content = generate(index, variants_map, candidates_map)
     OUTPUT_PATH.write_text(content, encoding="utf-8")
     print(f"  wrote {OUTPUT_PATH}", file=sys.stderr)
 

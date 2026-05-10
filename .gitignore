@@ -10,3 +10,7 @@ MANIFEST
 .pytest_cache/
 .ruff_cache/
 name-variants-rs/target/
+target/
+*.so
+*.dylib
+*.pyd

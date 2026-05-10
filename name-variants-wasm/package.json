@@ -1,0 +1,14 @@
+{
+  "name": "name-variants-wasm",
+  "version": "0.1.0",
+  "description": "WASM build of name-variants: multilingual name romanization lookup",
+  "main": "./pkg/name_variants.js",
+  "types": "./pkg/name_variants.d.ts",
+  "files": ["pkg/"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h4x0r/name-variants"
+  },
+  "keywords": ["names", "romanization", "transliteration", "wasm", "cjk"]
+}

@@ -1,0 +1,36 @@
+name: Native Extension (PyO3)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  native:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install maturin
+        run: pip install maturin
+
+      - name: Build native extension
+        run: maturin build --manifest-path name-variants-py/Cargo.toml
+
+      - name: Install package + native wheel
+        run: |
+          pip install -e ".[dev]"
+          pip install target/wheels/*.whl --force-reinstall
+
+      - name: Run native tests
+        run: pytest tests/test_native.py -v
