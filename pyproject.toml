@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "name-variants"
-version = "0.1.0"
+version = "0.1.1"
 description = "Multilingual name romanization lookup tables: Chinese, Japanese, Korean, Arabic, Vietnamese, Indian, Persian, Hebrew, Thai, Greek, Turkish, Russian, Indonesian/Malay"
 readme = "README.md"
 license = "MIT"
