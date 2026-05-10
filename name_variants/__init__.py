@@ -15,6 +15,7 @@ from __future__ import annotations
 import unicodedata as _ud
 
 from name_variants.arabic_names import ARABIC_NAME_VARIANTS
+from name_variants.chinese_given_names import CHINESE_GIVEN_NAME_VARIANTS
 from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
 from name_variants.greek_names import GREEK_NAME_VARIANTS
 from name_variants.hebrew_names import HEBREW_NAME_VARIANTS
@@ -22,7 +23,9 @@ from name_variants.indian_names_bengali import INDIAN_NAMES_BENGALI
 from name_variants.indian_names_hindi import INDIAN_NAMES_HINDI
 from name_variants.indian_names_tamil import INDIAN_NAMES_TAMIL
 from name_variants.indonesian_malay_names import INDONESIAN_MALAY_NAME_VARIANTS
+from name_variants.japanese_given_names import JAPANESE_GIVEN_NAME_VARIANTS
 from name_variants.japanese_surnames import JAPANESE_SURNAME_VARIANTS
+from name_variants.korean_given_names import KOREAN_GIVEN_NAME_VARIANTS
 from name_variants.korean_surnames import KOREAN_SURNAME_VARIANTS
 from name_variants.persian_names import PERSIAN_NAME_VARIANTS
 from name_variants.russian_surnames import RUSSIAN_SURNAME_VARIANTS
@@ -31,6 +34,7 @@ from name_variants.turkish_names import TURKISH_NAME_VARIANTS
 from name_variants.vietnamese_surnames import VIETNAMESE_SURNAME_VARIANTS
 
 ALL_TABLES: dict[str, dict[str, list[str]]] = {
+    # Surname / family-name tables first (win lookup_key() ties via last-write-wins later)
     "chinese": CHINESE_SURNAME_VARIANTS,
     "arabic": ARABIC_NAME_VARIANTS,
     "japanese": JAPANESE_SURNAME_VARIANTS,
@@ -46,6 +50,10 @@ ALL_TABLES: dict[str, dict[str, list[str]]] = {
     "turkish": TURKISH_NAME_VARIANTS,
     "russian": RUSSIAN_SURNAME_VARIANTS,
     "indonesian_malay": INDONESIAN_MALAY_NAME_VARIANTS,
+    # Given-name tables last — romanization conflicts are resolved in the tables themselves
+    "chinese_given": CHINESE_GIVEN_NAME_VARIANTS,
+    "korean_given": KOREAN_GIVEN_NAME_VARIANTS,
+    "japanese_given": JAPANESE_GIVEN_NAME_VARIANTS,
 }
 
 # Lazy-built inverted index: romanization (lowercase) → canonical key (last-write-wins)
@@ -297,6 +305,20 @@ def language_distribution(text: str) -> dict[str, float]:
     return dist
 
 
+def lookup_dialect(text: str) -> str | None:
+    """
+    Return the romanization dialect/system for this variant string.
+
+    Returns one of: "mandarin_pinyin", "cantonese", "hokkien", "hakka",
+    "teochew", "wade_giles", "traditional", "simplified"
+
+    Returns None for non-Chinese names or untagged variants.
+    """
+    from name_variants.chinese_surnames import CHINESE_ROMANIZATION_DIALECTS
+
+    return CHINESE_ROMANIZATION_DIALECTS.get(text.lower().strip())
+
+
 __all__ = [
     "lookup_key",
     "lookup_all",
@@ -308,4 +330,5 @@ __all__ = [
     "get_frequency",
     "get_language_for_canonical",
     "language_distribution",
+    "lookup_dialect",
 ]

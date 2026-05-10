@@ -36,6 +36,9 @@ TABLE_MODULES: list[tuple[str, str]] = [
     ("turkish_names", "TURKISH_NAME_VARIANTS"),
     ("russian_surnames", "RUSSIAN_SURNAME_VARIANTS"),
     ("indonesian_malay_names", "INDONESIAN_MALAY_NAME_VARIANTS"),
+    ("chinese_given_names", "CHINESE_GIVEN_NAME_VARIANTS"),
+    ("korean_given_names", "KOREAN_GIVEN_NAME_VARIANTS"),
+    ("japanese_given_names", "JAPANESE_GIVEN_NAME_VARIANTS"),
 ]
 
 

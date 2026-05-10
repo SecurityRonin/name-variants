@@ -9,6 +9,7 @@ def test_all_tables_present():
         "indian_hindi", "indian_tamil", "indian_bengali",
         "persian", "hebrew", "thai", "greek", "turkish",
         "russian", "indonesian_malay",
+        "chinese_given", "korean_given", "japanese_given",
     }
     assert set(ALL_TABLES.keys()) == expected
 
