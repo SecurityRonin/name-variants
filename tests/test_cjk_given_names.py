@@ -1,6 +1,5 @@
 """Feature 7: CJK given-name tables — RED/GREEN tests."""
-from name_variants import ALL_TABLES, lookup_key, lookup_candidates
-
+from name_variants import ALL_TABLES, lookup
 
 # ── Table presence ────────────────────────────────────────────────────────────
 
@@ -22,51 +21,50 @@ def test_japanese_given_table_present():
 # ── Chinese given-name lookups ────────────────────────────────────────────────
 
 def test_chinese_given_ming():
-    assert lookup_key("明") is not None
-    assert lookup_key("Ming") is not None
+    assert lookup("明") != []
+    assert lookup("Ming") != []
 
 
 def test_chinese_given_wei():
-    assert lookup_key("伟") is not None
+    assert lookup("伟") != []
 
 
 def test_chinese_given_fang():
-    assert lookup_key("芳") is not None
+    assert lookup("芳") != []
 
 
 def test_chinese_given_yang():
-    # Yang is both a surname (杨) and given name (阳/洋/扬) — candidates should include both
-    candidates = lookup_candidates("Yang")
-    assert len(candidates) >= 1
+    # Yang is both a surname (杨) and given name (阳/洋/扬) — clusters should include both
+    assert lookup("Yang") != []
 
 
 # ── Korean given-name lookups ─────────────────────────────────────────────────
 
 def test_korean_given_jae():
     # 재 (Jae) — common given name component
-    assert lookup_key("재") is not None or lookup_key("Jae") is not None
+    assert lookup("재") != [] or lookup("Jae") != []
 
 
 def test_korean_given_min():
-    assert lookup_key("민") is not None or lookup_key("Min") is not None
+    assert lookup("민") != [] or lookup("Min") != []
 
 
 def test_korean_given_ji():
-    assert lookup_key("지") is not None or lookup_key("Ji") is not None
+    assert lookup("지") != [] or lookup("Ji") != []
 
 
 # ── Japanese given-name lookups ───────────────────────────────────────────────
 
 def test_japanese_given_kenji():
-    assert lookup_key("Kenji") is not None
+    assert lookup("Kenji") != []
 
 
 def test_japanese_given_yuki():
-    assert lookup_key("Yuki") is not None
+    assert lookup("Yuki") != []
 
 
 def test_japanese_given_haruto():
-    assert lookup_key("Haruto") is not None
+    assert lookup("Haruto") != []
 
 
 # ── Round-trip test ───────────────────────────────────────────────────────────
@@ -74,7 +72,7 @@ def test_japanese_given_haruto():
 def test_all_given_canonicals_self_lookup():
     for table_name in ["chinese_given", "korean_given", "japanese_given"]:
         for canonical in ALL_TABLES[table_name]:
-            candidates = lookup_candidates(canonical)
-            assert canonical in candidates, (
-                f"{table_name}: {canonical!r} not in its own candidates"
+            clusters = lookup(canonical)
+            assert any(canonical in c for c in clusters), (
+                f"{table_name}: {canonical!r} not found in any cluster from lookup({canonical!r})"
             )

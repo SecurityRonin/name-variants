@@ -1,59 +1,46 @@
-from name_variants import (
-    _get_language_for_canonical,  # internal, test directly
-    get_frequency,
-    language_distribution,
-)
+from name_variants import lookup
 
 
 def test_get_frequency_known():
-    assert get_frequency("陈") is not None
-    assert get_frequency("陈") > 0
+    clusters = lookup("陈")
+    assert any(c.frequency is not None and c.frequency > 0 for c in clusters)
 
 
 def test_get_frequency_top_chinese():
-    assert get_frequency("王") > 100_000_000
+    clusters = lookup("王")
+    assert any(c.frequency is not None and c.frequency > 100_000_000 for c in clusters)
 
 
 def test_get_frequency_unknown():
-    assert get_frequency("Smith") is None
-    assert get_frequency("UnknownXyz") is None
+    assert lookup("Smith") == []
+    assert lookup("UnknownXyz") == []
 
 
 def test_language_distribution_nguyen():
-    dist = language_distribution("Nguyen")
-    assert "vietnamese" in dist
-    assert dist["vietnamese"] > 0.9  # nguyễn is ~40% of Vietnam, very dominant
+    clusters = lookup("Nguyen")
+    assert any(c.language == "vietnamese" for c in clusters)
 
 
 def test_language_distribution_lee_is_ambiguous():
-    dist = language_distribution("Lee")
-    assert len(dist) >= 2
-    total = sum(dist.values())
-    assert abs(total - 1.0) < 0.01  # sums to 1
+    clusters = lookup("Lee")
+    languages = {c.language for c in clusters}
+    assert len(languages) >= 2
 
 
 def test_language_distribution_unknown():
-    assert language_distribution("Kowalski") == {}
-    assert language_distribution("") == {}
-
-
-def test_language_distribution_sums_to_one():
-    for name in ["Chan", "Park", "Nguyen", "Muhammad", "Sato"]:
-        dist = language_distribution(name)
-        if dist:
-            total = sum(dist.values())
-            assert abs(total - 1.0) < 0.01, f"{name}: sum={total}"
+    assert lookup("Kowalski") == []
+    assert lookup("") == []
 
 
 def test_get_language_chan():
-    lang = _get_language_for_canonical("陈")
-    assert lang == "chinese"
+    clusters = lookup("陈")
+    assert any(c.language == "chinese" for c in clusters)
 
 
 def test_get_language_korean():
-    lang = _get_language_for_canonical("이")
-    assert lang == "korean"
+    clusters = lookup("이")
+    assert any(c.language == "korean" for c in clusters)
 
 
 def test_get_language_unknown():
-    assert _get_language_for_canonical("Smith") is None
+    assert lookup("Smith") == []

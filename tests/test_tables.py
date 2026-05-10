@@ -45,18 +45,13 @@ def test_no_duplicate_variants_within_entry():
 
 
 def test_every_canonical_self_lookup(canonical_entry):
-    """Every canonical must appear in lookup_candidates() for its own string.
-
-    lookup_candidates() is the authoritative API for ambiguous romanizations:
-    it guarantees every canonical is reachable via its own key string,
-    even when lookup_key() resolves to a different table's entry.
-    """
-    from name_variants import lookup_candidates
+    """Every canonical must appear in lookup() clusters for its own string."""
+    from name_variants import lookup
     _table_name, canonical = canonical_entry
-    candidates = lookup_candidates(canonical)
-    assert canonical in candidates, (
-        f"{_table_name}: canonical {canonical!r} not in "
-        f"lookup_candidates({canonical!r}) → {candidates!r}"
+    clusters = lookup(canonical)
+    assert any(canonical in c for c in clusters), (
+        f"{_table_name}: {canonical!r} not found in any cluster from "
+        f"lookup({canonical!r}) → {clusters!r}"
     )
 
 
