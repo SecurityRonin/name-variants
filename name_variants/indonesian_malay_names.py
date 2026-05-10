@@ -143,6 +143,18 @@ INDONESIAN_MALAY_NAME_VARIANTS: dict[str, dict] = {
     "hamid": {
         "forms": ["hamid", "hameed"],
     },
+    "ali": {
+        "forms": ["ali", "aly"],
+    },
+    "omar": {
+        "forms": ["omar", "umar", "oemar"],
+    },
+    "fatimah": {
+        "forms": ["fatimah", "fatima", "fatema"],
+    },
+    "yusuf": {
+        "forms": ["yusuf", "yusof", "jusuf", "yosef"],
+    },
     "hassan": {
         "forms": ["hassan", "hasan"],
     },

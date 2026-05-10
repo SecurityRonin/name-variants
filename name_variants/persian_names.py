@@ -167,7 +167,10 @@ PERSIAN_NAME_VARIANTS: dict[str, dict] = {
         "forms": ["majid", "majeed"],
     },
     "فاطمه": {
-        "forms": ["fateme", "fatemeh", "fatime"],
+        "forms": ["fateme", "fatemeh", "fatime", "fatima"],
+    },
+    "عمر": {
+        "forms": ["omar", "umar", "omer"],
     },
     "زهرا": {
         "forms": ["zahra", "zehra"],

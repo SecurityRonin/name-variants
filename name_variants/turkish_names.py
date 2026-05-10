@@ -44,7 +44,7 @@ TURKISH_NAME_VARIANTS: dict[str, dict] = {
         "forms": ["ismail", "esmail"],
     },
     "ömer": {
-        "forms": ["omer", "umar"],
+        "forms": ["omer", "omar", "umar"],
     },
     "süleyman": {
         "forms": ["suleyman", "suleiman", "souleyman"],
@@ -176,7 +176,7 @@ TURKISH_NAME_VARIANTS: dict[str, dict] = {
         "forms": ["polat", "polad"],
     },
     "fatma": {
-        "forms": ["fatma"],
+        "forms": ["fatma", "fatima"],
     },
     "ayşe": {
         "forms": ["ayse", "aysha", "aisha"],

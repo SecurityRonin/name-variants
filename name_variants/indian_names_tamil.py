@@ -53,6 +53,12 @@ INDIAN_NAMES_TAMIL: dict[str, dict] = {
     "கண்ணன்": {
         "forms": ["kannan", "kannen"],
     },
+    "ரெட்டி": {
+        "forms": ["reddy", "redy", "reddi"],
+    },
+    "நாயர்": {
+        "forms": ["nair", "nayr", "nayar"],
+    },
     "குமாரசாமி": {
         "forms": ["kumaraswamy", "kumarasamy"],
     },

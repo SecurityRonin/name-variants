@@ -109,6 +109,9 @@ VIETNAMESE_SURNAME_VARIANTS: dict[str, dict] = {
     "tô": {
         "forms": ["to", "toh"],
     },
+    "tân": {
+        "forms": ["tan", "tahn"],
+    },
     "đào": {
         "forms": ["dao", "dow"],
     },

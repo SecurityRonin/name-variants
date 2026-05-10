@@ -46,6 +46,9 @@ INDIAN_NAMES_HINDI: dict[str, dict] = {
     "यादव": {
         "forms": ["yadav", "yadaw"],
     },
+    "पटेल": {
+        "forms": ["patel", "patil", "pattel"],
+    },
     "गुप्ता": {
         "forms": ["gupta"],
     },
