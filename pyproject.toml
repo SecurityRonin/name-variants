@@ -25,7 +25,7 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
-dependencies = []
+dependencies = ["click>=8.0"]
 
 [project.optional-dependencies]
 normalize = [
@@ -38,6 +38,9 @@ dev = [
     "build>=1.0",
     "twine>=5.0",
 ]
+
+[project.scripts]
+nv = "name_variants.cli:cli"
 
 [project.urls]
 Homepage = "https://github.com/SecurityRonin/name-variants"
