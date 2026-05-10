@@ -63,7 +63,8 @@ def build_flat_index(
     """
     index: dict[str, str] = {}
     for _name, table in tables:
-        for canonical, variants in table.items():
+        for canonical, entry in table.items():
+            variants = entry["forms"]
             # canonical key maps to itself (for direct script-form lookup)
             if canonical not in index:
                 index[canonical] = canonical
@@ -80,7 +81,8 @@ def build_variants_map(
     """canonical_key → variants list (first-occurrence-wins, same as build_flat_index)."""
     variants_map: dict[str, list[str]] = {}
     for _name, table in tables:
-        for canonical, variants in table.items():
+        for canonical, entry in table.items():
+            variants = entry["forms"]
             if canonical not in variants_map:
                 variants_map[canonical] = variants
     return variants_map
@@ -116,7 +118,8 @@ def build_candidates_map(
             lst.append(canonical)
 
     for _name, table in tables:
-        for canonical, variants in table.items():
+        for canonical, entry in table.items():
+            variants = entry["forms"]
             # canonical maps to itself
             _add(canonical, canonical)
             for variant in variants:
