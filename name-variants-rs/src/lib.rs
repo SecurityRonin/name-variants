@@ -62,6 +62,15 @@ pub fn lookup_all(text: &str) -> Option<(&'static str, &'static [&'static str])>
     Some((key, variants))
 }
 
+/// Return `(language, forms_slice)` for a canonical storage key, or `None` if unknown.
+///
+/// Used by the PyO3 extension to build `{"language": "...", "forms": [...]}` dicts.
+pub fn get_cluster_info(canonical_key: &str) -> Option<(&'static str, &'static [&'static str])> {
+    let language = generated::LANGUAGE.get(canonical_key)?;
+    let forms = generated::VARIANTS.get(canonical_key)?;
+    Some((language, forms))
+}
+
 /// Return all canonical keys that list this romanization as a variant.
 ///
 /// Unlike [`lookup_key`], which returns one result via first-write-wins,

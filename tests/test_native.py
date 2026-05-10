@@ -1,39 +1,52 @@
-"""Tests for the optional PyO3 native extension."""
+"""Tests for the optional name_variants._native PyO3 extension."""
 import pytest
 
-# These tests are SKIPPED if the native extension is not built.
-# To build: maturin develop --manifest-path name-variants-py/Cargo.toml
-try:
-    from name_variants._native import lookup_all, lookup_candidates, lookup_key
 
-    HAS_NATIVE = True
-except ImportError:
-    HAS_NATIVE = False
-
-pytestmark = pytest.mark.skipif(not HAS_NATIVE, reason="native extension not built")
+def _skip_if_no_native():
+    try:
+        from name_variants import _native  # noqa: F401
+    except ImportError:
+        pytest.skip("_native extension not built — run: maturin develop")
 
 
-def test_native_lookup_key_known():
-    assert lookup_key("Chan") == "陈"
+def test_native_lookup_chan_returns_list():
+    _skip_if_no_native()
+    from name_variants import _native
+    result = _native.lookup("Chan")
+    assert isinstance(result, list)
+    assert len(result) > 0
 
 
-def test_native_lookup_key_unknown():
-    assert lookup_key("Smith") is None
+def test_native_lookup_chan_has_chinese():
+    _skip_if_no_native()
+    from name_variants import _native
+    result = _native.lookup("Chan")
+    assert any(r["language"] == "chinese" for r in result)
 
 
-def test_native_lookup_all_returns_tuple():
-    result = lookup_all("Chan")
-    assert result is not None
-    key, variants = result
-    assert key == "陈"
-    assert "chen" in variants
+def test_native_lookup_chan_chinese_has_both_scripts():
+    _skip_if_no_native()
+    from name_variants import _native
+    result = _native.lookup("Chan")
+    chinese = next(r for r in result if r["language"] == "chinese")
+    assert "陈" in chinese["forms"]
+    assert "陳" in chinese["forms"]
 
 
-def test_native_lookup_candidates_ambiguous():
-    result = lookup_candidates("Lee")
-    assert "이" in result
-    assert "李" in result
+def test_native_lookup_unknown_returns_empty():
+    _skip_if_no_native()
+    from name_variants import _native
+    assert _native.lookup("Smith") == []
+    assert _native.lookup("") == []
 
 
-def test_native_lookup_candidates_unknown():
-    assert lookup_candidates("Smith") == []
+def test_native_lookup_returns_dicts_with_forms_and_language():
+    _skip_if_no_native()
+    from name_variants import _native
+    result = _native.lookup("Park")
+    assert len(result) > 0
+    r = result[0]
+    assert "forms" in r
+    assert "language" in r
+    assert isinstance(r["forms"], list)
+    assert isinstance(r["language"], str)

@@ -1,21 +1,33 @@
 use pyo3::prelude::*;
+use pyo3::types::{PyDict, PyList};
 
-/// Return the canonical script-form key for a name, or ``None`` if unknown.
+/// Return all NameClusters that contain this text as a member form.
+///
+/// Returns a list of dicts: ``[{"language": "chinese", "forms": ["陈", "chen", ...]}, ...]``
+/// Returns ``[]`` for unknown names or empty input.
 #[pyfunction]
-fn lookup_key(text: &str) -> Option<&'static str> {
-    name_variants::lookup_key(text)
-}
+fn lookup(py: Python<'_>, text: &str) -> PyResult<PyObject> {
+    let candidates = name_variants::lookup_candidates(text);
+    let results = PyList::empty_bound(py);
 
-/// Return ``(canonical_key, [variants])`` for a name, or ``None`` if unknown.
-#[pyfunction]
-fn lookup_all(text: &str) -> Option<(&'static str, Vec<&'static str>)> {
-    name_variants::lookup_all(text).map(|(k, v)| (k, v.to_vec()))
-}
+    for storage_key in &candidates {
+        if let Some((language, forms)) = name_variants::get_cluster_info(storage_key) {
+            let d = PyDict::new_bound(py);
+            d.set_item("language", language)?;
+            // Build forms list: canonical key first, then variants (deduped)
+            let mut all_forms: Vec<&str> = vec![storage_key];
+            for &f in forms {
+                if f != *storage_key {
+                    all_forms.push(f);
+                }
+            }
+            let py_forms = PyList::new_bound(py, &all_forms);
+            d.set_item("forms", py_forms)?;
+            results.append(d)?;
+        }
+    }
 
-/// Return all canonical keys that list this romanization as a variant.
-#[pyfunction]
-fn lookup_candidates(text: &str) -> Vec<&'static str> {
-    name_variants::lookup_candidates(text)
+    Ok(results.into())
 }
 
 /// PyO3 native extension for name-variants.
@@ -23,8 +35,6 @@ fn lookup_candidates(text: &str) -> Vec<&'static str> {
 /// Optional high-performance backend. Import via ``name_variants._native``.
 #[pymodule]
 fn _native(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(lookup_key, m)?)?;
-    m.add_function(wrap_pyfunction!(lookup_all, m)?)?;
-    m.add_function(wrap_pyfunction!(lookup_candidates, m)?)?;
+    m.add_function(wrap_pyfunction!(lookup, m)?)?;
     Ok(())
 }
