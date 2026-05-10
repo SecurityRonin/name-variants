@@ -12,6 +12,14 @@ from __future__ import annotations
 
 import unicodedata as _ud
 from dataclasses import dataclass
+from typing import NotRequired, TypedDict
+
+
+class NameEntry(TypedDict):
+    forms: list[str]
+    frequency: NotRequired[int]
+    dialects: NotRequired[dict[str, str]]
+
 
 from name_variants.arabic_names import ARABIC_NAME_VARIANTS
 from name_variants.chinese_given_names import CHINESE_GIVEN_NAME_VARIANTS
@@ -77,6 +85,7 @@ ALL_TABLES: dict[str, dict[str, list[str]]] = {
 
 _CLUSTERS: list["NameCluster"] | None = None
 _FORM_INDEX: dict[str, list["NameCluster"]] | None = None
+_DIALECT_INDEX: dict[str, str] | None = None
 
 
 def _build_clusters() -> tuple[list["NameCluster"], dict[str, list["NameCluster"]]]:
@@ -86,13 +95,21 @@ def _build_clusters() -> tuple[list["NameCluster"], dict[str, list["NameCluster"
     form_index: dict[str, list[NameCluster]] = {}
 
     for language, table in ALL_TABLES.items():
-        for storage_key, variants in table.items():
+        for storage_key, entry in table.items():
+            # Support both old list format and new rich dict format
+            if isinstance(entry, dict):
+                forms_list: list[str] = entry["forms"]
+                frequency: int | None = entry.get("frequency")
+            else:
+                forms_list = entry  # type: ignore[assignment]
+                # Fall back to ALL_FREQUENCIES for old-format entries
+                frequency = ALL_FREQUENCIES.get(storage_key)
+
             forms = frozenset(
                 {storage_key}
-                | {v.lower().strip() for v in variants if v.strip()}
+                | {v.lower().strip() for v in forms_list if v.strip()}
             )
-            freq = ALL_FREQUENCIES.get(storage_key)
-            cluster = NameCluster(forms=forms, language=language, frequency=freq)
+            cluster = NameCluster(forms=forms, language=language, frequency=frequency)
             clusters.append(cluster)
             for form in forms:
                 form_index.setdefault(form, []).append(cluster)
@@ -183,22 +200,46 @@ def normalize(text: str, *, strip_diacritics: bool = False) -> str:
 
 
 
+def _build_dialect_index() -> dict[str, str]:
+    index: dict[str, str] = {}
+    for table in ALL_TABLES.values():
+        for entry in table.values():
+            if isinstance(entry, dict):
+                for form, dialect in entry.get("dialects", {}).items():
+                    index[form.lower()] = dialect
+    # Fall back to legacy CHINESE_ROMANIZATION_DIALECTS if present (removed in Task 6)
+    try:
+        from name_variants.chinese_surnames import CHINESE_ROMANIZATION_DIALECTS
+        for form, dialect in CHINESE_ROMANIZATION_DIALECTS.items():
+            if form not in index:
+                index[form] = dialect
+    except ImportError:
+        pass
+    return index
+
+
+def _get_dialect_index() -> dict[str, str]:
+    global _DIALECT_INDEX
+    if _DIALECT_INDEX is None:
+        _DIALECT_INDEX = _build_dialect_index()
+    return _DIALECT_INDEX
+
+
 def lookup_dialect(text: str) -> str | None:
     """
     Return the romanization dialect/system for this variant string.
 
     Returns one of: "mandarin_pinyin", "cantonese", "hokkien", "hakka",
-    "teochew", "wade_giles", "traditional", "simplified"
+    "teochew", "wade_giles", "traditional", "simplified", "postal"
 
     Returns None for non-Chinese names or untagged variants.
     """
-    from name_variants.chinese_surnames import CHINESE_ROMANIZATION_DIALECTS
-
-    return CHINESE_ROMANIZATION_DIALECTS.get(text.lower().strip())
+    return _get_dialect_index().get(text.lower().strip())
 
 
 __all__ = [
     "NameCluster",
+    "NameEntry",
     "lookup",
     "share_cluster",
     "ALL_TABLES",
