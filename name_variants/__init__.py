@@ -250,14 +250,13 @@ def lookup(text: str) -> list[NameCluster]:
         return []
 
     idx = _get_form_index()
-    seen: set[int] = set()
+    seen: set[NameCluster] = set()
     result: list[NameCluster] = []
 
     def _collect(key: str) -> None:
         for cluster in idx.get(key, []):
-            cid = id(cluster)
-            if cid not in seen:
-                seen.add(cid)
+            if cluster not in seen:
+                seen.add(cluster)
                 result.append(cluster)
 
     key = text.strip()
