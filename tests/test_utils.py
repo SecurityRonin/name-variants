@@ -1,7 +1,7 @@
-"""Tests for normalize(), is_variant(), and canonicalize() utility functions."""
+"""Tests for normalize() and share_cluster() utility functions."""
 import unicodedata
 
-from name_variants import canonicalize, is_variant, normalize
+from name_variants import normalize, share_cluster
 
 # ── normalize ─────────────────────────────────────────────────────────────────
 
@@ -65,91 +65,42 @@ def test_normalize_whitespace_only():
     assert normalize("   ") == ""
 
 
-# ── is_variant ────────────────────────────────────────────────────────────────
+# ── share_cluster ─────────────────────────────────────────────────────────────
 
 def test_is_variant_same_chinese():
-    assert is_variant("Chan", "Chen") is True
+    assert share_cluster("Chan", "Chen") is True
 
 
 def test_is_variant_hokkien_mandarin():
     # Hokkien Tan = Mandarin Chen = 陈
-    assert is_variant("Tan", "Chen") is True
+    assert share_cluster("Tan", "Chen") is True
 
 
 def test_is_variant_different_names():
-    assert is_variant("Chan", "Kim") is False
+    assert share_cluster("Chan", "Kim") is False
 
 
 def test_is_variant_both_unknown():
-    assert is_variant("Smith", "Smyth") is False
+    assert share_cluster("Smith", "Smyth") is False
 
 
 def test_is_variant_one_unknown():
-    assert is_variant("Chan", "Smith") is False
+    assert share_cluster("Chan", "Smith") is False
 
 
 def test_is_variant_empty_strings():
-    assert is_variant("", "") is False
+    assert share_cluster("", "") is False
 
 
 def test_is_variant_one_empty():
-    assert is_variant("Chan", "") is False
-    assert is_variant("", "Chan") is False
+    assert share_cluster("Chan", "") is False
+    assert share_cluster("", "Chan") is False
 
 
 def test_is_variant_korean_romanizations():
-    assert is_variant("Park", "Bak") is True
-    assert is_variant("Lee", "Yi") is True
+    assert share_cluster("Park", "Bak") is True
+    assert share_cluster("Lee", "Yi") is True
 
 
 def test_is_variant_case_insensitive():
-    assert is_variant("CHAN", "chen") is True
-
-
-# ── canonicalize ──────────────────────────────────────────────────────────────
-
-def test_canonicalize_known_name():
-    assert canonicalize("Chan") == "陈"
-
-
-def test_canonicalize_case_insensitive():
-    assert canonicalize("CHAN") == "陈"
-    assert canonicalize("chan") == "陈"
-
-
-def test_canonicalize_unknown_passthrough_default():
-    result = canonicalize("Smith")
-    assert result == "Smith"
-
-
-def test_canonicalize_unknown_passthrough_explicit():
-    result = canonicalize("Smith", fallback="passthrough")
-    assert result == "Smith"
-
-
-def test_canonicalize_unknown_lower():
-    result = canonicalize("Smith", fallback="lower")
-    assert result == "smith"
-
-
-def test_canonicalize_unknown_lower_strips():
-    result = canonicalize("  Smith  ", fallback="lower")
-    assert result == "smith"
-
-
-def test_canonicalize_returns_str_not_none():
-    result = canonicalize("UnknownXyz")
-    assert isinstance(result, str)
-
-
-def test_canonicalize_passthrough_strips_whitespace():
-    result = canonicalize("  Smith  ")
-    assert result == "Smith"
-
-
-def test_canonicalize_known_vietnamese():
-    assert canonicalize("Nguyen") == "nguyễn"
-
-
-def test_canonicalize_known_korean():
-    assert canonicalize("Park") == "박"
+    assert share_cluster("CHAN", "chen") is True

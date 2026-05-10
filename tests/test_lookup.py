@@ -1,5 +1,5 @@
-"""Tests for lookup_key(), lookup_all(), lookup_candidates(), and ALL_TABLES completeness."""
-from name_variants import ALL_TABLES, lookup_all, lookup_candidates, lookup_key
+"""Tests for lookup(), share_cluster(), and ALL_TABLES completeness."""
+from name_variants import ALL_TABLES, lookup, share_cluster
 
 # ── Table completeness ────────────────────────────────────────────────────────
 
@@ -34,332 +34,323 @@ def test_all_keys_nonempty():
 # ── Chinese lookups ───────────────────────────────────────────────────────────
 
 def test_chan_and_chen_same_key():
-    assert lookup_key("Chan") == lookup_key("Chen")
+    assert share_cluster("Chan", "Chen")
 
 
 def test_tan_and_chen_same_key():
     # Hokkien Tan = Mandarin Chen = 陈
-    assert lookup_key("Tan") == lookup_key("Chen")
+    assert share_cluster("Tan", "Chen")
 
 
 def test_traditional_and_simplified_same_key():
-    # 陳 (Traditional) should resolve to 陈 (Simplified) key
-    # Direct lookup without opencc — Traditional char in index
-    assert lookup_key("陈") is not None
-    assert lookup_key("陳") == lookup_key("陈")
-    assert lookup_key("劉") == lookup_key("刘")
-    assert lookup_key("許") == lookup_key("许")
+    # 陳 (Traditional) should be in the same cluster as 陈 (Simplified)
+    assert lookup("陈") != []
+    assert share_cluster("陳", "陈")
+    assert share_cluster("劉", "刘")
+    assert share_cluster("許", "许")
 
 
 def test_traditional_chinese_resolves_to_simplified():
-    """Traditional forms must resolve to the Simplified canonical key."""
-    assert lookup_key("陳") == "陈"
-    assert lookup_key("劉") == "刘"
-    assert lookup_key("張") == "张"
-    assert lookup_key("楊") == "杨"
-    assert lookup_key("趙") == "赵"
-    assert lookup_key("吳") == "吴"
-    assert lookup_key("鄭") == "郑"
-    assert lookup_key("許") == "许"
-    assert lookup_key("關") == "关"
+    """Traditional forms must be in the same cluster as their Simplified form."""
+    assert any("陈" in c and "陳" in c for c in lookup("陈"))
+    assert any("刘" in c and "劉" in c for c in lookup("刘"))
+    assert any("张" in c and "張" in c for c in lookup("张"))
+    assert any("杨" in c and "楊" in c for c in lookup("杨"))
+    assert any("赵" in c and "趙" in c for c in lookup("赵"))
+    assert any("吴" in c and "吳" in c for c in lookup("吴"))
+    assert any("郑" in c and "鄭" in c for c in lookup("郑"))
+    assert any("许" in c and "許" in c for c in lookup("许"))
+    assert any("关" in c and "關" in c for c in lookup("关"))
 
 
 def test_xu_and_hui_same_key():
-    assert lookup_key("Xu") == lookup_key("Hui")
+    assert share_cluster("Xu", "Hui")
 
 
 def test_wang_and_wong_same_key():
-    assert lookup_key("Wang") == lookup_key("Wong")
+    assert share_cluster("Wang", "Wong")
 
 
 def test_different_chinese_surnames_different_keys():
-    assert lookup_key("Chen") != lookup_key("Li")
-    assert lookup_key("Wong") != lookup_key("Xu")
+    assert not share_cluster("Chen", "Li")
+    assert not share_cluster("Wong", "Xu")
 
 
 # ── Korean lookups ────────────────────────────────────────────────────────────
 
 def test_park_and_bak_same_key():
-    assert lookup_key("Park") == lookup_key("Bak")
+    assert share_cluster("Park", "Bak")
 
 
 def test_lee_and_yi_same_key():
     # 이: Lee (diaspora) / Yi (MR) / Rhee (older)
-    assert lookup_key("Lee") == lookup_key("Yi")
-    assert lookup_key("Lee") == lookup_key("Rhee")
+    assert share_cluster("Lee", "Yi")
+    assert share_cluster("Lee", "Rhee")
 
 
 def test_choi_and_choe_same_key():
-    assert lookup_key("Choi") == lookup_key("Choe")
+    assert share_cluster("Choi", "Choe")
 
 
 def test_jung_and_chung_same_key():
-    assert lookup_key("Jung") == lookup_key("Chung")
+    assert share_cluster("Jung", "Chung")
 
 
 # ── Vietnamese lookups ────────────────────────────────────────────────────────
 
 def test_nguyen_stripped():
-    key = lookup_key("Nguyen")
-    assert key is not None
-    assert key == lookup_key("nguyễn")
+    assert lookup("Nguyen") != []
+    assert share_cluster("Nguyen", "nguyễn")
 
 
 def test_tran_stripped():
-    assert lookup_key("Tran") == lookup_key("trần")
+    assert share_cluster("Tran", "trần")
 
 
 # ── Arabic lookups ────────────────────────────────────────────────────────────
 
 def test_muhammad_variants():
-    k = lookup_key("Muhammad")
-    assert k == lookup_key("Mohammed")
-    assert k == lookup_key("Mohamed")
+    assert share_cluster("Muhammad", "Mohammed")
+    assert share_cluster("Muhammad", "Mohamed")
 
 
 def test_fatima_variants():
-    assert lookup_key("Fatima") == lookup_key("Fatimah")
+    assert share_cluster("Fatima", "Fatimah")
 
 
 # ── Russian lookups ───────────────────────────────────────────────────────────
 
 def test_ivanov_and_ivanoff():
-    assert lookup_key("Ivanov") == lookup_key("Ivanoff")
+    assert share_cluster("Ivanov", "Ivanoff")
 
 
 def test_dostoevsky_variants():
-    assert lookup_key("Dostoevsky") == lookup_key("Dostoyevsky")
+    assert share_cluster("Dostoevsky", "Dostoyevsky")
 
 
 # ── Hebrew lookups ────────────────────────────────────────────────────────────
 
 def test_yitzhak_and_isaac():
-    assert lookup_key("Yitzhak") == lookup_key("Isaac")
+    assert share_cluster("Yitzhak", "Isaac")
 
 
 # ── Turkish lookups ───────────────────────────────────────────────────────────
 
 def test_celik_and_chelik():
-    assert lookup_key("Celik") == lookup_key("çelik")
+    assert share_cluster("Celik", "çelik")
 
 
-# ── lookup_candidates — multi-script ambiguous romanizations ─────────────────
+# ── lookup — multi-script ambiguous romanizations ─────────────────────────────
 
 def test_candidates_lee_returns_korean_chinese_vietnamese():
     # "lee" legitimately appears in Korean 이, Chinese 李, and Vietnamese lê
-    result = lookup_candidates("Lee")
-    assert "이" in result
-    assert "李" in result
-    assert "lê" in result
+    clusters = lookup("Lee")
+    all_forms = {f for c in clusters for f in c.forms}
+    assert "이" in all_forms
+    assert "李" in all_forms
+    assert "lê" in all_forms
 
 
 def test_candidates_ng_returns_both_chinese_surnames():
     # "ng" is ambiguous between 黄 (Huang) and 吴 (Wu) in Hokkien/Cantonese
-    result = lookup_candidates("Ng")
-    assert "黄" in result
-    assert "吴" in result
+    clusters = lookup("Ng")
+    all_forms = {f for c in clusters for f in c.forms}
+    assert "黄" in all_forms
+    assert "吴" in all_forms
 
 
 def test_candidates_unambiguous_returns_single():
     # "nguyen" only appears under nguyễn
-    result = lookup_candidates("Nguyen")
-    assert result == ["nguyễn"]
+    clusters = lookup("Nguyen")
+    assert len(clusters) == 1 and "nguyễn" in clusters[0]
 
 
 def test_candidates_unknown_returns_empty():
-    assert lookup_candidates("Smith") == []
-    assert lookup_candidates("") == []
-
-
-def test_lookup_key_still_wins_korean_for_lee():
-    # lookup_key must keep its single-best-match contract — Korean wins for "lee"
-    assert lookup_key("Lee") == "이"
+    assert lookup("Smith") == []
+    assert lookup("") == []
 
 
 # ── Unknown names ─────────────────────────────────────────────────────────────
 
-def test_unknown_returns_none():
-    assert lookup_key("Kowalski") is None
-    assert lookup_key("Smith") is None
-    assert lookup_key("Johnson") is None
+def test_unknown_returns_empty():
+    assert lookup("Kowalski") == []
+    assert lookup("Smith") == []
+    assert lookup("Johnson") == []
 
 
-def test_empty_string_returns_none():
-    assert lookup_key("") is None
+def test_empty_string_returns_empty():
+    assert lookup("") == []
 
 
 # ── Token-level lookup in multi-word names ────────────────────────────────────
 
 def test_chan_in_full_name():
-    # "Chan Wai Ming" → "Chan" token matches → returns Chinese surname key
-    key = lookup_key("Chan Wai Ming")
-    assert key is not None
-    assert key == lookup_key("Chen")
+    # "Chan Wai Ming" → "Chan" token matches → returns Chinese surname cluster
+    clusters = lookup("Chan Wai Ming")
+    assert any(c.language == "chinese" for c in clusters)
+
+
+def test_chan_in_full_name_shares_cluster_with_chen():
+    assert share_cluster("Chan Wai Ming", "Chen")
 
 
 def test_park_in_full_name():
-    key = lookup_key("Park Ji-sung")
-    assert key is not None
-    assert key == lookup_key("Bak")
+    assert share_cluster("Park Ji-sung", "Bak")
 
 
-# ── lookup_all ────────────────────────────────────────────────────────────────
+# ── lookup — cluster contents ─────────────────────────────────────────────────
 
-def test_lookup_all_returns_key_and_variants():
-    result = lookup_all("Chan")
-    assert result is not None
-    key, variants = result
-    assert key == "陈"
-    assert "chen" in variants
-    assert "chan" in variants
+def test_lookup_returns_cluster_with_variants():
+    clusters = lookup("Chan")
+    assert any(c.language == "chinese" for c in clusters)
+    chinese = next(c for c in clusters if c.language == "chinese")
+    assert "chen" in chinese and "chan" in chinese
 
 
-def test_lookup_all_traditional_shows_in_variants():
-    result = lookup_all("陈")
-    assert result is not None
-    key, variants = result
-    assert key == "陈"
-    assert "陳" in variants
+def test_lookup_traditional_shows_in_forms():
+    clusters = lookup("陈")
+    assert any(c.language == "chinese" for c in clusters)
+    chinese = next(c for c in clusters if c.language == "chinese")
+    assert "陳" in chinese
 
 
-def test_lookup_all_unknown_returns_none():
-    assert lookup_all("Smith") is None
-    assert lookup_all("") is None
+def test_lookup_unknown_returns_empty():
+    assert lookup("Smith") == []
+    assert lookup("") == []
 
 
-def test_lookup_all_multiword():
-    result = lookup_all("Chan Wai Ming")
-    assert result is not None
-    assert result[0] == "陈"
+def test_lookup_multiword():
+    clusters = lookup("Chan Wai Ming")
+    assert any(c.language == "chinese" for c in clusters)
 
 
 # ── Vietnamese (extended) ─────────────────────────────────────────────────────
 
 def test_le_variants():
-    assert lookup_key("Le") == lookup_key("lê")
+    assert share_cluster("Le", "lê")
 
 
 def test_pham_variants():
-    assert lookup_key("Pham") == lookup_key("phạm")
+    assert share_cluster("Pham", "phạm")
 
 
 def test_hoang_variants():
-    assert lookup_key("Hoang") == lookup_key("hoàng")
+    assert share_cluster("Hoang", "hoàng")
 
 
 # ── Arabic (extended) ─────────────────────────────────────────────────────────
 
 def test_ali_variants():
-    assert lookup_key("Ali") is not None
+    assert lookup("Ali") != []
 
 
 def test_hassan_variants():
-    assert lookup_key("Hassan") == lookup_key("Hasan")
+    assert share_cluster("Hassan", "Hasan")
 
 
 def test_arabic_script_direct():
-    assert lookup_key("محمد") is not None
+    assert lookup("محمد") != []
 
 
 # ── Russian (extended) ────────────────────────────────────────────────────────
 
 def test_sokolov_variants():
-    assert lookup_key("Sokolov") == lookup_key("Sokoloff")
+    assert share_cluster("Sokolov", "Sokoloff")
 
 
 def test_petrov_variants():
-    assert lookup_key("Petrov") is not None
+    assert lookup("Petrov") != []
 
 
 def test_cyrillic_direct():
-    assert lookup_key("Иванов") is not None
-    assert lookup_key("Иванов") == lookup_key("Ivanov")
+    assert lookup("Иванов") != []
+    assert share_cluster("Иванов", "Ivanov")
 
 
 # ── Edge cases ────────────────────────────────────────────────────────────────
 
-def test_whitespace_only_returns_none():
-    assert lookup_key("   ") is None
+def test_whitespace_only_returns_empty():
+    assert lookup("   ") == []
 
 
 def test_single_char_does_not_crash():
-    result = lookup_key("A")
-    assert result is None or isinstance(result, str)
+    result = lookup("A")
+    assert result == [] or isinstance(result, list)
 
 
-def test_numbers_return_none():
-    assert lookup_key("12345") is None
+def test_numbers_return_empty():
+    assert lookup("12345") == []
 
 
-def test_very_long_input_returns_none():
-    assert lookup_key("a" * 1000) is None
+def test_very_long_input_returns_empty():
+    assert lookup("a" * 1000) == []
 
 
 def test_mixed_script_input():
     # Token loop hits "陈" directly
-    assert lookup_key("Chan 陈") is not None
+    assert lookup("Chan 陈") != []
 
 
 def test_leading_trailing_whitespace_handled():
-    assert lookup_key("  Chan  ") == lookup_key("Chan")
+    assert lookup("  Chan  ") == lookup("Chan")
 
 
 def test_case_insensitive_lookup():
-    assert lookup_key("CHAN") == lookup_key("chan")
-    assert lookup_key("Chan") == lookup_key("CHAN")
+    assert share_cluster("CHAN", "chan")
+    assert share_cluster("Chan", "CHAN")
 
 
 # ── Multi-word token lookup (extended) ───────────────────────────────────────
 
 def test_multi_word_arabic():
-    assert lookup_key("Mohammed Al-Rashid") == lookup_key("Muhammad")
+    assert share_cluster("Mohammed Al-Rashid", "Muhammad")
 
 
 def test_multi_word_japanese():
-    assert lookup_key("Sato Kenji") == lookup_key("Sato")
+    assert share_cluster("Sato Kenji", "Sato")
 
 
-def test_multi_word_no_match_returns_none():
-    assert lookup_key("Smith Johnson Williams") is None
+def test_multi_word_no_match_returns_empty():
+    assert lookup("Smith Johnson Williams") == []
 
 
 # ── Japanese ──────────────────────────────────────────────────────────────────
 
 def test_sato_lookup():
-    assert lookup_key("Sato") is not None
-    assert lookup_key("Satō") == lookup_key("Sato")  # macron variant
+    assert lookup("Sato") != []
+    assert share_cluster("Satō", "Sato")  # macron variant
 
 
 def test_suzuki_lookup():
-    assert lookup_key("Suzuki") is not None
+    assert lookup("Suzuki") != []
 
 
 def test_tanaka_lookup():
-    assert lookup_key("Tanaka") is not None
+    assert lookup("Tanaka") != []
 
 
 def test_japanese_kanji_direct():
-    assert lookup_key("佐藤") is not None
-    assert lookup_key("佐藤") == lookup_key("Sato")
+    assert lookup("佐藤") != []
+    assert share_cluster("佐藤", "Sato")
 
 
 # ── Indian names ──────────────────────────────────────────────────────────────
 
 def test_hindi_sharma_variants():
-    assert lookup_key("Sharma") is not None
+    assert lookup("Sharma") != []
 
 
 def test_hindi_singh_variants():
-    assert lookup_key("Singh") is not None
+    assert lookup("Singh") != []
 
 
 def test_tamil_murugan_variants():
-    assert lookup_key("Murugan") is not None
+    assert lookup("Murugan") != []
 
 
 def test_bengali_chatterjee_variants():
-    assert lookup_key("Chatterjee") is not None
-    assert lookup_key("Chatterjee") == lookup_key("Chattopadhyay")
+    assert lookup("Chatterjee") != []
+    assert share_cluster("Chatterjee", "Chattopadhyay")
 
 
 # ── Thai ──────────────────────────────────────────────────────────────────────
@@ -369,54 +360,54 @@ def test_thai_canonical_self_lookup():
     thai_table = ALL_TABLES["thai"]
     assert len(thai_table) > 0
     some_canonical = next(iter(thai_table))
-    assert lookup_key(some_canonical) == some_canonical
+    assert any(some_canonical in c for c in lookup(some_canonical))
 
 
 def test_thai_romanization_lookup():
     from name_variants import ALL_TABLES
     for canonical, variants in ALL_TABLES["thai"].items():
         if variants:
-            assert lookup_key(variants[0]) == canonical
+            assert share_cluster(variants[0], canonical)
             break
 
 
 # ── Greek ─────────────────────────────────────────────────────────────────────
 
 def test_greek_papadopoulos_variants():
-    assert lookup_key("Papadopoulos") is not None
+    assert lookup("Papadopoulos") != []
 
 
 def test_greek_canonical_self_lookup():
     from name_variants import ALL_TABLES
     some_canonical = next(iter(ALL_TABLES["greek"]))
-    assert lookup_key(some_canonical) == some_canonical
+    assert any(some_canonical in c for c in lookup(some_canonical))
 
 
 # ── Turkish ───────────────────────────────────────────────────────────────────
 
 def test_turkish_yilmaz_variants():
-    assert lookup_key("Yilmaz") is not None
-    assert lookup_key("Yilmaz") == lookup_key("Yılmaz")
+    assert lookup("Yilmaz") != []
+    assert share_cluster("Yilmaz", "Yılmaz")
 
 
 # ── Persian ───────────────────────────────────────────────────────────────────
 
 def test_persian_mohammadi_variants():
-    assert lookup_key("Mohammadi") is not None
+    assert lookup("Mohammadi") != []
 
 
 # ── Hebrew ────────────────────────────────────────────────────────────────────
 
 def test_hebrew_cohen_variants():
-    assert lookup_key("Cohen") is not None
-    assert lookup_key("Cohen") == lookup_key("Kohen")
+    assert lookup("Cohen") != []
+    assert share_cluster("Cohen", "Kohen")
 
 
 # ── Indonesian/Malay ──────────────────────────────────────────────────────────
 
 def test_indonesian_santoso_variants():
-    assert lookup_key("Santoso") is not None
+    assert lookup("Santoso") != []
 
 
 def test_malay_rahman_variants():
-    assert lookup_key("Rahman") is not None
+    assert lookup("Rahman") != []
