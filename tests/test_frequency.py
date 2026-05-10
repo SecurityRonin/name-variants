@@ -1,5 +1,8 @@
-from name_variants import get_frequency, language_distribution
-from name_variants import _get_language_for_canonical  # internal, test directly
+from name_variants import (
+    _get_language_for_canonical,  # internal, test directly
+    get_frequency,
+    language_distribution,
+)
 
 
 def test_get_frequency_known():
