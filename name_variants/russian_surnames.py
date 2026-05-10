@@ -21,87 +21,251 @@ Sources:
   - Common diaspora (UK/US/HK) variant spellings
 """
 
-RUSSIAN_SURNAME_VARIANTS: dict[str, list[str]] = {
-    # ── Common Russian surnames ──────────────────────────────────────────────
-    "Иванов": ["ivanov", "ivanoff", "ivanow"],
-    "Смирнов": ["smirnov", "smirnoff", "smyrnov"],
-    "Кузнецов": ["kuznetsov", "kouznetsov", "kuznetzov"],
-    "Попов": ["popov", "popoff", "popow"],
-    "Васильев": ["vasilyev", "vasiliev", "vassiliev", "vasilev"],
-    "Петров": ["petrov", "petroff", "petrow"],
-    "Соколов": ["sokolov", "sokoloff", "sokolof"],
-    "Михайлов": ["mikhailov", "michailov", "mikhayloff"],
-    "Новиков": ["novikov", "novikoff"],
-    "Фёдоров": ["fyodorov", "fedorov", "feodorov", "fédorov"],
-    "Морозов": ["morozov", "morozoff"],
-    "Волков": ["volkov", "volkoff"],
-    "Алексеев": ["alekseyev", "alexeyev", "alexeev"],
-    "Лебедев": ["lebedev", "lebedef"],
-    "Семёнов": ["semenov", "semyonov", "semenoff"],
-    "Егоров": ["yegorov", "egorov"],
-    "Павлов": ["pavlov", "pavloff"],
-    "Козлов": ["kozlov", "kozloff"],
-    "Степанов": ["stepanov", "stepanoff"],
-    "Николаев": ["nikolayev", "nikolaev", "nikolaïev"],
-    "Орлов": ["orlov", "orloff"],
-    "Андреев": ["andreyev", "andreev", "andreeff"],
-    "Макаров": ["makarov", "makaroff"],
-    "Никитин": ["nikitin", "nikitine"],
-    "Захаров": ["zakharov", "zacharov", "zaharoff"],
-    "Зайцев": ["zaitsev", "zaytsev", "zaitzev"],
-    "Соловьёв": ["solovyov", "soloviev"],
-    "Борисов": ["borisov", "borissov"],
-    "Яковлев": ["yakovlev", "yakovleff"],
-    "Григорьев": ["grigoryev", "grigoriev"],
-    "Романов": ["romanov", "romanoff"],
-    "Воробьёв": ["vorobyov", "vorobiev"],
-    "Сергеев": ["sergeyev", "sergeev"],
-    "Кузьмин": ["kuzmin", "kouzmine"],
-    "Фролов": ["frolov", "froloff"],
-    "Александров": ["alexandrov", "alexandroff"],
-    "Дмитриев": ["dmitriev", "dmitrieff"],
-    "Королёв": ["korolyov", "korolev"],
-    "Гусев": ["gusev", "goussev"],
-    "Тихонов": ["tikhonov", "tichonov"],
-    "Медведев": ["medvedev", "medvedeff"],
-    "Пушкин": ["pushkin", "pouschkin"],
-    "Достоевский": ["dostoevsky", "dostoyevsky", "dostoevski", "dostoevskiy"],
-    "Толстой": ["tolstoy", "tolstoi"],
-    "Чехов": ["chekhov", "chekov", "tchekhov", "tschechow"],
-    "Горбачёв": ["gorbachev", "gorbachov", "gorbatschow"],
-    "Ельцин": ["yeltsin", "yeltsyn", "eltsine"],
-    "Путин": ["putin", "poutin"],
-    "Жириновский": ["zhirinovsky", "zhirinovskiy"],
-    "Лужков": ["luzhkov", "luzhkoff"],
-    # ── Ukrainian surnames (different romanization from Russian) ─────────────
-    "Шевченко": ["shevchenko", "shevtchenko"],
-    "Кравчук": ["kravchuk", "kravtchuk"],
-    "Янукович": ["yanukovych", "yanukovich"],
-    "Тимошенко": ["tymoshenko", "timoshenko"],
-    "Зеленський": ["zelensky", "zelenskyy", "zelenskiy"],
-    "Порошенко": ["poroshenko", "porochenko"],
-    "Кличко": ["klitschko", "klychko", "klitchko"],
-    "Бандера": ["bandera"],
-    "Грушевський": ["hrushevsky", "grushevsky"],
-    # ── Common Russian given names ────────────────────────────────────────────
-    "Александр": ["alexander", "aleksandr", "alexandre"],
-    "Дмитрий": ["dmitry", "dmitri", "dmitriy"],
-    "Сергей": ["sergei", "sergey", "serguei"],
-    "Андрей": ["andrei", "andrey", "andrew"],
-    "Алексей": ["alexei", "alexey", "aleksey"],
-    "Михаил": ["mikhail", "michael", "michail"],
-    "Николай": ["nikolai", "nikolay", "nicolas"],
-    "Владимир": ["vladimir", "vladimyr"],
-    "Иван": ["ivan", "iwan"],
-    "Павел": ["pavel", "paul"],
-    "Наталья": ["natalia", "natasha", "natalya"],
-    "Елена": ["elena", "yelena", "helen"],
-    "Ольга": ["olga", "olha"],
-    "Татьяна": ["tatiana", "tatyana", "tatiyana"],
-    "Ирина": ["irina", "irena"],
-    "Светлана": ["svetlana", "svyetlana"],
-    "Анна": ["anna", "ana"],
-    "Екатерина": ["ekaterina", "katerina", "catherine"],
-    "Мария": ["maria", "mariya", "mary"],
-    "Людмила": ["lyudmila", "ludmila"],
+RUSSIAN_SURNAME_VARIANTS: dict[str, dict] = {
+    'Иванов': {
+        "forms": ['ivanov', 'ivanoff', 'ivanow'],
+        "frequency": 1_500_000,
+    },
+    'Смирнов': {
+        "forms": ['smirnov', 'smirnoff', 'smyrnov'],
+        "frequency": 1_100_000,
+    },
+    'Кузнецов': {
+        "forms": ['kuznetsov', 'kouznetsov', 'kuznetzov'],
+        "frequency": 900_000,
+    },
+    'Попов': {
+        "forms": ['popov', 'popoff', 'popow'],
+        "frequency": 650_000,
+    },
+    'Васильев': {
+        "forms": ['vasilyev', 'vasiliev', 'vassiliev', 'vasilev'],
+        "frequency": 620_000,
+    },
+    'Петров': {
+        "forms": ['petrov', 'petroff', 'petrow'],
+        "frequency": 600_000,
+    },
+    'Соколов': {
+        "forms": ['sokolov', 'sokoloff', 'sokolof'],
+        "frequency": 580_000,
+    },
+    'Михайлов': {
+        "forms": ['mikhailov', 'michailov', 'mikhayloff'],
+        "frequency": 570_000,
+    },
+    'Новиков': {
+        "forms": ['novikov', 'novikoff'],
+        "frequency": 510_000,
+    },
+    'Фёдоров': {
+        "forms": ['fyodorov', 'fedorov', 'feodorov', 'fédorov'],
+    },
+    'Морозов': {
+        "forms": ['morozov', 'morozoff'],
+    },
+    'Волков': {
+        "forms": ['volkov', 'volkoff'],
+    },
+    'Алексеев': {
+        "forms": ['alekseyev', 'alexeyev', 'alexeev'],
+    },
+    'Лебедев': {
+        "forms": ['lebedev', 'lebedef'],
+    },
+    'Семёнов': {
+        "forms": ['semenov', 'semyonov', 'semenoff'],
+    },
+    'Егоров': {
+        "forms": ['yegorov', 'egorov'],
+    },
+    'Павлов': {
+        "forms": ['pavlov', 'pavloff'],
+    },
+    'Козлов': {
+        "forms": ['kozlov', 'kozloff'],
+    },
+    'Степанов': {
+        "forms": ['stepanov', 'stepanoff'],
+    },
+    'Николаев': {
+        "forms": ['nikolayev', 'nikolaev', 'nikolaïev'],
+    },
+    'Орлов': {
+        "forms": ['orlov', 'orloff'],
+    },
+    'Андреев': {
+        "forms": ['andreyev', 'andreev', 'andreeff'],
+    },
+    'Макаров': {
+        "forms": ['makarov', 'makaroff'],
+    },
+    'Никитин': {
+        "forms": ['nikitin', 'nikitine'],
+    },
+    'Захаров': {
+        "forms": ['zakharov', 'zacharov', 'zaharoff'],
+    },
+    'Зайцев': {
+        "forms": ['zaitsev', 'zaytsev', 'zaitzev'],
+    },
+    'Соловьёв': {
+        "forms": ['solovyov', 'soloviev'],
+    },
+    'Борисов': {
+        "forms": ['borisov', 'borissov'],
+    },
+    'Яковлев': {
+        "forms": ['yakovlev', 'yakovleff'],
+    },
+    'Григорьев': {
+        "forms": ['grigoryev', 'grigoriev'],
+    },
+    'Романов': {
+        "forms": ['romanov', 'romanoff'],
+    },
+    'Воробьёв': {
+        "forms": ['vorobyov', 'vorobiev'],
+    },
+    'Сергеев': {
+        "forms": ['sergeyev', 'sergeev'],
+    },
+    'Кузьмин': {
+        "forms": ['kuzmin', 'kouzmine'],
+    },
+    'Фролов': {
+        "forms": ['frolov', 'froloff'],
+    },
+    'Александров': {
+        "forms": ['alexandrov', 'alexandroff'],
+    },
+    'Дмитриев': {
+        "forms": ['dmitriev', 'dmitrieff'],
+    },
+    'Королёв': {
+        "forms": ['korolyov', 'korolev'],
+    },
+    'Гусев': {
+        "forms": ['gusev', 'goussev'],
+    },
+    'Тихонов': {
+        "forms": ['tikhonov', 'tichonov'],
+    },
+    'Медведев': {
+        "forms": ['medvedev', 'medvedeff'],
+    },
+    'Пушкин': {
+        "forms": ['pushkin', 'pouschkin'],
+    },
+    'Достоевский': {
+        "forms": ['dostoevsky', 'dostoyevsky', 'dostoevski', 'dostoevskiy'],
+    },
+    'Толстой': {
+        "forms": ['tolstoy', 'tolstoi'],
+    },
+    'Чехов': {
+        "forms": ['chekhov', 'chekov', 'tchekhov', 'tschechow'],
+    },
+    'Горбачёв': {
+        "forms": ['gorbachev', 'gorbachov', 'gorbatschow'],
+    },
+    'Ельцин': {
+        "forms": ['yeltsin', 'yeltsyn', 'eltsine'],
+    },
+    'Путин': {
+        "forms": ['putin', 'poutin'],
+    },
+    'Жириновский': {
+        "forms": ['zhirinovsky', 'zhirinovskiy'],
+    },
+    'Лужков': {
+        "forms": ['luzhkov', 'luzhkoff'],
+    },
+    'Шевченко': {
+        "forms": ['shevchenko', 'shevtchenko'],
+    },
+    'Кравчук': {
+        "forms": ['kravchuk', 'kravtchuk'],
+    },
+    'Янукович': {
+        "forms": ['yanukovych', 'yanukovich'],
+    },
+    'Тимошенко': {
+        "forms": ['tymoshenko', 'timoshenko'],
+    },
+    'Зеленський': {
+        "forms": ['zelensky', 'zelenskyy', 'zelenskiy'],
+    },
+    'Порошенко': {
+        "forms": ['poroshenko', 'porochenko'],
+    },
+    'Кличко': {
+        "forms": ['klitschko', 'klychko', 'klitchko'],
+    },
+    'Бандера': {
+        "forms": ['bandera'],
+    },
+    'Грушевський': {
+        "forms": ['hrushevsky', 'grushevsky'],
+    },
+    'Александр': {
+        "forms": ['alexander', 'aleksandr', 'alexandre'],
+    },
+    'Дмитрий': {
+        "forms": ['dmitry', 'dmitri', 'dmitriy'],
+    },
+    'Сергей': {
+        "forms": ['sergei', 'sergey', 'serguei'],
+    },
+    'Андрей': {
+        "forms": ['andrei', 'andrey', 'andrew'],
+    },
+    'Алексей': {
+        "forms": ['alexei', 'alexey', 'aleksey'],
+    },
+    'Михаил': {
+        "forms": ['mikhail', 'michael', 'michail'],
+    },
+    'Николай': {
+        "forms": ['nikolai', 'nikolay', 'nicolas'],
+    },
+    'Владимир': {
+        "forms": ['vladimir', 'vladimyr'],
+    },
+    'Иван': {
+        "forms": ['ivan', 'iwan'],
+    },
+    'Павел': {
+        "forms": ['pavel', 'paul'],
+    },
+    'Наталья': {
+        "forms": ['natalia', 'natasha', 'natalya'],
+    },
+    'Елена': {
+        "forms": ['elena', 'yelena', 'helen'],
+    },
+    'Ольга': {
+        "forms": ['olga', 'olha'],
+    },
+    'Татьяна': {
+        "forms": ['tatiana', 'tatyana', 'tatiyana'],
+    },
+    'Ирина': {
+        "forms": ['irina', 'irena'],
+    },
+    'Светлана': {
+        "forms": ['svetlana', 'svyetlana'],
+    },
+    'Анна': {
+        "forms": ['anna', 'ana'],
+    },
+    'Екатерина': {
+        "forms": ['ekaterina', 'katerina', 'catherine'],
+    },
+    'Мария': {
+        "forms": ['maria', 'mariya', 'mary'],
+    },
+    'Людмила': {
+        "forms": ['lyudmila', 'ludmila'],
+    },
 }

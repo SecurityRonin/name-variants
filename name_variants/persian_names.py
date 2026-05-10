@@ -16,88 +16,247 @@ Sources:
   - Common Iranian diaspora (UK/US/Canada) spellings
 """
 
-PERSIAN_NAME_VARIANTS: dict[str, list[str]] = {
-    # ── Male given names ─────────────────────────────────────────────────────
-    "محمد": ["mohammad", "muhammad", "mohammed", "mohamed", "mohamad"],
-    "علی": ["ali", "aly"],
-    "حسین": ["hossein", "hussein", "husain", "hosein"],
-    "رضا": ["reza", "riza", "ridha", "reda"],
-    "احمد": ["ahmad", "ahmed", "ahmaad"],
-    "حسن": ["hasan", "hassan"],
-    "مهدی": ["mahdi", "mehdi", "mehdy"],
-    "امیر": ["amir", "ameer"],
-    "محسن": ["mohsen", "muhsin", "mohssen"],
-    "علیرضا": ["alireza", "ali-reza", "aliriza"],
-    "میلاد": ["milad", "milaad"],
-    "آرش": ["arash", "aarash"],
-    "سینا": ["sina", "seena"],
-    "داریوش": ["dariush", "daryush", "dariusch"],
-    "فرهاد": ["farhad", "farhaad"],
-    "کامران": ["kamran", "kamraan"],
-    "بهرام": ["bahram", "bahraum"],
-    "شاهرام": ["shahram", "shahraum"],
-    "فریدون": ["fereydoon", "fereydoun", "faridon", "faridun"],
-    "کیانوش": ["kianoush", "kianoosh", "kianush"],
-    "پیمان": ["peyman", "payman"],
-    "پویا": ["pouya", "puya"],
-    "رامین": ["ramin", "raamin"],
-    "نیما": ["nima", "neema"],
-    "سامان": ["saman", "saaman"],
-    "بهزاد": ["behzad", "bahzad"],
-    "کاوه": ["kaveh", "kavé"],
-    "سهراب": ["sohrab", "sohrob"],
-    "مازیار": ["maziar", "mazyar"],
-    "ناصر": ["nasser", "nasir"],
-    "منصور": ["mansour", "mansur", "manssur"],
-    "خسرو": ["khosrow", "khosrau", "kosrow"],
-    "ایرج": ["iraj", "eeaj"],
-    "جمشید": ["jamshid", "djamshid"],
-    "شاپور": ["shapour", "shapur"],
-    "کورش": ["koroush", "cyrus", "koorosh"],
-    "اردشیر": ["ardeshir", "ardashir"],
-    "هوشنگ": ["houshang", "hooshangh"],
-    "مهران": ["mehran", "mahran"],
-    "وحید": ["vahid", "wahid"],
-    "عباس": ["abbas", "abas"],
-    "جواد": ["javad", "djavad"],
-    "صادق": ["sadegh", "sadeq"],
-    "اصغر": ["asghar", "asgar"],
-    "اکبر": ["akbar", "akber"],
-    "تقی": ["taghi", "taqui"],
-    "حمید": ["hamid", "hameed"],
-    "کریم": ["karim", "kareem"],
-    "مجید": ["majid", "majeed"],
-    # ── Female given names ───────────────────────────────────────────────────
-    "فاطمه": ["fateme", "fatemeh", "fatime"],
-    "زهرا": ["zahra", "zehra"],
-    "مریم": ["maryam", "mariam"],
-    "زینب": ["zeinab", "zaynab", "zainab"],
-    "نرگس": ["narges", "nargess", "nargis"],
-    "شیرین": ["shirin", "shireen"],
-    "پریسا": ["parisa", "pareesa"],
-    "الناز": ["elnaz", "elnaaz"],
-    "نگار": ["negar", "negaar"],
-    "شادی": ["shadi", "shaadi"],
-    "آذر": ["azar", "aazar"],
-    "مهناز": ["mahnaz", "mahnaaz"],
-    "ملیحه": ["maliheh", "malihe"],
-    "سمیرا": ["samira", "sameera"],
-    "بهاره": ["bahareh", "bahar"],
-    "گلناز": ["golnaz", "golnaaz"],
-    "مهسا": ["mahsa", "mahsaa"],
-    "سپیده": ["sepideh", "spideh"],
-    "رویا": ["roya", "ruya"],
-    "فریبا": ["fariba", "farieba"],
-    "منیره": ["monireh", "monirehh"],
-    "پروانه": ["parvaneh", "parvane"],
-    "طاهره": ["tahereh", "tahere", "tahera"],
-    "ناهید": ["nahid", "naahid"],
-    "نسرین": ["nasrin", "nassrin"],
-    "گلی": ["goli", "golee"],
-    # ── Common surnames ───────────────────────────────────────────────────────
-    "محمدی": ["mohammadi", "mohamadi", "mahammadi"],
-    "احمدی": ["ahmadi", "ahmaady"],
-    "رضایی": ["rezaei", "rezaee", "razayi"],
-    "حسینی": ["hosseini", "hosseiny", "hussaini"],
-    "موسوی": ["mousavi", "moosavi", "musavi"],
+PERSIAN_NAME_VARIANTS: dict[str, dict] = {
+    'محمد': {
+        "forms": ['mohammad', 'muhammad', 'mohammed', 'mohamed', 'mohamad'],
+        "frequency": 150_000_000,
+    },
+    'علی': {
+        "forms": ['ali', 'aly'],
+    },
+    'حسین': {
+        "forms": ['hossein', 'hussein', 'husain', 'hosein'],
+    },
+    'رضا': {
+        "forms": ['reza', 'riza', 'ridha', 'reda'],
+    },
+    'احمد': {
+        "forms": ['ahmad', 'ahmed', 'ahmaad'],
+    },
+    'حسن': {
+        "forms": ['hasan', 'hassan'],
+        "frequency": 10_000_000,
+    },
+    'مهدی': {
+        "forms": ['mahdi', 'mehdi', 'mehdy'],
+    },
+    'امیر': {
+        "forms": ['amir', 'ameer'],
+    },
+    'محسن': {
+        "forms": ['mohsen', 'muhsin', 'mohssen'],
+    },
+    'علیرضا': {
+        "forms": ['alireza', 'ali-reza', 'aliriza'],
+    },
+    'میلاد': {
+        "forms": ['milad', 'milaad'],
+    },
+    'آرش': {
+        "forms": ['arash', 'aarash'],
+    },
+    'سینا': {
+        "forms": ['sina', 'seena'],
+    },
+    'داریوش': {
+        "forms": ['dariush', 'daryush', 'dariusch'],
+    },
+    'فرهاد': {
+        "forms": ['farhad', 'farhaad'],
+    },
+    'کامران': {
+        "forms": ['kamran', 'kamraan'],
+    },
+    'بهرام': {
+        "forms": ['bahram', 'bahraum'],
+    },
+    'شاهرام': {
+        "forms": ['shahram', 'shahraum'],
+    },
+    'فریدون': {
+        "forms": ['fereydoon', 'fereydoun', 'faridon', 'faridun'],
+    },
+    'کیانوش': {
+        "forms": ['kianoush', 'kianoosh', 'kianush'],
+    },
+    'پیمان': {
+        "forms": ['peyman', 'payman'],
+    },
+    'پویا': {
+        "forms": ['pouya', 'puya'],
+    },
+    'رامین': {
+        "forms": ['ramin', 'raamin'],
+    },
+    'نیما': {
+        "forms": ['nima', 'neema'],
+    },
+    'سامان': {
+        "forms": ['saman', 'saaman'],
+    },
+    'بهزاد': {
+        "forms": ['behzad', 'bahzad'],
+    },
+    'کاوه': {
+        "forms": ['kaveh', 'kavé'],
+    },
+    'سهراب': {
+        "forms": ['sohrab', 'sohrob'],
+    },
+    'مازیار': {
+        "forms": ['maziar', 'mazyar'],
+    },
+    'ناصر': {
+        "forms": ['nasser', 'nasir'],
+    },
+    'منصور': {
+        "forms": ['mansour', 'mansur', 'manssur'],
+    },
+    'خسرو': {
+        "forms": ['khosrow', 'khosrau', 'kosrow'],
+    },
+    'ایرج': {
+        "forms": ['iraj', 'eeaj'],
+    },
+    'جمشید': {
+        "forms": ['jamshid', 'djamshid'],
+    },
+    'شاپور': {
+        "forms": ['shapour', 'shapur'],
+    },
+    'کورش': {
+        "forms": ['koroush', 'cyrus', 'koorosh'],
+    },
+    'اردشیر': {
+        "forms": ['ardeshir', 'ardashir'],
+    },
+    'هوشنگ': {
+        "forms": ['houshang', 'hooshangh'],
+    },
+    'مهران': {
+        "forms": ['mehran', 'mahran'],
+    },
+    'وحید': {
+        "forms": ['vahid', 'wahid'],
+    },
+    'عباس': {
+        "forms": ['abbas', 'abas'],
+    },
+    'جواد': {
+        "forms": ['javad', 'djavad'],
+    },
+    'صادق': {
+        "forms": ['sadegh', 'sadeq'],
+    },
+    'اصغر': {
+        "forms": ['asghar', 'asgar'],
+    },
+    'اکبر': {
+        "forms": ['akbar', 'akber'],
+    },
+    'تقی': {
+        "forms": ['taghi', 'taqui'],
+    },
+    'حمید': {
+        "forms": ['hamid', 'hameed'],
+    },
+    'کریم': {
+        "forms": ['karim', 'kareem'],
+    },
+    'مجید': {
+        "forms": ['majid', 'majeed'],
+    },
+    'فاطمه': {
+        "forms": ['fateme', 'fatemeh', 'fatime'],
+    },
+    'زهرا': {
+        "forms": ['zahra', 'zehra'],
+    },
+    'مریم': {
+        "forms": ['maryam', 'mariam'],
+    },
+    'زینب': {
+        "forms": ['zeinab', 'zaynab', 'zainab'],
+    },
+    'نرگس': {
+        "forms": ['narges', 'nargess', 'nargis'],
+    },
+    'شیرین': {
+        "forms": ['shirin', 'shireen'],
+    },
+    'پریسا': {
+        "forms": ['parisa', 'pareesa'],
+    },
+    'الناز': {
+        "forms": ['elnaz', 'elnaaz'],
+    },
+    'نگار': {
+        "forms": ['negar', 'negaar'],
+    },
+    'شادی': {
+        "forms": ['shadi', 'shaadi'],
+    },
+    'آذر': {
+        "forms": ['azar', 'aazar'],
+    },
+    'مهناز': {
+        "forms": ['mahnaz', 'mahnaaz'],
+    },
+    'ملیحه': {
+        "forms": ['maliheh', 'malihe'],
+    },
+    'سمیرا': {
+        "forms": ['samira', 'sameera'],
+    },
+    'بهاره': {
+        "forms": ['bahareh', 'bahar'],
+    },
+    'گلناز': {
+        "forms": ['golnaz', 'golnaaz'],
+    },
+    'مهسا': {
+        "forms": ['mahsa', 'mahsaa'],
+    },
+    'سپیده': {
+        "forms": ['sepideh', 'spideh'],
+    },
+    'رویا': {
+        "forms": ['roya', 'ruya'],
+    },
+    'فریبا': {
+        "forms": ['fariba', 'farieba'],
+    },
+    'منیره': {
+        "forms": ['monireh', 'monirehh'],
+    },
+    'پروانه': {
+        "forms": ['parvaneh', 'parvane'],
+    },
+    'طاهره': {
+        "forms": ['tahereh', 'tahere', 'tahera'],
+    },
+    'ناهید': {
+        "forms": ['nahid', 'naahid'],
+    },
+    'نسرین': {
+        "forms": ['nasrin', 'nassrin'],
+    },
+    'گلی': {
+        "forms": ['goli', 'golee'],
+    },
+    'محمدی': {
+        "forms": ['mohammadi', 'mohamadi', 'mahammadi'],
+    },
+    'احمدی': {
+        "forms": ['ahmadi', 'ahmaady'],
+    },
+    'رضایی': {
+        "forms": ['rezaei', 'rezaee', 'razayi'],
+    },
+    'حسینی': {
+        "forms": ['hosseini', 'hosseiny', 'hussaini'],
+    },
+    'موسوی': {
+        "forms": ['mousavi', 'moosavi', 'musavi'],
+    },
 }

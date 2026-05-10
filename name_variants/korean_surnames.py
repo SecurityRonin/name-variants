@@ -19,108 +19,320 @@ Sources:
   - Common diaspora (US/HK/Australia) spelling conventions
 """
 
-KOREAN_SURNAME_VARIANTS: dict[str, list[str]] = {
-    # ── Top 10 (covers ~64% of Korean population) ──────────────────────────
-    "김": ["kim", "gim"],
-    "이": ["lee", "yi", "rhee", "li", "ie", "rhie", "ree", "i"],
-    "박": ["park", "bak", "pak"],
-    "최": ["choi", "choe", "choy"],
-    "정": ["jung", "jeong", "chung", "chong", "joung"],
-    "강": ["kang", "gang", "kahng"],
-    "조": ["jo", "cho", "joe"],
-    "윤": ["yoon", "yun", "youn"],
-    "장": ["jang", "chang", "jahng"],
-    "임": ["lim", "im", "rim"],
-    # ── 11-50 ───────────────────────────────────────────────────────────────
-    "한": ["han", "hahn", "haan"],
-    "오": ["oh", "o", "ohh"],
-    "서": ["seo", "suh", "so", "sue"],
-    "신": ["shin", "sin", "shinn"],
-    "권": ["kwon", "gwon", "kwan", "kweon"],
-    "황": ["hwang", "whang"],
-    "안": ["an", "ahn"],
-    "송": ["song", "soong"],
-    "류": ["ryu", "ryoo", "yoo", "yu"],
-    "전": ["jeon", "chon", "jun", "cheon"],
-    "홍": ["hong", "hoong"],
-    "고": ["ko", "go", "goh"],
-    "문": ["moon", "mun"],
-    "양": ["yang", "ryang"],
-    "손": ["son", "sohn", "shon"],
-    "배": ["bae", "bai", "pae"],
-    "백": ["baek", "paek", "back"],
-    "허": ["heo", "huh", "hur"],
-    "유": ["yoo", "yu", "yuh"],
-    "남": ["nam", "nahm"],
-    "심": ["shim", "sim"],
-    "노": ["noh", "roh", "no"],
-    "하": ["ha", "hah"],
-    "곽": ["kwak", "gwak", "kwack"],
-    "성": ["sung", "seong", "soung"],
-    "차": ["cha", "chah"],
-    "주": ["joo", "ju", "choo"],
-    "우": ["woo", "wu", "u"],
-    "구": ["koo", "ku", "goo"],
-    "민": ["min", "minn"],
-    "나": ["na", "rha"],
-    "도": ["do", "doh", "to"],
-    "엄": ["um", "eom", "ohm"],
-    "여": ["yeo", "yuh", "yo"],
-    "추": ["chu", "choo"],
-    "함": ["ham", "hahm"],
-    "표": ["pyo", "poe"],
-    "원": ["won", "weon"],
-    "천": ["cheon", "chun", "chon"],
-    "방": ["bang", "pahng"],
-    "공": ["gong", "kong"],
-    "채": ["chae", "che"],
-    "변": ["byun", "byeon", "byon"],
-    "마": ["ma", "mah"],
-    "석": ["seok", "suk"],
-    # ── 51-100 ──────────────────────────────────────────────────────────────
-    "경": ["kyung", "gyeong", "kyeong"],
-    "봉": ["bong", "pong"],
-    "두": ["du", "doo"],
-    "위": ["wi", "wee"],
-    "태": ["tae", "tai"],
-    "진": ["jin", "chin"],
-    "선": ["sun", "seon"],
-    "은": ["eun", "un"],
-    "길": ["gil", "kil"],
-    "국": ["kook", "kuk", "guk"],
-    "부": ["boo", "bu"],
-    "지": ["ji", "chi"],
-    "어": ["eo", "uh"],
-    "연": ["yeon", "yun", "yon"],
-    "승": ["seung", "sung"],
-    "사": ["sa", "sar"],
-    "소": ["so", "soh"],
-    "목": ["mok", "mock"],
-    "로": ["roh", "ro", "no"],
-    "제": ["je", "jeh"],
-    "감": ["gam", "kam", "kahm"],
-    "옥": ["ok", "ohk"],
-    "무": ["mu", "moo"],
-    "라": ["ra", "la", "rha"],
-    "용": ["yong", "ryong"],
-    "동": ["dong", "tong"],
-    "맹": ["maeng", "meng"],
-    "모": ["mo", "moh"],
-    "반": ["ban", "van", "pan"],
-    "복": ["bok", "bock"],
-    "명": ["myung", "myeong", "myong"],
-    "탁": ["tak", "tack"],
-    "상": ["sang", "shahng"],
-    "인": ["in", "inn"],
-    "온": ["on", "ohn"],
-    "편": ["pyeon", "pyon"],
-    "수": ["su", "soo"],
-    "팽": ["paeng", "peng"],
-    "독": ["dok", "dock"],
-    "각": ["gak", "kak"],
-    "탄": ["than"],
-    "포": ["po", "poh"],
-    "피": ["pi", "pee"],
-    "예": ["ye", "yeh"],
-    "탕": ["tang", "tahng"],
+KOREAN_SURNAME_VARIANTS: dict[str, dict] = {
+    '김': {
+        "forms": ['kim', 'gim'],
+        "frequency": 10_687_000,
+    },
+    '이': {
+        "forms": ['lee', 'yi', 'rhee', 'li', 'ie', 'rhie', 'ree', 'i'],
+        "frequency": 7_307_000,
+    },
+    '박': {
+        "forms": ['park', 'bak', 'pak'],
+        "frequency": 4_192_000,
+    },
+    '최': {
+        "forms": ['choi', 'choe', 'choy'],
+        "frequency": 2_334_000,
+    },
+    '정': {
+        "forms": ['jung', 'jeong', 'chung', 'chong', 'joung'],
+        "frequency": 2_151_000,
+    },
+    '강': {
+        "forms": ['kang', 'gang', 'kahng'],
+        "frequency": 1_176_000,
+    },
+    '조': {
+        "forms": ['jo', 'cho', 'joe'],
+        "frequency": 1_059_000,
+    },
+    '윤': {
+        "forms": ['yoon', 'yun', 'youn'],
+        "frequency": 1_029_000,
+    },
+    '장': {
+        "forms": ['jang', 'chang', 'jahng'],
+        "frequency": 992_000,
+    },
+    '임': {
+        "forms": ['lim', 'im', 'rim'],
+        "frequency": 822_000,
+    },
+    '한': {
+        "forms": ['han', 'hahn', 'haan'],
+        "frequency": 773_000,
+    },
+    '오': {
+        "forms": ['oh', 'o', 'ohh'],
+        "frequency": 763_000,
+    },
+    '서': {
+        "forms": ['seo', 'suh', 'so', 'sue'],
+        "frequency": 751_000,
+    },
+    '신': {
+        "forms": ['shin', 'sin', 'shinn'],
+        "frequency": 739_000,
+    },
+    '권': {
+        "forms": ['kwon', 'gwon', 'kwan', 'kweon'],
+        "frequency": 705_000,
+    },
+    '황': {
+        "forms": ['hwang', 'whang'],
+    },
+    '안': {
+        "forms": ['an', 'ahn'],
+    },
+    '송': {
+        "forms": ['song', 'soong'],
+    },
+    '류': {
+        "forms": ['ryu', 'ryoo', 'yoo', 'yu'],
+    },
+    '전': {
+        "forms": ['jeon', 'chon', 'jun', 'cheon'],
+    },
+    '홍': {
+        "forms": ['hong', 'hoong'],
+    },
+    '고': {
+        "forms": ['ko', 'go', 'goh'],
+    },
+    '문': {
+        "forms": ['moon', 'mun'],
+    },
+    '양': {
+        "forms": ['yang', 'ryang'],
+    },
+    '손': {
+        "forms": ['son', 'sohn', 'shon'],
+    },
+    '배': {
+        "forms": ['bae', 'bai', 'pae'],
+    },
+    '백': {
+        "forms": ['baek', 'paek', 'back'],
+    },
+    '허': {
+        "forms": ['heo', 'huh', 'hur'],
+    },
+    '유': {
+        "forms": ['yoo', 'yu', 'yuh'],
+    },
+    '남': {
+        "forms": ['nam', 'nahm'],
+    },
+    '심': {
+        "forms": ['shim', 'sim'],
+    },
+    '노': {
+        "forms": ['noh', 'roh', 'no'],
+    },
+    '하': {
+        "forms": ['ha', 'hah'],
+    },
+    '곽': {
+        "forms": ['kwak', 'gwak', 'kwack'],
+    },
+    '성': {
+        "forms": ['sung', 'seong', 'soung'],
+    },
+    '차': {
+        "forms": ['cha', 'chah'],
+    },
+    '주': {
+        "forms": ['joo', 'ju', 'choo'],
+    },
+    '우': {
+        "forms": ['woo', 'wu', 'u'],
+    },
+    '구': {
+        "forms": ['koo', 'ku', 'goo'],
+    },
+    '민': {
+        "forms": ['min', 'minn'],
+    },
+    '나': {
+        "forms": ['na', 'rha'],
+    },
+    '도': {
+        "forms": ['do', 'doh', 'to'],
+    },
+    '엄': {
+        "forms": ['um', 'eom', 'ohm'],
+    },
+    '여': {
+        "forms": ['yeo', 'yuh', 'yo'],
+    },
+    '추': {
+        "forms": ['chu', 'choo'],
+    },
+    '함': {
+        "forms": ['ham', 'hahm'],
+    },
+    '표': {
+        "forms": ['pyo', 'poe'],
+    },
+    '원': {
+        "forms": ['won', 'weon'],
+    },
+    '천': {
+        "forms": ['cheon', 'chun', 'chon'],
+    },
+    '방': {
+        "forms": ['bang', 'pahng'],
+    },
+    '공': {
+        "forms": ['gong', 'kong'],
+    },
+    '채': {
+        "forms": ['chae', 'che'],
+    },
+    '변': {
+        "forms": ['byun', 'byeon', 'byon'],
+    },
+    '마': {
+        "forms": ['ma', 'mah'],
+    },
+    '석': {
+        "forms": ['seok', 'suk'],
+    },
+    '경': {
+        "forms": ['kyung', 'gyeong', 'kyeong'],
+    },
+    '봉': {
+        "forms": ['bong', 'pong'],
+    },
+    '두': {
+        "forms": ['du', 'doo'],
+    },
+    '위': {
+        "forms": ['wi', 'wee'],
+    },
+    '태': {
+        "forms": ['tae', 'tai'],
+    },
+    '진': {
+        "forms": ['jin', 'chin'],
+    },
+    '선': {
+        "forms": ['sun', 'seon'],
+    },
+    '은': {
+        "forms": ['eun', 'un'],
+    },
+    '길': {
+        "forms": ['gil', 'kil'],
+    },
+    '국': {
+        "forms": ['kook', 'kuk', 'guk'],
+    },
+    '부': {
+        "forms": ['boo', 'bu'],
+    },
+    '지': {
+        "forms": ['ji', 'chi'],
+    },
+    '어': {
+        "forms": ['eo', 'uh'],
+    },
+    '연': {
+        "forms": ['yeon', 'yun', 'yon'],
+    },
+    '승': {
+        "forms": ['seung', 'sung'],
+    },
+    '사': {
+        "forms": ['sa', 'sar'],
+    },
+    '소': {
+        "forms": ['so', 'soh'],
+    },
+    '목': {
+        "forms": ['mok', 'mock'],
+    },
+    '로': {
+        "forms": ['roh', 'ro', 'no'],
+    },
+    '제': {
+        "forms": ['je', 'jeh'],
+    },
+    '감': {
+        "forms": ['gam', 'kam', 'kahm'],
+    },
+    '옥': {
+        "forms": ['ok', 'ohk'],
+    },
+    '무': {
+        "forms": ['mu', 'moo'],
+    },
+    '라': {
+        "forms": ['ra', 'la', 'rha'],
+    },
+    '용': {
+        "forms": ['yong', 'ryong'],
+    },
+    '동': {
+        "forms": ['dong', 'tong'],
+    },
+    '맹': {
+        "forms": ['maeng', 'meng'],
+    },
+    '모': {
+        "forms": ['mo', 'moh'],
+    },
+    '반': {
+        "forms": ['ban', 'van', 'pan'],
+    },
+    '복': {
+        "forms": ['bok', 'bock'],
+    },
+    '명': {
+        "forms": ['myung', 'myeong', 'myong'],
+    },
+    '탁': {
+        "forms": ['tak', 'tack'],
+    },
+    '상': {
+        "forms": ['sang', 'shahng'],
+    },
+    '인': {
+        "forms": ['in', 'inn'],
+    },
+    '온': {
+        "forms": ['on', 'ohn'],
+    },
+    '편': {
+        "forms": ['pyeon', 'pyon'],
+    },
+    '수': {
+        "forms": ['su', 'soo'],
+    },
+    '팽': {
+        "forms": ['paeng', 'peng'],
+    },
+    '독': {
+        "forms": ['dok', 'dock'],
+    },
+    '각': {
+        "forms": ['gak', 'kak'],
+    },
+    '탄': {
+        "forms": ['than'],
+    },
+    '포': {
+        "forms": ['po', 'poh'],
+    },
+    '피': {
+        "forms": ['pi', 'pee'],
+    },
+    '예': {
+        "forms": ['ye', 'yeh'],
+    },
+    '탕': {
+        "forms": ['tang', 'tahng'],
+    },
 }

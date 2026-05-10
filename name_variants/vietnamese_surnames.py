@@ -21,91 +21,272 @@ Sources:
   - Common diaspora (US/Australia/France/HK) spelling patterns
 """
 
-VIETNAMESE_SURNAME_VARIANTS: dict[str, list[str]] = {
-    # ── Surnames (covers ~99% of Vietnamese population) ───────────────────
-    "nguyễn": ["nguyen", "nguyên", "nguyn"],
-    "trần": ["tran", "trần", "trant"],
-    "lê": ["le", "lee", "lê"],
-    "phạm": ["pham", "phan"],
-    "hoàng": ["hoang", "hong", "hwang"],
-    "huỳnh": ["huynh", "huyhn", "huynt"],
-    "phan": ["phan"],
-    "vũ": ["vu", "voo", "wu"],
-    "võ": ["vo", "voh"],
-    "đặng": ["dang", "dặng"],
-    "bùi": ["bui", "buj"],
-    "đỗ": ["do", "doe"],
-    "hồ": ["ho", "hoh"],
-    "ngô": ["ngo", "ngoh"],
-    "dương": ["duong", "dong"],
-    "lý": ["ly", "li"],
-    "trịnh": ["trinh", "trịnh"],
-    "đinh": ["dinh"],
-    "lưu": ["luu", "lyu", "lu"],
-    "phùng": ["phung", "fung"],
-    "đoàn": ["doan", "joan"],
-    "vương": ["vuong", "vuonh"],
-    "trương": ["truong", "trương"],
-    "tô": ["to", "toh"],
-    "đào": ["dao", "dow"],
-    "hà": ["ha", "hah"],
-    "mai": ["mai", "my"],
-    "tạ": ["ta", "tar"],
-    "thái": ["thai", "thi"],
-    "lâm": ["lam", "lahm"],
-    "quách": ["quach", "kwach"],
-    "chu": ["chu", "choo"],
-    "kiều": ["kieu", "kew"],
-    "lương": ["luong", "lyong"],
-    "thạch": ["thach", "tahk"],
-    "khúc": ["khuc", "kook"],
-    "đức": ["duc", "duk"],
-    "văn": ["van", "vahn"],
-    "sơn": ["son", "sohn"],
-    "ninh": ["ninh", "nin"],
-    "lại": ["lai", "lie"],
-    "trọng": ["trong", "trung"],
-    "hùng": ["hung", "hoong"],
-    "khổng": ["khong", "kong"],
-    "doãn": ["doan", "dwan"],
-    "tống": ["tong", "song"],
-    "mạc": ["mac", "mak"],
-    "vừa": ["vua", "vwa"],
-    "bạch": ["bach", "bahk"],
-    "cam": ["cam", "kahm"],
-    "liêu": ["lieu", "lyew"],
-    # ── Common given name components (appear standalone in LLM output) ─────
-    "thị": ["thi", "thy"],      # female particle
-    "thắng": ["thang", "thaing"],
-    "minh": ["minh", "min"],
-    "anh": ["anh", "ann"],
-    "hương": ["huong", "hwong"],
-    "linh": ["linh", "lin"],
-    "dũng": ["dung", "zoong"],
-    "tuấn": ["tuan", "twahn"],
-    "hải": ["hai", "hy"],
-    "nam": ["nam", "nahm"],
-    "quang": ["quang", "kwang"],
-    "long": ["long", "lohng"],
-    "hòa": ["hoa", "hwah"],
-    "bình": ["binh", "bin"],
-    "khoa": ["khoa", "kwah"],
-    "thành": ["thanh", "tahn"],
-    "phương": ["phuong", "fwong"],
-    "ngọc": ["ngoc", "nyok"],
-    "lan": ["lan", "lahn"],
-    "thu": ["thu", "too"],
-    "loan": ["loan", "lwan"],
-    "chi": ["chi", "chee"],
-    "nga": ["nga", "nyah"],
-    "diễm": ["diem", "dyem"],
-    "nhung": ["nhung", "noong"],
-    "trang": ["trang", "chahng"],
-    "uyên": ["uyen", "wien"],
-    "thúy": ["thuy", "twee"],
-    "xuân": ["xuan", "swan"],
-    "kim": ["kim", "gim"],
-    "hồng": ["hong", "hoong"],
-    "yến": ["yen", "yenn"],
-    "ly": ["ly"],
+VIETNAMESE_SURNAME_VARIANTS: dict[str, dict] = {
+    'nguyễn': {
+        "forms": ['nguyen', 'nguyên', 'nguyn'],
+        "frequency": 39_000_000,
+    },
+    'trần': {
+        "forms": ['tran', 'trần', 'trant'],
+        "frequency": 11_000_000,
+    },
+    'lê': {
+        "forms": ['le', 'lee', 'lê'],
+        "frequency": 9_500_000,
+    },
+    'phạm': {
+        "forms": ['pham', 'phan'],
+        "frequency": 7_500_000,
+    },
+    'hoàng': {
+        "forms": ['hoang', 'hong', 'hwang'],
+        "frequency": 5_100_000,
+    },
+    'huỳnh': {
+        "forms": ['huynh', 'huyhn', 'huynt'],
+        "frequency": 3_900_000,
+    },
+    'phan': {
+        "forms": ['phan'],
+        "frequency": 1_500_000,
+    },
+    'vũ': {
+        "forms": ['vu', 'voo', 'wu'],
+        "frequency": 1_600_000,
+    },
+    'võ': {
+        "forms": ['vo', 'voh'],
+        "frequency": 1_200_000,
+    },
+    'đặng': {
+        "forms": ['dang', 'dặng'],
+        "frequency": 1_100_000,
+    },
+    'bùi': {
+        "forms": ['bui', 'buj'],
+        "frequency": 1_000_000,
+    },
+    'đỗ': {
+        "forms": ['do', 'doe'],
+        "frequency": 950_000,
+    },
+    'hồ': {
+        "forms": ['ho', 'hoh'],
+        "frequency": 900_000,
+    },
+    'ngô': {
+        "forms": ['ngo', 'ngoh'],
+        "frequency": 850_000,
+    },
+    'dương': {
+        "forms": ['duong', 'dong'],
+        "frequency": 800_000,
+    },
+    'lý': {
+        "forms": ['ly', 'li'],
+    },
+    'trịnh': {
+        "forms": ['trinh', 'trịnh'],
+    },
+    'đinh': {
+        "forms": ['dinh'],
+    },
+    'lưu': {
+        "forms": ['luu', 'lyu', 'lu'],
+    },
+    'phùng': {
+        "forms": ['phung', 'fung'],
+    },
+    'đoàn': {
+        "forms": ['doan', 'joan'],
+    },
+    'vương': {
+        "forms": ['vuong', 'vuonh'],
+    },
+    'trương': {
+        "forms": ['truong', 'trương'],
+    },
+    'tô': {
+        "forms": ['to', 'toh'],
+    },
+    'đào': {
+        "forms": ['dao', 'dow'],
+    },
+    'hà': {
+        "forms": ['ha', 'hah'],
+    },
+    'mai': {
+        "forms": ['mai', 'my'],
+    },
+    'tạ': {
+        "forms": ['ta', 'tar'],
+    },
+    'thái': {
+        "forms": ['thai', 'thi'],
+    },
+    'lâm': {
+        "forms": ['lam', 'lahm'],
+    },
+    'quách': {
+        "forms": ['quach', 'kwach'],
+    },
+    'chu': {
+        "forms": ['chu', 'choo'],
+    },
+    'kiều': {
+        "forms": ['kieu', 'kew'],
+    },
+    'lương': {
+        "forms": ['luong', 'lyong'],
+    },
+    'thạch': {
+        "forms": ['thach', 'tahk'],
+    },
+    'khúc': {
+        "forms": ['khuc', 'kook'],
+    },
+    'đức': {
+        "forms": ['duc', 'duk'],
+    },
+    'văn': {
+        "forms": ['van', 'vahn'],
+    },
+    'sơn': {
+        "forms": ['son', 'sohn'],
+    },
+    'ninh': {
+        "forms": ['ninh', 'nin'],
+    },
+    'lại': {
+        "forms": ['lai', 'lie'],
+    },
+    'trọng': {
+        "forms": ['trong', 'trung'],
+    },
+    'hùng': {
+        "forms": ['hung', 'hoong'],
+    },
+    'khổng': {
+        "forms": ['khong', 'kong'],
+    },
+    'doãn': {
+        "forms": ['doan', 'dwan'],
+    },
+    'tống': {
+        "forms": ['tong', 'song'],
+    },
+    'mạc': {
+        "forms": ['mac', 'mak'],
+    },
+    'vừa': {
+        "forms": ['vua', 'vwa'],
+    },
+    'bạch': {
+        "forms": ['bach', 'bahk'],
+    },
+    'cam': {
+        "forms": ['cam', 'kahm'],
+    },
+    'liêu': {
+        "forms": ['lieu', 'lyew'],
+    },
+    'thị': {
+        "forms": ['thi', 'thy'],
+    },
+    'thắng': {
+        "forms": ['thang', 'thaing'],
+    },
+    'minh': {
+        "forms": ['minh', 'min'],
+    },
+    'anh': {
+        "forms": ['anh', 'ann'],
+    },
+    'hương': {
+        "forms": ['huong', 'hwong'],
+    },
+    'linh': {
+        "forms": ['linh', 'lin'],
+    },
+    'dũng': {
+        "forms": ['dung', 'zoong'],
+    },
+    'tuấn': {
+        "forms": ['tuan', 'twahn'],
+    },
+    'hải': {
+        "forms": ['hai', 'hy'],
+    },
+    'nam': {
+        "forms": ['nam', 'nahm'],
+    },
+    'quang': {
+        "forms": ['quang', 'kwang'],
+    },
+    'long': {
+        "forms": ['long', 'lohng'],
+    },
+    'hòa': {
+        "forms": ['hoa', 'hwah'],
+    },
+    'bình': {
+        "forms": ['binh', 'bin'],
+    },
+    'khoa': {
+        "forms": ['khoa', 'kwah'],
+    },
+    'thành': {
+        "forms": ['thanh', 'tahn'],
+    },
+    'phương': {
+        "forms": ['phuong', 'fwong'],
+    },
+    'ngọc': {
+        "forms": ['ngoc', 'nyok'],
+    },
+    'lan': {
+        "forms": ['lan', 'lahn'],
+    },
+    'thu': {
+        "forms": ['thu', 'too'],
+    },
+    'loan': {
+        "forms": ['loan', 'lwan'],
+    },
+    'chi': {
+        "forms": ['chi', 'chee'],
+    },
+    'nga': {
+        "forms": ['nga', 'nyah'],
+    },
+    'diễm': {
+        "forms": ['diem', 'dyem'],
+    },
+    'nhung': {
+        "forms": ['nhung', 'noong'],
+    },
+    'trang': {
+        "forms": ['trang', 'chahng'],
+    },
+    'uyên': {
+        "forms": ['uyen', 'wien'],
+    },
+    'thúy': {
+        "forms": ['thuy', 'twee'],
+    },
+    'xuân': {
+        "forms": ['xuan', 'swan'],
+    },
+    'kim': {
+        "forms": ['kim', 'gim'],
+    },
+    'hồng': {
+        "forms": ['hong', 'hoong'],
+    },
+    'yến': {
+        "forms": ['yen', 'yenn'],
+    },
+    'ly': {
+        "forms": ['ly'],
+    },
 }

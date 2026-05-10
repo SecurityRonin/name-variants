@@ -15,87 +15,245 @@ Sources:
   - Common colloquial/diaspora spellings (UK/US/HK)
 """
 
-INDIAN_NAMES_HINDI: dict[str, list[str]] = {
-    # ── Common surnames ──────────────────────────────────────────────────────
-    "शर्मा": ["sharma", "sarma", "sherma"],
-    "सिंह": ["singh", "sing"],
-    "वर्मा": ["varma", "verma", "varman"],
-    "मिश्रा": ["mishra", "misra", "mitra"],
-    "श्रीवास्तव": ["srivastava", "shrivastava", "srivastav", "shrivastav"],
-    "पाठक": ["pathak", "patak"],
-    "तिवारी": ["tiwari", "tivari", "tewari"],
-    "पांडे": ["pandey", "pande", "panday"],
-    "दुबे": ["dubey", "dube", "dubé"],
-    "यादव": ["yadav", "yadaw"],
-    "गुप्ता": ["gupta"],
-    "जोशी": ["joshi", "josi"],
-    "अग्रवाल": ["agrawal", "agarwal"],
-    "चौधरी": ["chaudhary", "chaudhury", "choudhary", "choudhury", "chowdhury"],
-    "राय": ["rai", "ray", "roi"],
-    "कुमार": ["kumar", "koomar"],
-    "खान": ["khan", "kahn"],
-    "त्रिपाठी": ["tripathi", "tripati"],
-    "दीक्षित": ["dixit", "dikshit", "dikshita"],
-    "अवस्थी": ["awasthi", "avasthi"],
-    "सक्सेना": ["saxena", "saksena"],
-    "भार्गव": ["bhargava", "bhargav"],
-    "बाजपेई": ["bajpai", "bajpei", "bajpeyi"],
-    # ── Common given name components ─────────────────────────────────────────
-    "राम": ["ram", "raam"],
-    "कृष्ण": ["krishna", "krishn", "krushna"],
-    "विष्णु": ["vishnu", "bisnu"],
-    "शिव": ["shiv", "shiva", "siva"],
-    "देव": ["dev", "deb"],
-    "प्रकाश": ["prakash", "prakasam"],
-    "मोहन": ["mohan", "mohen"],
-    "लाल": ["lal", "laal"],
-    "चंद": ["chand", "chandra"],
-    "नाथ": ["nath", "natha"],
-    "दास": ["das", "doss", "dass"],
-    "प्रसाद": ["prasad", "prasada"],
-    "नारायण": ["narayan", "narayana"],
-    "बाबू": ["babu", "baboo"],
-    "सुब्रमण्यम": ["subramaniam", "subramanian", "subramanyam", "subrahmanyam"],
-    "रमेश": ["ramesh"],
-    "सुरेश": ["suresh", "sooresh"],
-    "महेश": ["mahesh"],
-    "राजेश": ["rajesh"],
-    "दिनेश": ["dinesh"],
-    "नरेश": ["naresh", "narresh"],
-    "अनिल": ["anil", "aneel"],
-    "सुनील": ["sunil", "suneel"],
-    "विनोद": ["vinod", "binod"],
-    "अरविंद": ["arvind", "aravind", "arvinda"],
-    "विजय": ["vijay", "bijay"],
-    "अजय": ["ajay"],
-    "संजय": ["sanjay"],
-    "रवि": ["ravi", "rabi"],
-    "अमित": ["amit", "ameet"],
-    "पवन": ["pawan", "pavan"],
-    "ललित": ["lalit", "laleet"],
-    "आनंद": ["anand", "ananda"],
-    "संदीप": ["sandeep", "sandip"],
-    "अभिषेक": ["abhishek", "abhisheck"],
-    "मनोज": ["manoj", "manodj"],
-    "प्रीति": ["preeti", "priti", "preety"],
-    "नीता": ["neeta", "nita", "neita"],
-    "सीता": ["sita", "seeta"],
-    "गीता": ["gita", "geeta"],
-    "सुनीता": ["sunita", "suneeta"],
-    "रेखा": ["rekha"],
-    "ममता": ["mamta", "mamata"],
-    "सविता": ["savita", "savitta"],
-    "रीता": ["rita", "reeta"],
-    "लता": ["lata", "laata"],
-    "पूजा": ["pooja", "puja"],
-    "दीपा": ["deepa", "dipa"],
-    "कविता": ["kavita", "kavitha"],
-    "अनीता": ["anita", "aneeta"],
-    "शोभा": ["shobha", "shobhna"],
-    "उषा": ["usha", "oosha"],
-    "आशा": ["asha", "aasha"],
-    "मीना": ["meena", "mina"],
-    "वीणा": ["veena", "vina"],
-    "सरला": ["sarla", "sarala"],
-    "शांति": ["shanti", "shanthi"],
+INDIAN_NAMES_HINDI: dict[str, dict] = {
+    'शर्मा': {
+        "forms": ['sharma', 'sarma', 'sherma'],
+    },
+    'सिंह': {
+        "forms": ['singh', 'sing'],
+    },
+    'वर्मा': {
+        "forms": ['varma', 'verma', 'varman'],
+    },
+    'मिश्रा': {
+        "forms": ['mishra', 'misra', 'mitra'],
+    },
+    'श्रीवास्तव': {
+        "forms": ['srivastava', 'shrivastava', 'srivastav', 'shrivastav'],
+    },
+    'पाठक': {
+        "forms": ['pathak', 'patak'],
+    },
+    'तिवारी': {
+        "forms": ['tiwari', 'tivari', 'tewari'],
+    },
+    'पांडे': {
+        "forms": ['pandey', 'pande', 'panday'],
+    },
+    'दुबे': {
+        "forms": ['dubey', 'dube', 'dubé'],
+    },
+    'यादव': {
+        "forms": ['yadav', 'yadaw'],
+    },
+    'गुप्ता': {
+        "forms": ['gupta'],
+    },
+    'जोशी': {
+        "forms": ['joshi', 'josi'],
+    },
+    'अग्रवाल': {
+        "forms": ['agrawal', 'agarwal'],
+    },
+    'चौधरी': {
+        "forms": ['chaudhary', 'chaudhury', 'choudhary', 'choudhury', 'chowdhury'],
+    },
+    'राय': {
+        "forms": ['rai', 'ray', 'roi'],
+    },
+    'कुमार': {
+        "forms": ['kumar', 'koomar'],
+    },
+    'खान': {
+        "forms": ['khan', 'kahn'],
+    },
+    'त्रिपाठी': {
+        "forms": ['tripathi', 'tripati'],
+    },
+    'दीक्षित': {
+        "forms": ['dixit', 'dikshit', 'dikshita'],
+    },
+    'अवस्थी': {
+        "forms": ['awasthi', 'avasthi'],
+    },
+    'सक्सेना': {
+        "forms": ['saxena', 'saksena'],
+    },
+    'भार्गव': {
+        "forms": ['bhargava', 'bhargav'],
+    },
+    'बाजपेई': {
+        "forms": ['bajpai', 'bajpei', 'bajpeyi'],
+    },
+    'राम': {
+        "forms": ['ram', 'raam'],
+    },
+    'कृष्ण': {
+        "forms": ['krishna', 'krishn', 'krushna'],
+    },
+    'विष्णु': {
+        "forms": ['vishnu', 'bisnu'],
+    },
+    'शिव': {
+        "forms": ['shiv', 'shiva', 'siva'],
+    },
+    'देव': {
+        "forms": ['dev', 'deb'],
+    },
+    'प्रकाश': {
+        "forms": ['prakash', 'prakasam'],
+    },
+    'मोहन': {
+        "forms": ['mohan', 'mohen'],
+    },
+    'लाल': {
+        "forms": ['lal', 'laal'],
+    },
+    'चंद': {
+        "forms": ['chand', 'chandra'],
+    },
+    'नाथ': {
+        "forms": ['nath', 'natha'],
+    },
+    'दास': {
+        "forms": ['das', 'doss', 'dass'],
+    },
+    'प्रसाद': {
+        "forms": ['prasad', 'prasada'],
+    },
+    'नारायण': {
+        "forms": ['narayan', 'narayana'],
+    },
+    'बाबू': {
+        "forms": ['babu', 'baboo'],
+    },
+    'सुब्रमण्यम': {
+        "forms": ['subramaniam', 'subramanian', 'subramanyam', 'subrahmanyam'],
+    },
+    'रमेश': {
+        "forms": ['ramesh'],
+    },
+    'सुरेश': {
+        "forms": ['suresh', 'sooresh'],
+    },
+    'महेश': {
+        "forms": ['mahesh'],
+    },
+    'राजेश': {
+        "forms": ['rajesh'],
+    },
+    'दिनेश': {
+        "forms": ['dinesh'],
+    },
+    'नरेश': {
+        "forms": ['naresh', 'narresh'],
+    },
+    'अनिल': {
+        "forms": ['anil', 'aneel'],
+    },
+    'सुनील': {
+        "forms": ['sunil', 'suneel'],
+    },
+    'विनोद': {
+        "forms": ['vinod', 'binod'],
+    },
+    'अरविंद': {
+        "forms": ['arvind', 'aravind', 'arvinda'],
+    },
+    'विजय': {
+        "forms": ['vijay', 'bijay'],
+    },
+    'अजय': {
+        "forms": ['ajay'],
+    },
+    'संजय': {
+        "forms": ['sanjay'],
+    },
+    'रवि': {
+        "forms": ['ravi', 'rabi'],
+    },
+    'अमित': {
+        "forms": ['amit', 'ameet'],
+    },
+    'पवन': {
+        "forms": ['pawan', 'pavan'],
+    },
+    'ललित': {
+        "forms": ['lalit', 'laleet'],
+    },
+    'आनंद': {
+        "forms": ['anand', 'ananda'],
+    },
+    'संदीप': {
+        "forms": ['sandeep', 'sandip'],
+    },
+    'अभिषेक': {
+        "forms": ['abhishek', 'abhisheck'],
+    },
+    'मनोज': {
+        "forms": ['manoj', 'manodj'],
+    },
+    'प्रीति': {
+        "forms": ['preeti', 'priti', 'preety'],
+    },
+    'नीता': {
+        "forms": ['neeta', 'nita', 'neita'],
+    },
+    'सीता': {
+        "forms": ['sita', 'seeta'],
+    },
+    'गीता': {
+        "forms": ['gita', 'geeta'],
+    },
+    'सुनीता': {
+        "forms": ['sunita', 'suneeta'],
+    },
+    'रेखा': {
+        "forms": ['rekha'],
+    },
+    'ममता': {
+        "forms": ['mamta', 'mamata'],
+    },
+    'सविता': {
+        "forms": ['savita', 'savitta'],
+    },
+    'रीता': {
+        "forms": ['rita', 'reeta'],
+    },
+    'लता': {
+        "forms": ['lata', 'laata'],
+    },
+    'पूजा': {
+        "forms": ['pooja', 'puja'],
+    },
+    'दीपा': {
+        "forms": ['deepa', 'dipa'],
+    },
+    'कविता': {
+        "forms": ['kavita', 'kavitha'],
+    },
+    'अनीता': {
+        "forms": ['anita', 'aneeta'],
+    },
+    'शोभा': {
+        "forms": ['shobha', 'shobhna'],
+    },
+    'उषा': {
+        "forms": ['usha', 'oosha'],
+    },
+    'आशा': {
+        "forms": ['asha', 'aasha'],
+    },
+    'मीना': {
+        "forms": ['meena', 'mina'],
+    },
+    'वीणा': {
+        "forms": ['veena', 'vina'],
+    },
+    'सरला': {
+        "forms": ['sarla', 'sarala'],
+    },
+    'शांति': {
+        "forms": ['shanti', 'shanthi'],
+    },
 }

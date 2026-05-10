@@ -9,99 +9,291 @@ Sources:
   - Common HK/UK diaspora spellings
 """
 
-ARABIC_NAME_VARIANTS: dict[str, list[str]] = {
-    # ── Male ─────────────────────────────────────────────────────────────────
-    "محمد": ["muhammad", "mohammed", "mohamed", "mohammad", "mohamad", "mehmed", "mehmet"],
-    "أحمد": ["ahmad", "ahmed", "ahmet"],
-    "علي": ["ali", "aly"],
-    "عمر": ["omar", "umar", "omer"],
-    "إبراهيم": ["ibrahim", "abraham", "ebrahim", "brahim"],
-    "خالد": ["khaled", "khalid"],
-    "يوسف": ["youssef", "yousef", "yusuf", "yusef"],
-    "عبدالله": ["abdullah", "abdallah", "abd-allah"],
-    "حسن": ["hassan", "hasan"],
-    "حسين": ["hussein", "husain", "hussain", "hossein"],
-    "عبدالرحمن": ["abdulrahman", "abd-al-rahman", "abdurrahman"],
-    "سعيد": ["saeed", "said", "sa'id"],
-    "سليمان": ["sulayman", "suleiman", "sulaiman", "solomon"],
-    "مصطفى": ["mustafa", "mostafa"],
-    "محمود": ["mahmoud", "mahmud", "mahmood"],
-    "إسماعيل": ["ismail", "esmail", "ismael"],
-    "عثمان": ["uthman", "osman", "othman"],
-    "يحيى": ["yahya", "yahia", "yehya"],
-    "إدريس": ["idris", "idrees"],
-    "داود": ["dawud", "dawood", "david"],
-    "صالح": ["saleh", "salih"],
-    "عبدالعزيز": ["abdulaziz", "abdelaziz"],
-    "طارق": ["tariq", "tarek"],
-    "بلال": ["bilal", "bilel"],
-    "كريم": ["karim", "kareem"],
-    "جمال": ["jamal", "gamal"],
-    "زياد": ["ziyad", "ziad"],
-    "أيمن": ["ayman", "aymen"],
-    "رامي": ["rami", "ramy"],
-    "ياسر": ["yasser", "yasir"],
-    "فيصل": ["faisal", "faysal"],
-    "وليد": ["walid", "waleed"],
-    "منير": ["munir", "mounir"],
-    "شريف": ["sharif", "shareef", "sherif"],
-    "هشام": ["hisham", "hesham", "hicham"],
-    "حامد": ["hamid", "hamed"],
-    "عادل": ["adel", "adil"],
-    "رشيد": ["rashid", "rachid"],
-    "ناصر": ["nasser", "nasir", "naseer"],
-    "حكيم": ["hakim", "hakeem"],
-    "سمير": ["samir", "samer"],
-    "تامر": ["tamer", "tamir"],
-    "لطفي": ["lutfi", "lotfi"],
-    "ضياء": ["diya", "zia"],
-    "جهاد": ["jihad", "djihad"],
-    "مجدي": ["magdi", "majdi"],
-    "صفوان": ["safwan", "sofwan"],
-    "أسامة": ["osama", "usama", "ousama"],
-    "زكريا": ["zakariya", "zechariah", "zacharia"],
-    # ── Female ────────────────────────────────────────────────────────────────
-    "فاطمة": ["fatima", "fatimah", "fatema"],
-    "عائشة": ["aisha", "ayesha", "aesha"],
-    "مريم": ["maryam", "mariam", "miriam"],
-    "زينب": ["zainab", "zaynab", "zeinab"],
-    "سارة": ["sara", "sarah"],
-    "نور": ["noor", "nur", "noura"],
-    "أمينة": ["amina", "aminah", "ameena"],
-    "هند": ["hind", "hend"],
-    "سلمى": ["salma", "saloma"],
-    "رنا": ["rana", "rania"],
-    "نادية": ["nadia", "nadya"],
-    "سمية": ["samia", "samya"],
-    "منى": ["mona", "muna"],
-    "رانيا": ["rania", "ranya"],
-    "ليلى": ["layla", "leila", "leyla", "laila"],
-    "خديجة": ["khadija", "khadijah"],
-    "أسماء": ["asma", "asmaa"],
-    "سناء": ["sana", "sanaa"],
-    "إيمان": ["iman", "eiman"],
-    "دينا": ["dina", "deena"],
-    "ياسمين": ["yasmin", "jasmine", "yasmine"],
-    "نوال": ["nawal", "naouwal"],
-    "هدى": ["huda", "houda"],
-    "وفاء": ["wafa", "wafaa"],
-    "سلوى": ["salwa", "solwa"],
-    "رحمة": ["rahma", "rahmat"],
-    "لبنى": ["lubna", "loubna"],
-    "سحر": ["sahar", "sehar"],
-    "غادة": ["ghada", "ghade"],
-    "ريم": ["reem", "rim"],
-    "شيرين": ["shirin", "shireen", "cherine"],
-    "حنان": ["hanan", "hanane"],
-    "شيماء": ["shayma", "chaima"],
-    "ملاك": ["malak", "melak"],
-    "نجوى": ["najwa", "nagwa"],
-    "بسمة": ["basma", "bassma"],
-    "رشا": ["rasha", "racha"],
-    "لمياء": ["lamia", "lamya"],
-    "عبير": ["abeer", "abir"],
-    "روان": ["rawan", "rowan"],
-    "زهراء": ["zahra", "zahrae", "zohra"],
-    "ميسون": ["maysun", "maisun"],
-    "ثريا": ["thuraya", "thoraya", "soraiya"],
+ARABIC_NAME_VARIANTS: dict[str, dict] = {
+    'محمد': {
+        "forms": ['muhammad', 'mohammed', 'mohamed', 'mohammad', 'mohamad', 'mehmed', 'mehmet'],
+        "frequency": 150_000_000,
+    },
+    'أحمد': {
+        "forms": ['ahmad', 'ahmed', 'ahmet'],
+        "frequency": 22_000_000,
+    },
+    'علي': {
+        "forms": ['ali', 'aly'],
+        "frequency": 20_000_000,
+    },
+    'عمر': {
+        "forms": ['omar', 'umar', 'omer'],
+        "frequency": 14_000_000,
+    },
+    'إبراهيم': {
+        "forms": ['ibrahim', 'abraham', 'ebrahim', 'brahim'],
+        "frequency": 8_000_000,
+    },
+    'خالد': {
+        "forms": ['khaled', 'khalid'],
+    },
+    'يوسف': {
+        "forms": ['youssef', 'yousef', 'yusuf', 'yusef'],
+        "frequency": 7_500_000,
+    },
+    'عبدالله': {
+        "forms": ['abdullah', 'abdallah', 'abd-allah'],
+        "frequency": 12_000_000,
+    },
+    'حسن': {
+        "forms": ['hassan', 'hasan'],
+        "frequency": 10_000_000,
+    },
+    'حسين': {
+        "forms": ['hussein', 'husain', 'hussain', 'hossein'],
+        "frequency": 9_000_000,
+    },
+    'عبدالرحمن': {
+        "forms": ['abdulrahman', 'abd-al-rahman', 'abdurrahman'],
+    },
+    'سعيد': {
+        "forms": ['saeed', 'said', "sa'id"],
+    },
+    'سليمان': {
+        "forms": ['sulayman', 'suleiman', 'sulaiman', 'solomon'],
+    },
+    'مصطفى': {
+        "forms": ['mustafa', 'mostafa'],
+    },
+    'محمود': {
+        "forms": ['mahmoud', 'mahmud', 'mahmood'],
+        "frequency": 7_000_000,
+    },
+    'إسماعيل': {
+        "forms": ['ismail', 'esmail', 'ismael'],
+    },
+    'عثمان': {
+        "forms": ['uthman', 'osman', 'othman'],
+    },
+    'يحيى': {
+        "forms": ['yahya', 'yahia', 'yehya'],
+    },
+    'إدريس': {
+        "forms": ['idris', 'idrees'],
+    },
+    'داود': {
+        "forms": ['dawud', 'dawood', 'david'],
+    },
+    'صالح': {
+        "forms": ['saleh', 'salih'],
+    },
+    'عبدالعزيز': {
+        "forms": ['abdulaziz', 'abdelaziz'],
+    },
+    'طارق': {
+        "forms": ['tariq', 'tarek'],
+    },
+    'بلال': {
+        "forms": ['bilal', 'bilel'],
+    },
+    'كريم': {
+        "forms": ['karim', 'kareem'],
+    },
+    'جمال': {
+        "forms": ['jamal', 'gamal'],
+    },
+    'زياد': {
+        "forms": ['ziyad', 'ziad'],
+    },
+    'أيمن': {
+        "forms": ['ayman', 'aymen'],
+    },
+    'رامي': {
+        "forms": ['rami', 'ramy'],
+    },
+    'ياسر': {
+        "forms": ['yasser', 'yasir'],
+    },
+    'فيصل': {
+        "forms": ['faisal', 'faysal'],
+    },
+    'وليد': {
+        "forms": ['walid', 'waleed'],
+    },
+    'منير': {
+        "forms": ['munir', 'mounir'],
+    },
+    'شريف': {
+        "forms": ['sharif', 'shareef', 'sherif'],
+    },
+    'هشام': {
+        "forms": ['hisham', 'hesham', 'hicham'],
+    },
+    'حامد': {
+        "forms": ['hamid', 'hamed'],
+    },
+    'عادل': {
+        "forms": ['adel', 'adil'],
+    },
+    'رشيد': {
+        "forms": ['rashid', 'rachid'],
+    },
+    'ناصر': {
+        "forms": ['nasser', 'nasir', 'naseer'],
+    },
+    'حكيم': {
+        "forms": ['hakim', 'hakeem'],
+    },
+    'سمير': {
+        "forms": ['samir', 'samer'],
+    },
+    'تامر': {
+        "forms": ['tamer', 'tamir'],
+    },
+    'لطفي': {
+        "forms": ['lutfi', 'lotfi'],
+    },
+    'ضياء': {
+        "forms": ['diya', 'zia'],
+    },
+    'جهاد': {
+        "forms": ['jihad', 'djihad'],
+    },
+    'مجدي': {
+        "forms": ['magdi', 'majdi'],
+    },
+    'صفوان': {
+        "forms": ['safwan', 'sofwan'],
+    },
+    'أسامة': {
+        "forms": ['osama', 'usama', 'ousama'],
+    },
+    'زكريا': {
+        "forms": ['zakariya', 'zechariah', 'zacharia'],
+    },
+    'فاطمة': {
+        "forms": ['fatima', 'fatimah', 'fatema'],
+    },
+    'عائشة': {
+        "forms": ['aisha', 'ayesha', 'aesha'],
+    },
+    'مريم': {
+        "forms": ['maryam', 'mariam', 'miriam'],
+    },
+    'زينب': {
+        "forms": ['zainab', 'zaynab', 'zeinab'],
+    },
+    'سارة': {
+        "forms": ['sara', 'sarah'],
+    },
+    'نور': {
+        "forms": ['noor', 'nur', 'noura'],
+    },
+    'أمينة': {
+        "forms": ['amina', 'aminah', 'ameena'],
+    },
+    'هند': {
+        "forms": ['hind', 'hend'],
+    },
+    'سلمى': {
+        "forms": ['salma', 'saloma'],
+    },
+    'رنا': {
+        "forms": ['rana', 'rania'],
+    },
+    'نادية': {
+        "forms": ['nadia', 'nadya'],
+    },
+    'سمية': {
+        "forms": ['samia', 'samya'],
+    },
+    'منى': {
+        "forms": ['mona', 'muna'],
+    },
+    'رانيا': {
+        "forms": ['rania', 'ranya'],
+    },
+    'ليلى': {
+        "forms": ['layla', 'leila', 'leyla', 'laila'],
+    },
+    'خديجة': {
+        "forms": ['khadija', 'khadijah'],
+    },
+    'أسماء': {
+        "forms": ['asma', 'asmaa'],
+    },
+    'سناء': {
+        "forms": ['sana', 'sanaa'],
+    },
+    'إيمان': {
+        "forms": ['iman', 'eiman'],
+    },
+    'دينا': {
+        "forms": ['dina', 'deena'],
+    },
+    'ياسمين': {
+        "forms": ['yasmin', 'jasmine', 'yasmine'],
+    },
+    'نوال': {
+        "forms": ['nawal', 'naouwal'],
+    },
+    'هدى': {
+        "forms": ['huda', 'houda'],
+    },
+    'وفاء': {
+        "forms": ['wafa', 'wafaa'],
+    },
+    'سلوى': {
+        "forms": ['salwa', 'solwa'],
+    },
+    'رحمة': {
+        "forms": ['rahma', 'rahmat'],
+    },
+    'لبنى': {
+        "forms": ['lubna', 'loubna'],
+    },
+    'سحر': {
+        "forms": ['sahar', 'sehar'],
+    },
+    'غادة': {
+        "forms": ['ghada', 'ghade'],
+    },
+    'ريم': {
+        "forms": ['reem', 'rim'],
+    },
+    'شيرين': {
+        "forms": ['shirin', 'shireen', 'cherine'],
+    },
+    'حنان': {
+        "forms": ['hanan', 'hanane'],
+    },
+    'شيماء': {
+        "forms": ['shayma', 'chaima'],
+    },
+    'ملاك': {
+        "forms": ['malak', 'melak'],
+    },
+    'نجوى': {
+        "forms": ['najwa', 'nagwa'],
+    },
+    'بسمة': {
+        "forms": ['basma', 'bassma'],
+    },
+    'رشا': {
+        "forms": ['rasha', 'racha'],
+    },
+    'لمياء': {
+        "forms": ['lamia', 'lamya'],
+    },
+    'عبير': {
+        "forms": ['abeer', 'abir'],
+    },
+    'روان': {
+        "forms": ['rawan', 'rowan'],
+    },
+    'زهراء': {
+        "forms": ['zahra', 'zahrae', 'zohra'],
+    },
+    'ميسون': {
+        "forms": ['maysun', 'maisun'],
+    },
+    'ثريا': {
+        "forms": ['thuraya', 'thoraya', 'soraiya'],
+    },
 }

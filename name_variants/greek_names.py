@@ -14,68 +14,185 @@ Sources:
   - Common Greek diaspora (Australia/UK/US/HK) spellings
 """
 
-GREEK_NAME_VARIANTS: dict[str, list[str]] = {
-    # ── Male given names ─────────────────────────────────────────────────────
-    "Κωνσταντίνος": ["konstantinos", "constantine", "costas", "kostas"],
-    "Γεώργιος": ["georgios", "george", "giorgos", "georgis"],
-    "Χρήστος": ["christos", "hristos", "chris"],
-    "Νικόλαος": ["nikolaos", "nicholas", "nikos", "nikolas"],
-    "Δημήτριος": ["dimitrios", "demetrius", "dimitris", "demitrios"],
-    "Ιωάννης": ["ioannis", "john", "giannis", "yannis"],
-    "Ανδρέας": ["andreas", "andrew", "andres"],
-    "Σταύρος": ["stavros"],
-    "Αλέξανδρος": ["alexandros", "alexander", "alex"],
-    "Παναγιώτης": ["panagiotis", "panayiotis", "panos"],
-    "Αθανάσιος": ["athanasios", "thanasis", "thanos", "nasios"],
-    "Βασίλειος": ["vasileios", "vasilis", "vasily", "basil"],
-    "Ευάγγελος": ["evangelos", "vangelis", "angelos"],
-    "Μιχαήλ": ["michael", "michail", "mihail"],
-    "Θεόδωρος": ["theodoros", "theodore"],
-    "Σπυρίδων": ["spyridon", "spyros", "spiro"],
-    "Ελευθέριος": ["eleftherios", "eleutherios", "lefteris"],
-    "Αντώνιος": ["antonios", "antonis", "anthony"],
-    "Λάμπρος": ["lambros"],
-    "Μάριος": ["marios", "mario"],
-    "Πέτρος": ["petros", "peter", "petro"],
-    "Θωμάς": ["thomas", "tomas"],
-    "Νέστωρ": ["nestor"],
-    "Αχιλλέας": ["achilleas", "achilles"],
-    "Οδυσσέας": ["odysseas", "odysseus", "ulysses"],
-    "Ηρακλής": ["iraklís", "herakles", "hercules"],
-    "Αγαμέμνων": ["agamemnon"],
-    "Αριστείδης": ["aristeidis", "aristides"],
-    "Θεμιστοκλής": ["themistocles", "themistoklis"],
-    # ── Female given names ────────────────────────────────────────────────────
-    "Μαρία": ["maria", "mary"],
-    "Ελένη": ["eleni", "helen", "elena"],
-    "Κατερίνα": ["katerina", "catherine", "katrina"],
-    "Αναστασία": ["anastasia", "natasha"],
-    "Σοφία": ["sofia", "sophia"],
-    "Ειρήνη": ["eirini", "irene", "irini"],
-    "Παρασκευή": ["paraskevi", "voula"],
-    "Βασιλική": ["vasiliki", "vicky"],
-    "Χριστίνα": ["christina", "kristina"],
-    "Δήμητρα": ["dimitra", "demeter"],
-    "Αθηνά": ["athena", "athina"],
-    "Ολυμπία": ["olympia"],
-    "Κλεοπάτρα": ["kleopatra", "cleopatra"],
-    "Αφροδίτη": ["afroditi", "aphrodite"],
-    "Αγγελική": ["angeliki", "angelica"],
-    "Μαγδαληνή": ["magdalini", "magdalene"],
-    "Φωτεινή": ["foteini", "photini"],
-    "Ευθυμία": ["efthimia", "euthimia"],
-    "Χαρίκλεια": ["hariklia", "charikleia"],
-    "Κυριακή": ["kyriaki", "kyria"],
-    # ── Common Greek surnames ─────────────────────────────────────────────────
-    "Παπαδόπουλος": ["papadopoulos", "papadopulos"],
-    "Παπαδημητρίου": ["papadimitriou"],
-    "Γεωργίου": ["georgiou", "georgios"],
-    "Νικολάου": ["nikolaou", "nikolaos"],
-    "Αντωνίου": ["antoniou", "antonios"],
-    "Δημητρίου": ["dimitriou", "demetriou"],
-    "Χριστοδούλου": ["christodoulou"],
-    "Αναστασίου": ["anastasiou"],
-    "Κωνσταντίνου": ["konstantinou", "constantinou"],
-    "Σταυρίδης": ["stavridis", "stavrides"],
-    "Καραγιάννης": ["karagiannis", "caragiannis"],
+GREEK_NAME_VARIANTS: dict[str, dict] = {
+    'Κωνσταντίνος': {
+        "forms": ['konstantinos', 'constantine', 'costas', 'kostas'],
+    },
+    'Γεώργιος': {
+        "forms": ['georgios', 'george', 'giorgos', 'georgis'],
+    },
+    'Χρήστος': {
+        "forms": ['christos', 'hristos', 'chris'],
+    },
+    'Νικόλαος': {
+        "forms": ['nikolaos', 'nicholas', 'nikos', 'nikolas'],
+    },
+    'Δημήτριος': {
+        "forms": ['dimitrios', 'demetrius', 'dimitris', 'demitrios'],
+    },
+    'Ιωάννης': {
+        "forms": ['ioannis', 'john', 'giannis', 'yannis'],
+    },
+    'Ανδρέας': {
+        "forms": ['andreas', 'andrew', 'andres'],
+    },
+    'Σταύρος': {
+        "forms": ['stavros'],
+    },
+    'Αλέξανδρος': {
+        "forms": ['alexandros', 'alexander', 'alex'],
+    },
+    'Παναγιώτης': {
+        "forms": ['panagiotis', 'panayiotis', 'panos'],
+    },
+    'Αθανάσιος': {
+        "forms": ['athanasios', 'thanasis', 'thanos', 'nasios'],
+    },
+    'Βασίλειος': {
+        "forms": ['vasileios', 'vasilis', 'vasily', 'basil'],
+    },
+    'Ευάγγελος': {
+        "forms": ['evangelos', 'vangelis', 'angelos'],
+    },
+    'Μιχαήλ': {
+        "forms": ['michael', 'michail', 'mihail'],
+    },
+    'Θεόδωρος': {
+        "forms": ['theodoros', 'theodore'],
+    },
+    'Σπυρίδων': {
+        "forms": ['spyridon', 'spyros', 'spiro'],
+    },
+    'Ελευθέριος': {
+        "forms": ['eleftherios', 'eleutherios', 'lefteris'],
+    },
+    'Αντώνιος': {
+        "forms": ['antonios', 'antonis', 'anthony'],
+    },
+    'Λάμπρος': {
+        "forms": ['lambros'],
+    },
+    'Μάριος': {
+        "forms": ['marios', 'mario'],
+    },
+    'Πέτρος': {
+        "forms": ['petros', 'peter', 'petro'],
+    },
+    'Θωμάς': {
+        "forms": ['thomas', 'tomas'],
+    },
+    'Νέστωρ': {
+        "forms": ['nestor'],
+    },
+    'Αχιλλέας': {
+        "forms": ['achilleas', 'achilles'],
+    },
+    'Οδυσσέας': {
+        "forms": ['odysseas', 'odysseus', 'ulysses'],
+    },
+    'Ηρακλής': {
+        "forms": ['iraklís', 'herakles', 'hercules'],
+    },
+    'Αγαμέμνων': {
+        "forms": ['agamemnon'],
+    },
+    'Αριστείδης': {
+        "forms": ['aristeidis', 'aristides'],
+    },
+    'Θεμιστοκλής': {
+        "forms": ['themistocles', 'themistoklis'],
+    },
+    'Μαρία': {
+        "forms": ['maria', 'mary'],
+    },
+    'Ελένη': {
+        "forms": ['eleni', 'helen', 'elena'],
+    },
+    'Κατερίνα': {
+        "forms": ['katerina', 'catherine', 'katrina'],
+    },
+    'Αναστασία': {
+        "forms": ['anastasia', 'natasha'],
+    },
+    'Σοφία': {
+        "forms": ['sofia', 'sophia'],
+    },
+    'Ειρήνη': {
+        "forms": ['eirini', 'irene', 'irini'],
+    },
+    'Παρασκευή': {
+        "forms": ['paraskevi', 'voula'],
+    },
+    'Βασιλική': {
+        "forms": ['vasiliki', 'vicky'],
+    },
+    'Χριστίνα': {
+        "forms": ['christina', 'kristina'],
+    },
+    'Δήμητρα': {
+        "forms": ['dimitra', 'demeter'],
+    },
+    'Αθηνά': {
+        "forms": ['athena', 'athina'],
+    },
+    'Ολυμπία': {
+        "forms": ['olympia'],
+    },
+    'Κλεοπάτρα': {
+        "forms": ['kleopatra', 'cleopatra'],
+    },
+    'Αφροδίτη': {
+        "forms": ['afroditi', 'aphrodite'],
+    },
+    'Αγγελική': {
+        "forms": ['angeliki', 'angelica'],
+    },
+    'Μαγδαληνή': {
+        "forms": ['magdalini', 'magdalene'],
+    },
+    'Φωτεινή': {
+        "forms": ['foteini', 'photini'],
+    },
+    'Ευθυμία': {
+        "forms": ['efthimia', 'euthimia'],
+    },
+    'Χαρίκλεια': {
+        "forms": ['hariklia', 'charikleia'],
+    },
+    'Κυριακή': {
+        "forms": ['kyriaki', 'kyria'],
+    },
+    'Παπαδόπουλος': {
+        "forms": ['papadopoulos', 'papadopulos'],
+    },
+    'Παπαδημητρίου': {
+        "forms": ['papadimitriou'],
+    },
+    'Γεωργίου': {
+        "forms": ['georgiou', 'georgios'],
+    },
+    'Νικολάου': {
+        "forms": ['nikolaou', 'nikolaos'],
+    },
+    'Αντωνίου': {
+        "forms": ['antoniou', 'antonios'],
+    },
+    'Δημητρίου': {
+        "forms": ['dimitriou', 'demetriou'],
+    },
+    'Χριστοδούλου': {
+        "forms": ['christodoulou'],
+    },
+    'Αναστασίου': {
+        "forms": ['anastasiou'],
+    },
+    'Κωνσταντίνου': {
+        "forms": ['konstantinou', 'constantinou'],
+    },
+    'Σταυρίδης': {
+        "forms": ['stavridis', 'stavrides'],
+    },
+    'Καραγιάννης': {
+        "forms": ['karagiannis', 'caragiannis'],
+    },
 }

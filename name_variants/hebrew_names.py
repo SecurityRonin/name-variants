@@ -14,83 +14,230 @@ Sources:
   - Common diaspora (US/UK/HK) and biblical English variants
 """
 
-HEBREW_NAME_VARIANTS: dict[str, list[str]] = {
-    # ── Male given names ─────────────────────────────────────────────────────
-    "יצחק": ["yitzhak", "yitzchak", "isaac", "izak", "yizhak"],
-    "משה": ["moshe", "moses", "moishe"],
-    "אברהם": ["avraham", "abraham", "avrahim"],
-    "יוסף": ["yosef", "joseph", "yossef"],
-    "דוד": ["david", "daveed", "davyd"],
-    "יעקב": ["yaakov", "jacob", "jakob"],
-    "אהרון": ["aaron", "aharon", "aron"],
-    "שמואל": ["shmuel", "samuel", "schmuel"],
-    "בנימין": ["binyamin", "benjamin", "benyamin"],
-    "שלמה": ["shlomo", "solomon", "shlomoh"],
-    "חיים": ["chaim", "haim", "hayim", "hayyim"],
-    "מנחם": ["menachem", "menahem", "menakhem"],
-    "אריה": ["aryeh", "arye", "arie"],
-    "אליעזר": ["eliezer", "eleazar", "eliazar"],
-    "זאב": ["zeev", "zev", "ze'ev"],
-    "נחמן": ["nachman", "nahman"],
-    "ברוך": ["baruch", "boruch", "barukh"],
-    "פינחס": ["pinchas", "phinehas", "pinhas"],
-    "גדליה": ["gedaliah", "gedalya"],
-    "ישראל": ["israel", "yisrael", "yisra'el"],
-    "נתן": ["natan", "nathan"],
-    "אלי": ["eli", "elie", "ely"],
-    "גיל": ["gil", "geel"],
-    "עמיר": ["amir", "ameer"],
-    "רון": ["ron", "ronn"],
-    "אייל": ["eyal", "ayyal"],
-    "ניר": ["nir", "neer"],
-    "ידין": ["yadin", "yaadin"],
-    "עמוס": ["amos", "amoss"],
-    "יגאל": ["yigal", "yigael"],
-    "אביגדור": ["avigdor", "avigdore"],
-    "צבי": ["tzvi", "zvi", "tsvi"],
-    "אחיעזר": ["achiezer", "ahi'ezer"],
-    "מתתיהו": ["mattityahu", "matthias", "matityahu"],
-    "עקיבא": ["akiva", "aqiva"],
-    "שמעון": ["shimon", "simeon", "simon"],
-    "לוי": ["levi", "levy"],
-    "ראובן": ["reuven", "reuben", "ruben"],
-    "יהודה": ["yehuda", "judah", "yehudah"],
-    "גדעון": ["gideon", "gidon"],
-    "אלדד": ["eldad", "eldaad"],
-    # ── Female given names ───────────────────────────────────────────────────
-    "שרה": ["sarah", "sara"],
-    "רבקה": ["rivka", "rebekah", "rebecca"],
-    "רחל": ["rachel", "rahel"],
-    "לאה": ["leah", "lea"],
-    "מרים": ["miriam", "maryam"],
-    "דינה": ["dinah", "dina"],
-    "תמר": ["tamar", "tamara"],
-    "דבורה": ["devorah", "deborah", "dvora"],
-    "חנה": ["hanna", "hannah", "chana"],
-    "שולמית": ["shulamit", "shulamith"],
-    "ציפורה": ["tzipora", "zipporah", "tsippora"],
-    "נעמי": ["naomi", "no'omi"],
-    "אסתר": ["esther", "ester"],
-    "רות": ["ruth", "rut"],
-    "יעל": ["yael", "jael"],
-    "גלית": ["galit", "galeet"],
-    "עינת": ["einat", "aynat"],
-    "רוני": ["roni", "ronni"],
-    "טלי": ["tali", "talee"],
-    "מיכל": ["michal", "mickel"],
-    "שירה": ["shira", "sheerah"],
-    "יפה": ["yafa", "jaffa"],
-    "ענת": ["anat", "anath"],
-    "נילי": ["nili", "neeli"],
-    "אורית": ["orit", "oreet"],
-    "דליה": ["dalia", "dalya"],
-    "ליאת": ["liat", "lyat"],
-    "שני": ["shani", "shaani"],
-    "אלינור": ["elinor", "eleanor"],
-    "נעה": ["noa", "no'a"],
-    # ── Common surnames ───────────────────────────────────────────────────────
-    "כהן": ["cohen", "kohen", "kohn", "cohn"],
-    "מזרחי": ["mizrahi", "mizrachi"],
-    "פרץ": ["peretz", "perets", "peres"],
-    "שפירא": ["shapira", "shapiro", "schapiro"],
+HEBREW_NAME_VARIANTS: dict[str, dict] = {
+    'יצחק': {
+        "forms": ['yitzhak', 'yitzchak', 'isaac', 'izak', 'yizhak'],
+    },
+    'משה': {
+        "forms": ['moshe', 'moses', 'moishe'],
+    },
+    'אברהם': {
+        "forms": ['avraham', 'abraham', 'avrahim'],
+    },
+    'יוסף': {
+        "forms": ['yosef', 'joseph', 'yossef'],
+    },
+    'דוד': {
+        "forms": ['david', 'daveed', 'davyd'],
+    },
+    'יעקב': {
+        "forms": ['yaakov', 'jacob', 'jakob'],
+    },
+    'אהרון': {
+        "forms": ['aaron', 'aharon', 'aron'],
+    },
+    'שמואל': {
+        "forms": ['shmuel', 'samuel', 'schmuel'],
+    },
+    'בנימין': {
+        "forms": ['binyamin', 'benjamin', 'benyamin'],
+    },
+    'שלמה': {
+        "forms": ['shlomo', 'solomon', 'shlomoh'],
+    },
+    'חיים': {
+        "forms": ['chaim', 'haim', 'hayim', 'hayyim'],
+    },
+    'מנחם': {
+        "forms": ['menachem', 'menahem', 'menakhem'],
+    },
+    'אריה': {
+        "forms": ['aryeh', 'arye', 'arie'],
+    },
+    'אליעזר': {
+        "forms": ['eliezer', 'eleazar', 'eliazar'],
+    },
+    'זאב': {
+        "forms": ['zeev', 'zev', "ze'ev"],
+    },
+    'נחמן': {
+        "forms": ['nachman', 'nahman'],
+    },
+    'ברוך': {
+        "forms": ['baruch', 'boruch', 'barukh'],
+    },
+    'פינחס': {
+        "forms": ['pinchas', 'phinehas', 'pinhas'],
+    },
+    'גדליה': {
+        "forms": ['gedaliah', 'gedalya'],
+    },
+    'ישראל': {
+        "forms": ['israel', 'yisrael', "yisra'el"],
+    },
+    'נתן': {
+        "forms": ['natan', 'nathan'],
+    },
+    'אלי': {
+        "forms": ['eli', 'elie', 'ely'],
+    },
+    'גיל': {
+        "forms": ['gil', 'geel'],
+    },
+    'עמיר': {
+        "forms": ['amir', 'ameer'],
+    },
+    'רון': {
+        "forms": ['ron', 'ronn'],
+    },
+    'אייל': {
+        "forms": ['eyal', 'ayyal'],
+    },
+    'ניר': {
+        "forms": ['nir', 'neer'],
+    },
+    'ידין': {
+        "forms": ['yadin', 'yaadin'],
+    },
+    'עמוס': {
+        "forms": ['amos', 'amoss'],
+    },
+    'יגאל': {
+        "forms": ['yigal', 'yigael'],
+    },
+    'אביגדור': {
+        "forms": ['avigdor', 'avigdore'],
+    },
+    'צבי': {
+        "forms": ['tzvi', 'zvi', 'tsvi'],
+    },
+    'אחיעזר': {
+        "forms": ['achiezer', "ahi'ezer"],
+    },
+    'מתתיהו': {
+        "forms": ['mattityahu', 'matthias', 'matityahu'],
+    },
+    'עקיבא': {
+        "forms": ['akiva', 'aqiva'],
+    },
+    'שמעון': {
+        "forms": ['shimon', 'simeon', 'simon'],
+    },
+    'לוי': {
+        "forms": ['levi', 'levy'],
+    },
+    'ראובן': {
+        "forms": ['reuven', 'reuben', 'ruben'],
+    },
+    'יהודה': {
+        "forms": ['yehuda', 'judah', 'yehudah'],
+    },
+    'גדעון': {
+        "forms": ['gideon', 'gidon'],
+    },
+    'אלדד': {
+        "forms": ['eldad', 'eldaad'],
+    },
+    'שרה': {
+        "forms": ['sarah', 'sara'],
+    },
+    'רבקה': {
+        "forms": ['rivka', 'rebekah', 'rebecca'],
+    },
+    'רחל': {
+        "forms": ['rachel', 'rahel'],
+    },
+    'לאה': {
+        "forms": ['leah', 'lea'],
+    },
+    'מרים': {
+        "forms": ['miriam', 'maryam'],
+    },
+    'דינה': {
+        "forms": ['dinah', 'dina'],
+    },
+    'תמר': {
+        "forms": ['tamar', 'tamara'],
+    },
+    'דבורה': {
+        "forms": ['devorah', 'deborah', 'dvora'],
+    },
+    'חנה': {
+        "forms": ['hanna', 'hannah', 'chana'],
+    },
+    'שולמית': {
+        "forms": ['shulamit', 'shulamith'],
+    },
+    'ציפורה': {
+        "forms": ['tzipora', 'zipporah', 'tsippora'],
+    },
+    'נעמי': {
+        "forms": ['naomi', "no'omi"],
+    },
+    'אסתר': {
+        "forms": ['esther', 'ester'],
+    },
+    'רות': {
+        "forms": ['ruth', 'rut'],
+    },
+    'יעל': {
+        "forms": ['yael', 'jael'],
+    },
+    'גלית': {
+        "forms": ['galit', 'galeet'],
+    },
+    'עינת': {
+        "forms": ['einat', 'aynat'],
+    },
+    'רוני': {
+        "forms": ['roni', 'ronni'],
+    },
+    'טלי': {
+        "forms": ['tali', 'talee'],
+    },
+    'מיכל': {
+        "forms": ['michal', 'mickel'],
+    },
+    'שירה': {
+        "forms": ['shira', 'sheerah'],
+    },
+    'יפה': {
+        "forms": ['yafa', 'jaffa'],
+    },
+    'ענת': {
+        "forms": ['anat', 'anath'],
+    },
+    'נילי': {
+        "forms": ['nili', 'neeli'],
+    },
+    'אורית': {
+        "forms": ['orit', 'oreet'],
+    },
+    'דליה': {
+        "forms": ['dalia', 'dalya'],
+    },
+    'ליאת': {
+        "forms": ['liat', 'lyat'],
+    },
+    'שני': {
+        "forms": ['shani', 'shaani'],
+    },
+    'אלינור': {
+        "forms": ['elinor', 'eleanor'],
+    },
+    'נעה': {
+        "forms": ['noa', "no'a"],
+    },
+    'כהן': {
+        "forms": ['cohen', 'kohen', 'kohn', 'cohn'],
+    },
+    'מזרחי': {
+        "forms": ['mizrahi', 'mizrachi'],
+    },
+    'פרץ': {
+        "forms": ['peretz', 'perets', 'peres'],
+    },
+    'שפירא': {
+        "forms": ['shapira', 'shapiro', 'schapiro'],
+    },
 }

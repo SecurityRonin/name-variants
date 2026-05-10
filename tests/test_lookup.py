@@ -365,9 +365,10 @@ def test_thai_canonical_self_lookup():
 
 def test_thai_romanization_lookup():
     from name_variants import ALL_TABLES
-    for canonical, variants in ALL_TABLES["thai"].items():
-        if variants:
-            assert share_cluster(variants[0], canonical)
+    for canonical, entry in ALL_TABLES["thai"].items():
+        forms = entry["forms"] if isinstance(entry, dict) else entry
+        if forms:
+            assert share_cluster(forms[0], canonical)
             break
 
 

@@ -18,82 +18,227 @@ Sources:
   - ISO 233-3 for the diacritic mappings
 """
 
-TURKISH_NAME_VARIANTS: dict[str, list[str]] = {
-    # ── Male given names ─────────────────────────────────────────────────────
-    "mehmet": ["mehmet", "mehmed", "mahmoud"],
-    "mustafa": ["mustafa", "mustaffa"],
-    "ahmet": ["ahmet", "ahmed", "ahmad"],
-    "ali": ["ali", "aly"],
-    "hüseyin": ["huseyin", "husseyin", "husein"],
-    "hasan": ["hasan", "hassan"],
-    "ibrahim": ["ibrahim", "ebrahim"],
-    "ismail": ["ismail", "esmail"],
-    "ömer": ["omer", "umar"],
-    "süleyman": ["suleyman", "suleiman", "souleyman"],
-    "yusuf": ["yusuf", "yosef"],
-    "murat": ["murat", "murad"],
-    "can": ["can", "jan"],
-    "emre": ["emre", "emree"],
-    "burak": ["burak", "buurak"],
-    "cem": ["cem", "gem", "ghem"],
-    "kemal": ["kemal", "cemal"],
-    "tarık": ["tarik", "tarig"],
-    "sercan": ["sercan", "sirkan"],
-    "deniz": ["deniz", "denees"],
-    "berk": ["berk", "berg"],
-    "onur": ["onur", "honor"],
-    "ufuk": ["ufuk", "oufuk"],
-    "barış": ["baris", "barish"],
-    "umut": ["umut", "oomut"],
-    "güneş": ["gunes", "gunesh"],
-    "kaan": ["kaan", "kan"],
-    "tuğrul": ["tugrul", "tughrul"],
-    "selçuk": ["selcuk", "seldjuk"],
-    "oğuz": ["oguz", "oghuz"],
-    "çağatay": ["cagatay", "chagatai"],
-    "ayhan": ["ayhan", "iyhan"],
-    # ── Male surnames (with diacritic variants) ──────────────────────────────
-    "çelik": ["celik", "chelik"],
-    "şahin": ["sahin", "shahin"],
-    "yıldız": ["yildiz", "yildis"],
-    "öztürk": ["ozturk", "oezturk"],
-    "kaya": ["kaya", "kayaa"],
-    "demir": ["demir", "dimir"],
-    "doğan": ["dogan", "doghan"],
-    "arslan": ["arslan", "aslan"],
-    "aydın": ["aydin", "aydeen"],
-    "özdemir": ["ozdemir", "oezemir"],
-    "şimşek": ["simsek", "shimsek"],
-    "güler": ["guler", "gyuler"],
-    "çetin": ["cetin", "chetin"],
-    "koç": ["koc", "koch"],
-    "erdoğan": ["erdogan", "erdoghan"],
-    "gündüz": ["gunduz", "guenduz"],
-    "bulut": ["bulut", "buloot"],
-    "aktaş": ["aktas", "aktash"],
-    "yılmaz": ["yilmaz", "yilmas"],
-    "polat": ["polat", "polad"],
-    # ── Female given names ────────────────────────────────────────────────────
-    "fatma": ["fatma"],
-    "ayşe": ["ayse", "aysha", "aisha"],
-    "emine": ["emine", "emina"],
-    "hatice": ["hatice", "khatija"],
-    "zeynep": ["zeynep", "zaynab"],
-    "elif": ["elif", "eleef"],
-    "derya": ["derya", "deria"],
-    "selin": ["selin", "selen"],
-    "büşra": ["busra", "bushra"],
-    "gül": ["gul", "gull"],
-    "hülya": ["hulya", "hoolya"],
-    "özlem": ["ozlem", "ozzlem"],
-    "aslı": ["asli", "usli"],
-    "nur": ["nur", "nour"],
-    "şule": ["sule", "shoole"],
-    "yeliz": ["yeliz", "yelees"],
-    "filiz": ["filiz", "filees"],
-    "esra": ["esra", "esraa"],
-    "tuğba": ["tugba", "tughba"],
-    "gamze": ["gamze", "ghamze"],
-    "pınar": ["pinar", "piner"],
-    "çiğdem": ["cigdem", "chigdem"],
+TURKISH_NAME_VARIANTS: dict[str, dict] = {
+    'mehmet': {
+        "forms": ['mehmet', 'mehmed', 'mahmoud'],
+    },
+    'mustafa': {
+        "forms": ['mustafa', 'mustaffa'],
+    },
+    'ahmet': {
+        "forms": ['ahmet', 'ahmed', 'ahmad'],
+    },
+    'ali': {
+        "forms": ['ali', 'aly'],
+    },
+    'hüseyin': {
+        "forms": ['huseyin', 'husseyin', 'husein'],
+    },
+    'hasan': {
+        "forms": ['hasan', 'hassan'],
+    },
+    'ibrahim': {
+        "forms": ['ibrahim', 'ebrahim'],
+    },
+    'ismail': {
+        "forms": ['ismail', 'esmail'],
+    },
+    'ömer': {
+        "forms": ['omer', 'umar'],
+    },
+    'süleyman': {
+        "forms": ['suleyman', 'suleiman', 'souleyman'],
+    },
+    'yusuf': {
+        "forms": ['yusuf', 'yosef'],
+    },
+    'murat': {
+        "forms": ['murat', 'murad'],
+    },
+    'can': {
+        "forms": ['can', 'jan'],
+    },
+    'emre': {
+        "forms": ['emre', 'emree'],
+    },
+    'burak': {
+        "forms": ['burak', 'buurak'],
+    },
+    'cem': {
+        "forms": ['cem', 'gem', 'ghem'],
+    },
+    'kemal': {
+        "forms": ['kemal', 'cemal'],
+    },
+    'tarık': {
+        "forms": ['tarik', 'tarig'],
+    },
+    'sercan': {
+        "forms": ['sercan', 'sirkan'],
+    },
+    'deniz': {
+        "forms": ['deniz', 'denees'],
+    },
+    'berk': {
+        "forms": ['berk', 'berg'],
+    },
+    'onur': {
+        "forms": ['onur', 'honor'],
+    },
+    'ufuk': {
+        "forms": ['ufuk', 'oufuk'],
+    },
+    'barış': {
+        "forms": ['baris', 'barish'],
+    },
+    'umut': {
+        "forms": ['umut', 'oomut'],
+    },
+    'güneş': {
+        "forms": ['gunes', 'gunesh'],
+    },
+    'kaan': {
+        "forms": ['kaan', 'kan'],
+    },
+    'tuğrul': {
+        "forms": ['tugrul', 'tughrul'],
+    },
+    'selçuk': {
+        "forms": ['selcuk', 'seldjuk'],
+    },
+    'oğuz': {
+        "forms": ['oguz', 'oghuz'],
+    },
+    'çağatay': {
+        "forms": ['cagatay', 'chagatai'],
+    },
+    'ayhan': {
+        "forms": ['ayhan', 'iyhan'],
+    },
+    'çelik': {
+        "forms": ['celik', 'chelik'],
+    },
+    'şahin': {
+        "forms": ['sahin', 'shahin'],
+    },
+    'yıldız': {
+        "forms": ['yildiz', 'yildis'],
+    },
+    'öztürk': {
+        "forms": ['ozturk', 'oezturk'],
+    },
+    'kaya': {
+        "forms": ['kaya', 'kayaa'],
+    },
+    'demir': {
+        "forms": ['demir', 'dimir'],
+    },
+    'doğan': {
+        "forms": ['dogan', 'doghan'],
+    },
+    'arslan': {
+        "forms": ['arslan', 'aslan'],
+    },
+    'aydın': {
+        "forms": ['aydin', 'aydeen'],
+    },
+    'özdemir': {
+        "forms": ['ozdemir', 'oezemir'],
+    },
+    'şimşek': {
+        "forms": ['simsek', 'shimsek'],
+    },
+    'güler': {
+        "forms": ['guler', 'gyuler'],
+    },
+    'çetin': {
+        "forms": ['cetin', 'chetin'],
+    },
+    'koç': {
+        "forms": ['koc', 'koch'],
+    },
+    'erdoğan': {
+        "forms": ['erdogan', 'erdoghan'],
+    },
+    'gündüz': {
+        "forms": ['gunduz', 'guenduz'],
+    },
+    'bulut': {
+        "forms": ['bulut', 'buloot'],
+    },
+    'aktaş': {
+        "forms": ['aktas', 'aktash'],
+    },
+    'yılmaz': {
+        "forms": ['yilmaz', 'yilmas'],
+    },
+    'polat': {
+        "forms": ['polat', 'polad'],
+    },
+    'fatma': {
+        "forms": ['fatma'],
+    },
+    'ayşe': {
+        "forms": ['ayse', 'aysha', 'aisha'],
+    },
+    'emine': {
+        "forms": ['emine', 'emina'],
+    },
+    'hatice': {
+        "forms": ['hatice', 'khatija'],
+    },
+    'zeynep': {
+        "forms": ['zeynep', 'zaynab'],
+    },
+    'elif': {
+        "forms": ['elif', 'eleef'],
+    },
+    'derya': {
+        "forms": ['derya', 'deria'],
+    },
+    'selin': {
+        "forms": ['selin', 'selen'],
+    },
+    'büşra': {
+        "forms": ['busra', 'bushra'],
+    },
+    'gül': {
+        "forms": ['gul', 'gull'],
+    },
+    'hülya': {
+        "forms": ['hulya', 'hoolya'],
+    },
+    'özlem': {
+        "forms": ['ozlem', 'ozzlem'],
+    },
+    'aslı': {
+        "forms": ['asli', 'usli'],
+    },
+    'nur': {
+        "forms": ['nur', 'nour'],
+    },
+    'şule': {
+        "forms": ['sule', 'shoole'],
+    },
+    'yeliz': {
+        "forms": ['yeliz', 'yelees'],
+    },
+    'filiz': {
+        "forms": ['filiz', 'filees'],
+    },
+    'esra': {
+        "forms": ['esra', 'esraa'],
+    },
+    'tuğba': {
+        "forms": ['tugba', 'tughba'],
+    },
+    'gamze': {
+        "forms": ['gamze', 'ghamze'],
+    },
+    'pınar': {
+        "forms": ['pinar', 'piner'],
+    },
+    'çiğdem': {
+        "forms": ['cigdem', 'chigdem'],
+    },
 }

@@ -61,6 +61,6 @@ def test_known_romanization_collisions_are_documented():
     黄 and 吴). These are acceptable — assert they exist so we know the table
     is realistic, not sanitized.
     """
-    ng_entries = [char for char, variants in CHINESE_SURNAME_VARIANTS.items()
-                  if "ng" in variants]
+    ng_entries = [char for char, entry in CHINESE_SURNAME_VARIANTS.items()
+                  if "ng" in (entry["forms"] if isinstance(entry, dict) else entry)]
     assert len(ng_entries) >= 2, "'ng' should be ambiguous across Chinese surnames"

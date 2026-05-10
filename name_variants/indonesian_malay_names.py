@@ -22,89 +22,236 @@ Sources:
   - Common Javanese, Sundanese, Batak, Minangkabau naming patterns
 """
 
-INDONESIAN_MALAY_NAME_VARIANTS: dict[str, list[str]] = {
-    # ── Old Dutch oe→u systematic variants ──────────────────────────────────
-    "sukarno": ["sukarno", "soekarno"],
-    "suharto": ["suharto", "soeharto"],
-    "susilo": ["susilo", "soesilo"],
-    "suryadi": ["suryadi", "soerjadi"],
-    "subagio": ["subagio", "soebagio"],
-    "sutrisno": ["sutrisno", "soetrisno"],
-    "sudirman": ["sudirman", "soedirman"],
-    "sugiyono": ["sugiyono", "soegiyono"],
-    "sumarsono": ["sumarsono", "soemarsono"],
-    "sunarso": ["sunarso", "soenarso"],
-    "supartono": ["supartono", "soepartono"],
-    "subroto": ["subroto", "soebroto"],
-    "surya": ["surya", "soerya"],
-    "suryono": ["suryono", "soerjono"],
-    "sutopo": ["sutopo", "soetopo"],
-    # ── Old Dutch dj→j systematic variants ───────────────────────────────────
-    "joko": ["joko", "djoko"],
-    "jokowi": ["jokowi", "djokowi"],
-    "juanda": ["juanda", "djuanda"],
-    "jaksa": ["jaksa", "djaksa"],
-    "jakarta": ["jakarta", "djakarta"],
-    "jenderal": ["jenderal", "djenderal"],
-    # ── Common Indonesian surnames / family name components ──────────────────
-    "nasution": ["nasution", "nasoetion"],
-    "situmorang": ["situmorang", "sitoemorang"],
-    "simatupang": ["simatupang", "simatoepang"],
-    "lumbantobing": ["lumbantobing", "loembantoebing"],
-    "simbolon": ["simbolon", "simboeloen"],
-    "panjaitan": ["panjaitan", "pandjaitan"],
-    "simanjuntak": ["simanjuntak", "simandjoentak"],
-    "pakpahan": ["pakpahan"],
-    "hutapea": ["hutapea", "hoetapea"],
-    "nainggolan": ["nainggolan", "naingolan"],
-    "sinaga": ["sinaga"],
-    "rajagukguk": ["rajagukguk", "radjagoekoek"],
-    # ── Common Malay names ────────────────────────────────────────────────────
-    # Note: muhammad/mohamad covered by arabic_names محمد entry
-
-    "ahmad": ["ahmad", "ahmed"],
-    "mohd": ["mohd", "md"],        # common abbreviation
-    "abd": ["abd", "ab"],          # Abdul abbreviation
-    "rahman": ["rahman"],
-    "rahim": ["rahim", "raheem"],
-    "aziz": ["aziz", "azees"],
-    "hamid": ["hamid", "hameed"],
-    "hassan": ["hassan", "hasan"],
-    "ibrahim": ["ibrahim", "ebrahim"],
-    "ismail": ["ismail", "esmail"],
-    "abdullah": ["abdullah", "abdallah"],
-    "razak": ["razak", "razack"],
-    "mahathir": ["mahathir", "mahatheer"],
-    "anwar": ["anwar", "anwaar"],
-    # ── Common Indonesian given names ─────────────────────────────────────────
-    "budi": ["budi", "boedi"],
-    "dewi": ["dewi", "dewie"],
-    "sri": ["sri", "srie"],
-    "eko": ["eko", "eco"],
-    "agus": ["agus", "agoes"],
-    "hendra": ["hendra"],
-    "rini": ["rini", "reenie"],
-    "sari": ["sari", "sarie"],
-    "wati": ["wati", "watie"],
-    "yanti": ["yanti", "janti"],
-    "purnomo": ["purnomo", "poernomo"],
-    "pranowo": ["pranowo"],
-    "wahyudi": ["wahyudi", "wahjoedi"],
-    "priyono": ["priyono", "prijono"],
-    "santoso": ["santoso", "santoeso"],
-    "handoyo": ["handoyo", "handojo"],
-    "widodo": ["widodo"],
-    "suprapto": ["suprapto", "soeprapto"],
-    "rahayu": ["rahayu", "rahajoe"],
-    "susanti": ["susanti", "soesanti"],
-    "kurniawan": ["kurniawan", "koerniawan"],
-    "cahyono": ["cahyono", "cahjono"],
-    "nugroho": ["nugroho", "noegroho"],
-    "wibowo": ["wibowo", "wibobo"],
-    "hartono": ["hartono"],
-    "gunawan": ["gunawan", "goenawan"],
-    "setiawan": ["setiawan", "setijawan"],
-    "kusuma": ["kusuma", "koesoema"],
-    "saputra": ["saputra", "sapoetra"],
-    "pratama": ["pratama"],
+INDONESIAN_MALAY_NAME_VARIANTS: dict[str, dict] = {
+    'sukarno': {
+        "forms": ['sukarno', 'soekarno'],
+    },
+    'suharto': {
+        "forms": ['suharto', 'soeharto'],
+    },
+    'susilo': {
+        "forms": ['susilo', 'soesilo'],
+    },
+    'suryadi': {
+        "forms": ['suryadi', 'soerjadi'],
+    },
+    'subagio': {
+        "forms": ['subagio', 'soebagio'],
+    },
+    'sutrisno': {
+        "forms": ['sutrisno', 'soetrisno'],
+    },
+    'sudirman': {
+        "forms": ['sudirman', 'soedirman'],
+    },
+    'sugiyono': {
+        "forms": ['sugiyono', 'soegiyono'],
+    },
+    'sumarsono': {
+        "forms": ['sumarsono', 'soemarsono'],
+    },
+    'sunarso': {
+        "forms": ['sunarso', 'soenarso'],
+    },
+    'supartono': {
+        "forms": ['supartono', 'soepartono'],
+    },
+    'subroto': {
+        "forms": ['subroto', 'soebroto'],
+    },
+    'surya': {
+        "forms": ['surya', 'soerya'],
+    },
+    'suryono': {
+        "forms": ['suryono', 'soerjono'],
+    },
+    'sutopo': {
+        "forms": ['sutopo', 'soetopo'],
+    },
+    'joko': {
+        "forms": ['joko', 'djoko'],
+    },
+    'jokowi': {
+        "forms": ['jokowi', 'djokowi'],
+    },
+    'juanda': {
+        "forms": ['juanda', 'djuanda'],
+    },
+    'jaksa': {
+        "forms": ['jaksa', 'djaksa'],
+    },
+    'jakarta': {
+        "forms": ['jakarta', 'djakarta'],
+    },
+    'jenderal': {
+        "forms": ['jenderal', 'djenderal'],
+    },
+    'nasution': {
+        "forms": ['nasution', 'nasoetion'],
+    },
+    'situmorang': {
+        "forms": ['situmorang', 'sitoemorang'],
+    },
+    'simatupang': {
+        "forms": ['simatupang', 'simatoepang'],
+    },
+    'lumbantobing': {
+        "forms": ['lumbantobing', 'loembantoebing'],
+    },
+    'simbolon': {
+        "forms": ['simbolon', 'simboeloen'],
+    },
+    'panjaitan': {
+        "forms": ['panjaitan', 'pandjaitan'],
+    },
+    'simanjuntak': {
+        "forms": ['simanjuntak', 'simandjoentak'],
+    },
+    'pakpahan': {
+        "forms": ['pakpahan'],
+    },
+    'hutapea': {
+        "forms": ['hutapea', 'hoetapea'],
+    },
+    'nainggolan': {
+        "forms": ['nainggolan', 'naingolan'],
+    },
+    'sinaga': {
+        "forms": ['sinaga'],
+    },
+    'rajagukguk': {
+        "forms": ['rajagukguk', 'radjagoekoek'],
+    },
+    'ahmad': {
+        "forms": ['ahmad', 'ahmed'],
+    },
+    'mohd': {
+        "forms": ['mohd', 'md'],
+    },
+    'abd': {
+        "forms": ['abd', 'ab'],
+    },
+    'rahman': {
+        "forms": ['rahman'],
+    },
+    'rahim': {
+        "forms": ['rahim', 'raheem'],
+    },
+    'aziz': {
+        "forms": ['aziz', 'azees'],
+    },
+    'hamid': {
+        "forms": ['hamid', 'hameed'],
+    },
+    'hassan': {
+        "forms": ['hassan', 'hasan'],
+    },
+    'ibrahim': {
+        "forms": ['ibrahim', 'ebrahim'],
+    },
+    'ismail': {
+        "forms": ['ismail', 'esmail'],
+    },
+    'abdullah': {
+        "forms": ['abdullah', 'abdallah'],
+    },
+    'razak': {
+        "forms": ['razak', 'razack'],
+    },
+    'mahathir': {
+        "forms": ['mahathir', 'mahatheer'],
+    },
+    'anwar': {
+        "forms": ['anwar', 'anwaar'],
+    },
+    'budi': {
+        "forms": ['budi', 'boedi'],
+    },
+    'dewi': {
+        "forms": ['dewi', 'dewie'],
+    },
+    'sri': {
+        "forms": ['sri', 'srie'],
+    },
+    'eko': {
+        "forms": ['eko', 'eco'],
+    },
+    'agus': {
+        "forms": ['agus', 'agoes'],
+    },
+    'hendra': {
+        "forms": ['hendra'],
+    },
+    'rini': {
+        "forms": ['rini', 'reenie'],
+    },
+    'sari': {
+        "forms": ['sari', 'sarie'],
+    },
+    'wati': {
+        "forms": ['wati', 'watie'],
+    },
+    'yanti': {
+        "forms": ['yanti', 'janti'],
+    },
+    'purnomo': {
+        "forms": ['purnomo', 'poernomo'],
+    },
+    'pranowo': {
+        "forms": ['pranowo'],
+    },
+    'wahyudi': {
+        "forms": ['wahyudi', 'wahjoedi'],
+    },
+    'priyono': {
+        "forms": ['priyono', 'prijono'],
+    },
+    'santoso': {
+        "forms": ['santoso', 'santoeso'],
+    },
+    'handoyo': {
+        "forms": ['handoyo', 'handojo'],
+    },
+    'widodo': {
+        "forms": ['widodo'],
+    },
+    'suprapto': {
+        "forms": ['suprapto', 'soeprapto'],
+    },
+    'rahayu': {
+        "forms": ['rahayu', 'rahajoe'],
+    },
+    'susanti': {
+        "forms": ['susanti', 'soesanti'],
+    },
+    'kurniawan': {
+        "forms": ['kurniawan', 'koerniawan'],
+    },
+    'cahyono': {
+        "forms": ['cahyono', 'cahjono'],
+    },
+    'nugroho': {
+        "forms": ['nugroho', 'noegroho'],
+    },
+    'wibowo': {
+        "forms": ['wibowo', 'wibobo'],
+    },
+    'hartono': {
+        "forms": ['hartono'],
+    },
+    'gunawan': {
+        "forms": ['gunawan', 'goenawan'],
+    },
+    'setiawan': {
+        "forms": ['setiawan', 'setijawan'],
+    },
+    'kusuma': {
+        "forms": ['kusuma', 'koesoema'],
+    },
+    'saputra': {
+        "forms": ['saputra', 'sapoetra'],
+    },
+    'pratama': {
+        "forms": ['pratama'],
+    },
 }

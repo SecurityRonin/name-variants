@@ -18,76 +18,209 @@ Sources:
   - Common Central Thai phonetic approximations
 """
 
-THAI_NAME_VARIANTS: dict[str, list[str]] = {
-    # ── Common male given names ──────────────────────────────────────────────
-    "สมชาย": ["somchai", "somjai", "somchaai"],
-    "ประยุทธ์": ["prayuth", "prayut", "prayudh", "prayooth"],
-    "ทักษิณ": ["thaksin", "takshin", "taxin"],
-    "สุรยุทธ์": ["surayuth", "surayud"],
-    "วิชัย": ["wichai", "vichai", "witchai"],
-    "สมศักดิ์": ["somsak", "somksak"],
-    "ชาตรี": ["chatree", "chatri"],
-    "อานันท์": ["anand", "anan", "arnant"],
-    "ธนากร": ["thanakorn", "tanakorn"],
-    "ภูมิ": ["poom", "phoom", "bhum"],
-    "กฤษณ์": ["krit", "krich", "krish"],
-    "วรวุฒิ": ["worawut", "vorawut"],
-    "เอกชัย": ["ekachai", "akechai"],
-    "นพดล": ["nopadol", "noppadon"],
-    "พิทักษ์": ["phitak", "pitak"],
-    "ชัยวัฒน์": ["chaiwat", "chaivat"],
-    "สิทธิชัย": ["sittchai", "sittichai"],
-    "วสันต์": ["wasan", "vasan"],
-    "ศิริชัย": ["sirichai", "serichai"],
-    "ประสิทธิ์": ["prasit", "prasith"],
-    "ไพบูลย์": ["paiboon", "paibul"],
-    "บุญมี": ["boonmee", "bunmee"],
-    "บุญชัย": ["boonchai", "bunchai"],
-    "ชาญชัย": ["chanchai", "changchai"],
-    "สุพจน์": ["suphot", "supoch"],
-    # ── Common female given names ────────────────────────────────────────────
-    "สมหญิง": ["somying"],
-    "นงนุช": ["nongnuch", "nongnooch"],
-    "อรทัย": ["orathai", "aurathai"],
-    "สุมาลี": ["sumalee", "sumali"],
-    "วิไลวรรณ": ["wilaiwan", "vilaivan"],
-    "ปรียา": ["priya", "preya"],
-    "กนกวรรณ": ["kanokwan", "kanokvarn"],
-    "ศิริพร": ["siriporn", "siripon"],
-    "มณีรัตน์": ["maneerat", "manerat"],
-    "สุภาพร": ["supaporn", "supapone"],
-    "ทิพวรรณ": ["thippawan", "tippawan"],
-    "บุษบา": ["butsaba", "bussaba"],
-    "พรทิพย์": ["porntip", "pontip", "porntipp"],
-    "จันทรา": ["chantra", "jantara"],
-    "ดาวเรือง": ["daorueang", "daoreang"],
-    "เพ็ญพักตร์": ["penpak", "penpag"],
-    "มาลัย": ["malai", "maalai"],
-    "ชูใจ": ["choosai", "chujai"],
-    "รัตนา": ["rattana", "ratana"],
-    "อมรา": ["amora", "amra"],
-    "ลดาวัลย์": ["ladawan", "ladaval"],
-    "นภาพร": ["naphaporn", "napaporn"],
-    "ศุภรา": ["suphara", "supara"],
-    "พัชรา": ["patchara", "patchra"],
-    "อุษา": ["usa", "usha"],
-    # ── Common name components (appear standalone) ───────────────────────────
-    "ศรี": ["sri", "si", "see"],
-    "ไทย": ["thai", "tai"],
-    "วัน": ["wan", "van"],
-    "ดี": ["dee", "di"],
-    "สุข": ["suk", "sook"],
-    "ใจ": ["jai", "chai"],
-    "พร": ["porn", "pon", "phon"],
-    "ชัย": ["chai"],
-    "ดวง": ["duang", "doung"],
-    "แก้ว": ["kaew", "keo"],
-    "ทอง": ["thong", "tong"],
-    "รัก": ["rak", "rack"],
-    "นิ": ["ni", "nee"],
-    "มณี": ["manee", "mani"],
-    "รุ่ง": ["rung", "roong"],
-    "เรือง": ["rueang", "reang"],
-    "แสง": ["saeng", "sang"],
-    "อร": ["on", "orn"],
+THAI_NAME_VARIANTS: dict[str, dict] = {
+    'สมชาย': {
+        "forms": ['somchai', 'somjai', 'somchaai'],
+    },
+    'ประยุทธ์': {
+        "forms": ['prayuth', 'prayut', 'prayudh', 'prayooth'],
+    },
+    'ทักษิณ': {
+        "forms": ['thaksin', 'takshin', 'taxin'],
+    },
+    'สุรยุทธ์': {
+        "forms": ['surayuth', 'surayud'],
+    },
+    'วิชัย': {
+        "forms": ['wichai', 'vichai', 'witchai'],
+    },
+    'สมศักดิ์': {
+        "forms": ['somsak', 'somksak'],
+    },
+    'ชาตรี': {
+        "forms": ['chatree', 'chatri'],
+    },
+    'อานันท์': {
+        "forms": ['anand', 'anan', 'arnant'],
+    },
+    'ธนากร': {
+        "forms": ['thanakorn', 'tanakorn'],
+    },
+    'ภูมิ': {
+        "forms": ['poom', 'phoom', 'bhum'],
+    },
+    'กฤษณ์': {
+        "forms": ['krit', 'krich', 'krish'],
+    },
+    'วรวุฒิ': {
+        "forms": ['worawut', 'vorawut'],
+    },
+    'เอกชัย': {
+        "forms": ['ekachai', 'akechai'],
+    },
+    'นพดล': {
+        "forms": ['nopadol', 'noppadon'],
+    },
+    'พิทักษ์': {
+        "forms": ['phitak', 'pitak'],
+    },
+    'ชัยวัฒน์': {
+        "forms": ['chaiwat', 'chaivat'],
+    },
+    'สิทธิชัย': {
+        "forms": ['sittchai', 'sittichai'],
+    },
+    'วสันต์': {
+        "forms": ['wasan', 'vasan'],
+    },
+    'ศิริชัย': {
+        "forms": ['sirichai', 'serichai'],
+    },
+    'ประสิทธิ์': {
+        "forms": ['prasit', 'prasith'],
+    },
+    'ไพบูลย์': {
+        "forms": ['paiboon', 'paibul'],
+    },
+    'บุญมี': {
+        "forms": ['boonmee', 'bunmee'],
+    },
+    'บุญชัย': {
+        "forms": ['boonchai', 'bunchai'],
+    },
+    'ชาญชัย': {
+        "forms": ['chanchai', 'changchai'],
+    },
+    'สุพจน์': {
+        "forms": ['suphot', 'supoch'],
+    },
+    'สมหญิง': {
+        "forms": ['somying'],
+    },
+    'นงนุช': {
+        "forms": ['nongnuch', 'nongnooch'],
+    },
+    'อรทัย': {
+        "forms": ['orathai', 'aurathai'],
+    },
+    'สุมาลี': {
+        "forms": ['sumalee', 'sumali'],
+    },
+    'วิไลวรรณ': {
+        "forms": ['wilaiwan', 'vilaivan'],
+    },
+    'ปรียา': {
+        "forms": ['priya', 'preya'],
+    },
+    'กนกวรรณ': {
+        "forms": ['kanokwan', 'kanokvarn'],
+    },
+    'ศิริพร': {
+        "forms": ['siriporn', 'siripon'],
+    },
+    'มณีรัตน์': {
+        "forms": ['maneerat', 'manerat'],
+    },
+    'สุภาพร': {
+        "forms": ['supaporn', 'supapone'],
+    },
+    'ทิพวรรณ': {
+        "forms": ['thippawan', 'tippawan'],
+    },
+    'บุษบา': {
+        "forms": ['butsaba', 'bussaba'],
+    },
+    'พรทิพย์': {
+        "forms": ['porntip', 'pontip', 'porntipp'],
+    },
+    'จันทรา': {
+        "forms": ['chantra', 'jantara'],
+    },
+    'ดาวเรือง': {
+        "forms": ['daorueang', 'daoreang'],
+    },
+    'เพ็ญพักตร์': {
+        "forms": ['penpak', 'penpag'],
+    },
+    'มาลัย': {
+        "forms": ['malai', 'maalai'],
+    },
+    'ชูใจ': {
+        "forms": ['choosai', 'chujai'],
+    },
+    'รัตนา': {
+        "forms": ['rattana', 'ratana'],
+    },
+    'อมรา': {
+        "forms": ['amora', 'amra'],
+    },
+    'ลดาวัลย์': {
+        "forms": ['ladawan', 'ladaval'],
+    },
+    'นภาพร': {
+        "forms": ['naphaporn', 'napaporn'],
+    },
+    'ศุภรา': {
+        "forms": ['suphara', 'supara'],
+    },
+    'พัชรา': {
+        "forms": ['patchara', 'patchra'],
+    },
+    'อุษา': {
+        "forms": ['usa', 'usha'],
+    },
+    'ศรี': {
+        "forms": ['sri', 'si', 'see'],
+    },
+    'ไทย': {
+        "forms": ['thai', 'tai'],
+    },
+    'วัน': {
+        "forms": ['wan', 'van'],
+    },
+    'ดี': {
+        "forms": ['dee', 'di'],
+    },
+    'สุข': {
+        "forms": ['suk', 'sook'],
+    },
+    'ใจ': {
+        "forms": ['jai', 'chai'],
+    },
+    'พร': {
+        "forms": ['porn', 'pon', 'phon'],
+    },
+    'ชัย': {
+        "forms": ['chai'],
+    },
+    'ดวง': {
+        "forms": ['duang', 'doung'],
+    },
+    'แก้ว': {
+        "forms": ['kaew', 'keo'],
+    },
+    'ทอง': {
+        "forms": ['thong', 'tong'],
+    },
+    'รัก': {
+        "forms": ['rak', 'rack'],
+    },
+    'นิ': {
+        "forms": ['ni', 'nee'],
+    },
+    'มณี': {
+        "forms": ['manee', 'mani'],
+    },
+    'รุ่ง': {
+        "forms": ['rung', 'roong'],
+    },
+    'เรือง': {
+        "forms": ['rueang', 'reang'],
+    },
+    'แสง': {
+        "forms": ['saeng', 'sang'],
+    },
+    'อร': {
+        "forms": ['on', 'orn'],
+    },
 }
