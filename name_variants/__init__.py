@@ -240,6 +240,63 @@ def is_variant(a: str, b: str) -> bool:
     return ka == lookup_key(b)
 
 
+def _get_language_for_canonical(canonical: str) -> str | None:
+    """Return the language table name for a canonical key."""
+    for lang, table in ALL_TABLES.items():
+        if canonical in table:
+            return lang
+    return None
+
+
+def get_language_for_canonical(canonical: str) -> str | None:
+    """Return the language table name for a canonical key, or None if not found."""
+    return _get_language_for_canonical(canonical)
+
+
+def get_frequency(canonical: str) -> int | None:
+    """Return approximate global bearer count for a canonical key, or None."""
+    from name_variants.frequencies import ALL_FREQUENCIES
+
+    return ALL_FREQUENCIES.get(canonical)
+
+
+def language_distribution(text: str) -> dict[str, float]:
+    """
+    Return a probability distribution over languages for this name.
+
+    Uses lookup_candidates() to find all matching canonicals, then weights
+    them by population frequency. Returns {} for unknown names.
+
+    Example:
+        language_distribution("Lee") -> {"korean": 0.82, "chinese": 0.15, "vietnamese": 0.03}
+    """
+    from name_variants.frequencies import ALL_FREQUENCIES
+
+    candidates = lookup_candidates(text)
+    if not candidates:
+        return {}
+
+    # Build (canonical, language, frequency) triples
+    triples = []
+    for canonical in candidates:
+        lang = _get_language_for_canonical(canonical)
+        freq = ALL_FREQUENCIES.get(canonical, 0)
+        triples.append((canonical, lang, freq))
+
+    total = sum(f for _, _, f in triples)
+    if total == 0:
+        # No frequency data — return uniform distribution
+        langs = list({lang for _, lang, _ in triples})
+        weight = 1.0 / len(langs)
+        return {lang: weight for lang in langs}
+
+    dist: dict[str, float] = {}
+    for _, lang, freq in triples:
+        if lang:
+            dist[lang] = dist.get(lang, 0.0) + freq / total
+    return dist
+
+
 __all__ = [
     "lookup_key",
     "lookup_all",
@@ -248,4 +305,7 @@ __all__ = [
     "normalize",
     "canonicalize",
     "is_variant",
+    "get_frequency",
+    "get_language_for_canonical",
+    "language_distribution",
 ]
