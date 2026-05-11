@@ -155,18 +155,18 @@ a.nv.share_cluster_with(b)   # [True, True]
 
 ## MCP server
 
+**Claude Code:**
 ```bash
-pip install "name-variants[mcp]"
-nv-mcp   # starts the stdio server
+claude mcp add name-variants -- uvx --from "name-variants[mcp]" nv-mcp
 ```
 
-Add to `claude_desktop_config.json`:
-
+**Claude Desktop** — add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
     "name-variants": {
-      "command": "nv-mcp"
+      "command": "uvx",
+      "args": ["--from", "name-variants[mcp]", "nv-mcp"]
     }
   }
 }
