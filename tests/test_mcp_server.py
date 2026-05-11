@@ -48,3 +48,35 @@ def test_lookup_result_is_list_of_dicts():
         assert "forms" in item
         assert "frequency" in item
         assert isinstance(item["forms"], list)
+
+
+# ── share_cluster tool ───────────────────────────────────────────────────────
+
+def test_share_cluster_same():
+    assert _call("share_cluster", {"a": "Chan", "b": "Chen"}) is True
+
+
+def test_share_cluster_different():
+    assert _call("share_cluster", {"a": "Chan", "b": "Kim"}) is False
+
+
+def test_share_cluster_empty_input():
+    assert _call("share_cluster", {"a": "", "b": "Chan"}) is False
+
+
+# ── dialect tool ─────────────────────────────────────────────────────────────
+
+def test_dialect_cantonese():
+    assert _call("dialect", {"text": "chan"}) == "cantonese"
+
+
+def test_dialect_mandarin():
+    assert _call("dialect", {"text": "chen"}) == "mandarin_pinyin"
+
+
+def test_dialect_wade_giles():
+    assert _call("dialect", {"text": "chou"}) == "wade_giles"
+
+
+def test_dialect_unknown_returns_none():
+    assert _call("dialect", {"text": "Smith"}) is None
