@@ -121,7 +121,11 @@ nv dedupe names.csv --col name --out out.csv
 
 ---
 
-## Pandas accessor
+## Pandas
+
+```bash
+pip install "name-variants[pandas]"
+```
 
 ```python
 import pandas as pd
@@ -145,8 +149,6 @@ a = pd.Series(["Chan", "Park"])
 b = pd.Series(["Chen", "Bak"])
 a.nv.share_cluster_with(b)   # [True, True]
 ```
-
-Install the extra: `pip install "name-variants[pandas]"`
 
 ---
 
@@ -207,8 +209,6 @@ from name_variants import ALL_TABLES
 list(ALL_TABLES.keys())   # all 18 table names
 ```
 
----
-
 ## Chinese romanization systems
 
 | System | Examples |
@@ -222,8 +222,6 @@ list(ALL_TABLES.keys())   # all 18 table names
 | Postal romanization | Peking, Nanking, Chungking |
 | Traditional characters | 陳, 劉, 張, 楊, 趙 |
 
----
-
 ## NameCluster reference
 
 ```python
@@ -236,15 +234,6 @@ class NameCluster:
     def __contains__(self, text: str) -> bool  # case-insensitive
     def __iter__(self)                          # iterate all forms
     def __len__(self)
-```
-
----
-
-## Extras
-
-```bash
-pip install "name-variants[pandas]"   # pandas Series .nv accessor
-pip install "name-variants[mcp]"      # MCP server (Claude Desktop / Claude Code)
 ```
 
 ---
