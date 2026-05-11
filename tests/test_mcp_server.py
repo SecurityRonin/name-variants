@@ -1,8 +1,6 @@
 """Tests for the MCP server tools."""
 import asyncio
 
-import pytest
-
 from name_variants import NameCluster
 from name_variants.server import _cluster_to_dict, mcp
 
