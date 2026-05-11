@@ -18,7 +18,7 @@ pip install name-variants
 
 ## The core idea
 
-A `NameCluster` is a frozenset of co-equal representations. `陳`, `陈`, `chen`, `chan`, `tan`, `ong` are all members of the same Chinese surname cluster — none is more "real" than another. `lookup()` returns every cluster that contains your query, sorted by frequency:
+A `NameCluster` is a frozenset of co-equal representations. `陳`, `陈`, `chen`, `chan`, `tan`, `chern` are all members of the same Chinese surname cluster — none is more "real" than another. `lookup()` returns every cluster that contains your query, sorted by frequency:
 
 ```python
 from name_variants import lookup, share_cluster
