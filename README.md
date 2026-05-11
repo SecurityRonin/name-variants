@@ -8,7 +8,7 @@
 
 **`"Chan"` is simultaneously 陈 and 찬 and จัน — `lookup()` returns all of them.**
 
-1,558 name entries across 18 language tables. Every romanization system produces a member of an equivalence class: no canonical form, no ordering dependency, no silent data loss. `share_cluster("Hsu", "Xu")` is `True`. `lookup("Chan")` returns a Chinese surname cluster *and* a Korean given-name cluster, sorted by bearer count.
+Every romanization system produces a member of an equivalence class: no canonical form, no ordering dependency, no silent data loss. `share_cluster("Hsu", "Xu")` is `True`. `lookup("Chan")` returns a Chinese surname cluster *and* a Korean given-name cluster, sorted by bearer count.
 
 ```bash
 pip install name-variants
