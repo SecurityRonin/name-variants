@@ -150,6 +150,35 @@ Install the extra: `pip install "name-variants[pandas]"`
 
 ---
 
+## MCP server
+
+```bash
+pip install "name-variants[mcp]"
+nv-mcp   # starts the stdio server
+```
+
+Add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "name-variants": {
+      "command": "nv-mcp"
+    }
+  }
+}
+```
+
+Three tools are exposed:
+
+| Tool | Arguments | Returns |
+|---|---|---|
+| `lookup` | `text: str` | list of `{language, forms[], frequency}` clusters |
+| `share_cluster` | `a: str, b: str` | `true` / `false` |
+| `dialect` | `text: str` | romanization system string or `null` |
+
+---
+
 ## Language tables
 
 | Language | Entries | Coverage |
@@ -211,17 +240,18 @@ class NameCluster:
 
 ---
 
-## Optional extras
+## Extras
 
 ```bash
 pip install "name-variants[pandas]"   # pandas Series .nv accessor
+pip install "name-variants[mcp]"      # MCP server (Claude Desktop / Claude Code)
 ```
 
 ---
 
 ## Why equivalence classes instead of a canonical key?
 
-Early versions returned one "canonical" form per romanization string. This forced a false choice: `"Chan"` had to map to either `陈` *or* `찬`, not both. Table ordering became load-bearing — whichever table was imported last won. Romanizations had to be stripped from given-name tables to prevent collisions.
+A canonical-key model forces a false choice: `"Chan"` must map to either `陈` *or* `찬`, not both. Table ordering becomes load-bearing — whichever table is consulted last wins. Romanizations must be stripped from given-name tables to prevent collisions.
 
 The `NameCluster` model eliminates this: every romanization system's output is just another member of a frozenset. `lookup()` returns all matching clusters. Ambiguity is surfaced, not suppressed. The most likely interpretation comes first by frequency.
 
