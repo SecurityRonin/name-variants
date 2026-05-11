@@ -73,18 +73,18 @@ share_cluster("Chan", "Kim")         # False — different names
 share_cluster("", "Chan")            # False — empty input
 ```
 
-### lookup_dialect() — Chinese romanization system tag
+### dialect() — Chinese romanization system tag
 
 ```python
-from name_variants import lookup_dialect
+from name_variants import dialect
 
-lookup_dialect("chen")   # "mandarin_pinyin"
-lookup_dialect("chan")   # "cantonese"
-lookup_dialect("tan")    # "hokkien"
-lookup_dialect("chou")   # "wade_giles"
-lookup_dialect("hsu")    # "wade_giles"
-lookup_dialect("陳")     # "traditional"
-lookup_dialect("Smith")  # None
+dialect("chen")   # "mandarin_pinyin"
+dialect("chan")   # "cantonese"
+dialect("tan")    # "hokkien"
+dialect("chou")   # "wade_giles"
+dialect("hsu")    # "wade_giles"
+dialect("陳")     # "traditional"
+dialect("Smith")  # None
 ```
 
 ### normalize() — text preprocessing

@@ -1,6 +1,6 @@
 """Tests for Wade-Giles and postal Chinese surname romanizations."""
 
-from name_variants import lookup, lookup_dialect, share_cluster
+from name_variants import dialect, lookup, share_cluster
 
 
 def test_zhou_chou_same_cluster():
@@ -60,7 +60,7 @@ def test_xie_hsieh_same_cluster():
 def test_wade_giles_dialect_tag():
     # At least some W-G forms should be tagged
     # chou is W-G for 周
-    d = lookup_dialect("chou")
+    d = dialect("chou")
     assert d == "wade_giles", f"Expected wade_giles, got {d!r}"
 
 

@@ -202,7 +202,7 @@ def _get_dialect_index() -> dict[str, str]:
     return _DIALECT_INDEX
 
 
-def lookup_dialect(text: str) -> str | None:
+def dialect(text: str) -> str | None:
     """
     Return the romanization dialect/system for this variant string.
 
@@ -216,10 +216,9 @@ def lookup_dialect(text: str) -> str | None:
 
 __all__ = [
     "NameCluster",
-    "NameEntry",
     "lookup",
     "share_cluster",
     "ALL_TABLES",
     "normalize",
-    "lookup_dialect",
+    "dialect",
 ]

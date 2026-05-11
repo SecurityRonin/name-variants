@@ -81,10 +81,10 @@ def test_chinese_romanization_dialects_removed():
     )
 
 
-def test_lookup_dialect_works_without_separate_dict():
-    from name_variants import lookup_dialect
+def test_dialect_works_without_separate_dict():
+    from name_variants import dialect
 
-    assert lookup_dialect("chen") == "mandarin_pinyin"
-    assert lookup_dialect("chou") == "wade_giles"
-    assert lookup_dialect("chan") == "cantonese"
-    assert lookup_dialect("Smith") is None
+    assert dialect("chen") == "mandarin_pinyin"
+    assert dialect("chou") == "wade_giles"
+    assert dialect("chan") == "cantonese"
+    assert dialect("Smith") is None
