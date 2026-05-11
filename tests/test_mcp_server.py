@@ -1,4 +1,5 @@
 """Tests for the MCP server tools."""
+
 import asyncio
 
 from name_variants import NameCluster
@@ -11,6 +12,7 @@ def _call(tool: str, args: dict):
 
 
 # ── _cluster_to_dict ─────────────────────────────────────────────────────────
+
 
 def test_cluster_to_dict_fields():
     c = NameCluster(forms=frozenset(["chen", "陈"]), language="chinese", frequency=90_000_000)
@@ -28,6 +30,7 @@ def test_cluster_to_dict_no_frequency():
 
 
 # ── lookup tool ──────────────────────────────────────────────────────────────
+
 
 def test_lookup_chan_returns_chinese_first():
     result = _call("lookup", {"text": "Chan"})
@@ -52,6 +55,7 @@ def test_lookup_result_is_list_of_dicts():
 
 # ── share_cluster tool ───────────────────────────────────────────────────────
 
+
 def test_share_cluster_same():
     assert _call("share_cluster", {"a": "Chan", "b": "Chen"}) is True
 
@@ -65,6 +69,7 @@ def test_share_cluster_empty_input():
 
 
 # ── dialect tool ─────────────────────────────────────────────────────────────
+
 
 def test_dialect_cantonese():
     assert _call("dialect", {"text": "chan"}) == "cantonese"
@@ -80,3 +85,11 @@ def test_dialect_wade_giles():
 
 def test_dialect_unknown_returns_none():
     assert _call("dialect", {"text": "Smith"}) is None
+
+
+# ── server smoke test ────────────────────────────────────────────────────────
+
+
+def test_server_has_three_tools():
+    tool_names = {t.name for t in asyncio.run(mcp.list_tools())}
+    assert tool_names == {"lookup", "share_cluster", "dialect"}
