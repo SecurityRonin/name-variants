@@ -2,6 +2,7 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/SecurityRonin/name-variants/ci.yml?style=flat-square&label=tests)](https://github.com/SecurityRonin/name-variants/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![Sponsor](https://img.shields.io/badge/sponsor-h4x0r-ea4aaa?logo=github-sponsors&style=flat-square)](https://github.com/sponsors/h4x0r)
+[![name-variants MCP server](https://glama.ai/mcp/servers/SecurityRonin/name-variants/badges/score.svg)](https://glama.ai/mcp/servers/SecurityRonin/name-variants)
 
 # name-variants
 
