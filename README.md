@@ -10,6 +10,8 @@
 
 Every romanization system produces a member of an equivalence class: no canonical form, no ordering dependency, no silent data loss. `share_cluster("Hsu", "Xu")` is `True`. `lookup("Chan")` returns a Chinese surname cluster *and* a Korean given-name cluster, sorted by bearer count.
 
+Available as a Python library, CLI, pandas accessor, and [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server.
+
 ```bash
 pip install name-variants
 ```
@@ -153,7 +155,9 @@ a.nv.share_cluster_with(b)   # [True, True]
 
 ---
 
-## MCP server
+## MCP server (Model Context Protocol)
+
+`name-variants` ships a built-in [Model Context Protocol](https://modelcontextprotocol.io) server, exposing name lookup as MCP tools that any MCP-compatible AI client (Claude Desktop, Claude Code, Cursor, etc.) can call directly.
 
 **Claude Code:**
 ```bash
@@ -172,7 +176,7 @@ claude mcp add name-variants -- uvx --from "name-variants[mcp]" nv-mcp
 }
 ```
 
-Three tools are exposed:
+Three MCP tools are exposed:
 
 | Tool | Arguments | Returns |
 |---|---|---|
