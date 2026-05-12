@@ -66,6 +66,9 @@ select = ["E", "F", "W", "I", "UP"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+[tool.uv]
+default-extras = ["mcp"]
+
 [tool.bandit]
 exclude_dirs = ["tests", "scripts", "codegen"]
 skips = []
