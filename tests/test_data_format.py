@@ -88,3 +88,14 @@ def test_dialect_works_without_separate_dict():
     assert dialect("chou") == "wade_giles"
     assert dialect("chan") == "cantonese"
     assert dialect("Smith") is None
+
+
+def test_chinese_surnames_use_traditional_keys():
+    from name_variants.chinese_surnames import CHINESE_SURNAME_VARIANTS
+
+    for key, entry in CHINESE_SURNAME_VARIANTS.items():
+        dialects = entry.get("dialects", {})
+        trad_forms = [f for f, d in dialects.items() if d == "traditional"]
+        assert len(trad_forms) == 0 or key in trad_forms, (
+            f"Key {key!r} should be the Traditional form but traditional form is {trad_forms}"
+        )
