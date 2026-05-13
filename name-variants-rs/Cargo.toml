@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 description = "Multilingual name romanization lookup tables: Chinese, Japanese, Korean, Arabic, Vietnamese, Indian, Persian, Hebrew, Thai, Greek, Turkish, Russian, Indonesian/Malay"
 license = "MIT"
-repository = "https://github.com/h4x0r/name-variants"
+repository = "https://github.com/SecurityRonin/name-variants"
 keywords = ["names", "romanization", "transliteration", "nlp", "cjk"]
 categories = ["text-processing"]
 
