@@ -2,8 +2,8 @@
 Chinese surname lookup: Simplified Han → romanization variants.
 Covers Mandarin (Pinyin), Cantonese (Jyutping/Yale), Hokkien/Teochew/Hakka, Wade-Giles.
 
-Key: always Simplified character. Traditional forms (e.g. 陳) are included as
-co-equal members of the same cluster — both scripts resolve via the form index.
+Key: always Traditional character (where one exists). Simplified form is included
+as a co-equal member of the same cluster with dialect tag "simplified".
 Romanizations: all lowercase.
 
 Sources:
@@ -34,9 +34,8 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "ly": "hokkien",
         },
     },
-    "张": {
+    "張": {
         "forms": [
-            "張",
             "zhang",
             "chang",
             "cheung",
@@ -46,6 +45,7 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "chong",
             "chung",
             "jeung",
+            "张",
         ],
         "frequency": 87_500_000,
         "dialects": {
@@ -58,11 +58,11 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "teo": "hokkien",
             "tio": "teochew",
             "zhang": "mandarin_pinyin",
-            "張": "traditional",
+            "张": "simplified",
         },
     },
-    "刘": {
-        "forms": ["劉", "liu", "lau", "lew", "low", "liew"],
+    "劉": {
+        "forms": ["liu", "lau", "lew", "low", "liew", "刘"],
         "frequency": 73_000_000,
         "dialects": {
             "lau": "cantonese",
@@ -70,11 +70,11 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "liew": "hokkien",
             "liu": "mandarin_pinyin",
             "low": "hokkien",
-            "劉": "traditional",
+            "刘": "simplified",
         },
     },
-    "陈": {
-        "forms": ["陳", "chen", "chan", "tan", "chin", "zen", "chern"],
+    "陳": {
+        "forms": ["chen", "chan", "tan", "chin", "zen", "chern", "陈"],
         "frequency": 70_500_000,
         "dialects": {
             "chan": "cantonese",
@@ -83,11 +83,11 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "chin": "hakka",
             "tan": "hokkien",
             "zen": "mandarin_pinyin",
-            "陳": "traditional",
+            "陈": "simplified",
         },
     },
-    "杨": {
-        "forms": ["楊", "yang", "yeung", "yeong", "yong", "young", "io"],
+    "楊": {
+        "forms": ["yang", "yeung", "yeong", "yong", "young", "io", "杨"],
         "frequency": 46_200_000,
         "dialects": {
             "io": "teochew",
@@ -96,11 +96,11 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "yeung": "cantonese",
             "yong": "hokkien",
             "young": "hokkien",
-            "楊": "traditional",
+            "杨": "simplified",
         },
     },
-    "黄": {
-        "forms": ["黃", "huang", "ng", "oei", "uy", "wee", "way", "huong"],
+    "黃": {
+        "forms": ["huang", "ng", "oei", "uy", "wee", "way", "huong", "黄"],
         "frequency": 32_000_000,
         "dialects": {
             "huang": "mandarin_pinyin",
@@ -110,11 +110,11 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "uy": "hokkien",
             "way": "hokkien",
             "wee": "hokkien",
-            "黃": "traditional",
+            "黄": "simplified",
         },
     },
-    "赵": {
-        "forms": ["趙", "zhao", "chao", "chew", "chu", "chiu", "tio", "dzao"],
+    "趙": {
+        "forms": ["zhao", "chao", "chew", "chu", "chiu", "tio", "dzao", "赵"],
         "frequency": 28_400_000,
         "dialects": {
             "chao": "wade_giles",
@@ -124,11 +124,11 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "dzao": "wade_giles",
             "tio": "teochew",
             "zhao": "mandarin_pinyin",
-            "趙": "traditional",
+            "赵": "simplified",
         },
     },
-    "吴": {
-        "forms": ["吳", "wu", "ng", "goh", "ngo", "woo", "ou"],
+    "吳": {
+        "forms": ["wu", "ng", "goh", "ngo", "woo", "ou", "吴"],
         "frequency": 27_400_000,
         "dialects": {
             "goh": "hokkien",
@@ -137,7 +137,7 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "ou": "teochew",
             "woo": "cantonese",
             "wu": "mandarin_pinyin",
-            "吳": "traditional",
+            "吴": "simplified",
         },
     },
     "周": {
@@ -223,8 +223,8 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "lum": "cantonese",
         },
     },
-    "郑": {
-        "forms": ["鄭", "zheng", "cheng", "teh", "tay", "tee", "ching", "zeng"],
+    "鄭": {
+        "forms": ["zheng", "cheng", "teh", "tay", "tee", "ching", "zeng", "郑"],
         "dialects": {
             "cheng": "cantonese",
             "ching": "hakka",
@@ -233,7 +233,7 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "teh": "hokkien",
             "zeng": "mandarin_pinyin",
             "zheng": "mandarin_pinyin",
-            "鄭": "traditional",
+            "郑": "simplified",
         },
     },
     "谢": {
@@ -244,15 +244,15 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "xie": "mandarin_pinyin",
         },
     },
-    "罗": {
-        "forms": ["羅", "luo", "lo", "law", "loh"],
+    "羅": {
+        "forms": ["luo", "lo", "law", "loh", "罗"],
         "frequency": 12_800_000,
         "dialects": {
             "law": "cantonese",
             "lo": "cantonese",
             "loh": "hokkien",
             "luo": "mandarin_pinyin",
-            "羅": "traditional",
+            "罗": "simplified",
         },
     },
     "梁": {
@@ -280,8 +280,8 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "tong": "cantonese",
         },
     },
-    "许": {
-        "forms": ["許", "xu", "hui", "kho", "khoo", "heui", "hee"],
+    "許": {
+        "forms": ["xu", "hui", "kho", "khoo", "heui", "hee", "许"],
         "dialects": {
             "hee": "hokkien",
             "heui": "cantonese",
@@ -289,20 +289,20 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "kho": "hokkien",
             "khoo": "hokkien",
             "xu": "mandarin_pinyin",
-            "許": "traditional",
+            "许": "simplified",
         },
     },
     "韩": {
         "forms": ["韓", "han", "hon", "hann"],
     },
-    "冯": {
-        "forms": ["馮", "feng", "fung", "fong", "hong", "foong"],
+    "馮": {
+        "forms": ["feng", "fung", "fong", "hong", "foong", "冯"],
         "dialects": {
             "feng": "mandarin_pinyin",
             "fong": "cantonese",
             "foong": "hokkien",
             "fung": "cantonese",
-            "馮": "traditional",
+            "冯": "simplified",
         },
     },
     "邓": {
@@ -330,15 +330,15 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "zeng": "mandarin_pinyin",
         },
     },
-    "萧": {
-        "forms": ["蕭", "xiao", "hsiao", "siu", "sieu", "sew"],
+    "蕭": {
+        "forms": ["xiao", "hsiao", "siu", "sieu", "sew", "萧"],
         "dialects": {
             "hsiao": "wade_giles",
             "sew": "hokkien",
             "sieu": "hokkien",
             "siu": "cantonese",
             "xiao": "mandarin_pinyin",
-            "蕭": "traditional",
+            "萧": "simplified",
         },
     },
     "田": {
@@ -359,14 +359,14 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
     "于": {
         "forms": ["yu", "yee", "ee"],
     },
-    "蒋": {
-        "forms": ["蔣", "jiang", "chiang", "cheung", "tsiang"],
+    "蔣": {
+        "forms": ["jiang", "chiang", "cheung", "tsiang", "蒋"],
         "dialects": {
             "cheung": "cantonese",
             "chiang": "wade_giles",
             "jiang": "mandarin_pinyin",
             "tsiang": "wade_giles",
-            "蔣": "traditional",
+            "蒋": "simplified",
         },
     },
     "蔡": {
@@ -381,18 +381,18 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
     "余": {
         "forms": ["yu", "yee", "ee"],
     },
-    "苏": {
-        "forms": ["蘇", "su", "soo", "soh", "see"],
+    "蘇": {
+        "forms": ["su", "soo", "soh", "see", "苏"],
         "dialects": {
             "see": "hokkien",
             "soh": "hokkien",
             "soo": "hokkien",
             "su": "mandarin_pinyin",
-            "蘇": "traditional",
+            "苏": "simplified",
         },
     },
-    "叶": {
-        "forms": ["葉", "ye", "yeh", "yap", "ip", "yip", "jip"],
+    "葉": {
+        "forms": ["ye", "yeh", "yap", "ip", "yip", "jip", "叶"],
         "dialects": {
             "ip": "cantonese",
             "jip": "hakka",
@@ -400,7 +400,7 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "ye": "mandarin_pinyin",
             "yeh": "wade_giles",
             "yip": "cantonese",
-            "葉": "traditional",
+            "叶": "simplified",
         },
     },
     "吕": {
@@ -807,13 +807,13 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
     "商": {
         "forms": ["shang", "soeng"],
     },
-    "关": {
-        "forms": ["關", "guan", "kwan", "kwaan"],
+    "關": {
+        "forms": ["guan", "kwan", "kwaan", "关"],
         "dialects": {
             "guan": "mandarin_pinyin",
             "kwaan": "cantonese",
             "kwan": "cantonese",
-            "關": "traditional",
+            "关": "simplified",
         },
     },
 }
