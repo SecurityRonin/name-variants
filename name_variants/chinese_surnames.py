@@ -236,9 +236,10 @@ CHINESE_SURNAME_VARIANTS: dict[str, dict] = {
             "郑": "simplified",
         },
     },
-    "谢": {
-        "forms": ["謝", "xie", "hsieh", "tse", "chia", "sia", "ze"],
+    "謝": {
+        "forms": ["谢", "xie", "hsieh", "tse", "chia", "sia", "ze"],
         "dialects": {
+            "谢": "simplified",
             "hsieh": "wade_giles",
             "tse": "cantonese",
             "xie": "mandarin_pinyin",

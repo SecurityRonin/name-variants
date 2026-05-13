@@ -19,7 +19,7 @@ def runner():
 def test_lookup_known(runner):
     result = runner.invoke(cli, ["lookup", "Chan"])
     assert result.exit_code == 0
-    assert "陈" in result.output
+    assert "陳" in result.output
 
 
 def test_lookup_unknown_passthrough(runner):
@@ -31,7 +31,7 @@ def test_lookup_unknown_passthrough(runner):
 def test_lookup_multiword(runner):
     result = runner.invoke(cli, ["lookup", "Chan Wai Ming"])
     assert result.exit_code == 0
-    assert "陈" in result.output
+    assert "陳" in result.output
 
 
 # ── nv match ──────────────────────────────────────────────────────────────────
@@ -75,7 +75,7 @@ def test_canonicalize_csv_adds_column(runner, tmp_path):
     result = runner.invoke(cli, ["canonicalize-csv", src, "--col", "name", "--out", out])
     assert result.exit_code == 0
     rows = list(csv.DictReader(open(out)))
-    assert rows[0]["name_canonical"] == "陈"
+    assert rows[0]["name_canonical"] == "陳"
     assert rows[1]["name_canonical"] == "Smith"  # passthrough for unknown
     assert rows[2]["name_canonical"] == "박"
 
@@ -84,7 +84,7 @@ def test_canonicalize_csv_stdout(runner, tmp_path):
     src = _write_csv(tmp_path, [("1", "Chan")])
     result = runner.invoke(cli, ["canonicalize-csv", src, "--col", "name"])
     assert result.exit_code == 0
-    assert "陈" in result.output
+    assert "陳" in result.output
 
 
 def test_canonicalize_csv_custom_output_column(runner, tmp_path):
@@ -93,7 +93,7 @@ def test_canonicalize_csv_custom_output_column(runner, tmp_path):
     runner.invoke(cli, ["canonicalize-csv", src, "--col", "name", "--out", out, "--out-col", "key"])
     rows = list(csv.DictReader(open(out)))
     assert "key" in rows[0]
-    assert rows[0]["key"] == "陈"
+    assert rows[0]["key"] == "陳"
 
 
 def test_canonicalize_csv_missing_col_error(runner, tmp_path):

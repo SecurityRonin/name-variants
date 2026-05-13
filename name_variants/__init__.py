@@ -189,9 +189,13 @@ def normalize(text: str, *, strip_diacritics: bool = False) -> str:
 def _build_dialect_index() -> dict[str, str]:
     index: dict[str, str] = {}
     for table in ALL_TABLES.values():
-        for entry in table.values():
-            for form, dialect in entry.get("dialects", {}).items():
-                index[form.lower()] = dialect
+        for storage_key, entry in table.items():
+            dialects = entry.get("dialects", {})
+            for form, tag in dialects.items():
+                index[form.lower()] = tag
+            # If any form is tagged "simplified", the storage key is the Traditional form
+            if any(tag == "simplified" for tag in dialects.values()):
+                index[storage_key] = "traditional"
     return index
 
 
