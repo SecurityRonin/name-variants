@@ -227,6 +227,7 @@ list(ALL_TABLES.keys())   # all 18 table names
 | Teochew | Teo, Ng |
 | Postal romanization | Peking, Nanking, Chungking |
 | Traditional characters | 陳, 劉, 張, 楊, 趙 |
+| Simplified characters | 陈, 刘, 张, 杨, 赵 |
 
 ## NameCluster reference
 
