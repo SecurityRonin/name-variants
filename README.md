@@ -108,7 +108,7 @@ normalize("chan​")                          # strips zero-width spaces
 ```bash
 nv lookup Chan
 # [chinese] (~90M bearers)
-#   陈  陳  chan  chen  tan  ...
+#   陳  陈  chan  chen  tan  ...
 # [korean_given]
 #   찬  chan  chahn
 
