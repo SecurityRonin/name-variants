@@ -1,4 +1,5 @@
 [![PyPI](https://img.shields.io/pypi/v/name-variants?style=flat-square)](https://pypi.org/project/name-variants/)
+[![docs.rs](https://img.shields.io/docsrs/name-variants?style=flat-square)](https://docs.rs/name-variants)
 [![Tests](https://img.shields.io/github/actions/workflow/status/SecurityRonin/name-variants/ci.yml?style=flat-square&label=tests)](https://github.com/SecurityRonin/name-variants/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![Sponsor](https://img.shields.io/badge/sponsor-h4x0r-ea4aaa?logo=github-sponsors&style=flat-square)](https://github.com/sponsors/h4x0r)
