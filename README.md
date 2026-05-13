@@ -215,7 +215,7 @@ from name_variants import ALL_TABLES
 list(ALL_TABLES.keys())   # all 18 table names
 ```
 
-## Chinese romanization systems
+## Chinese writing systems
 
 | System | Examples |
 |---|---|
@@ -247,7 +247,7 @@ class NameCluster:
 
 ## Why equivalence classes instead of a canonical key?
 
-A canonical-key model forces a false choice: `"Chan"` must map to either `陈` *or* `찬`, not both. Table ordering becomes load-bearing — whichever table is consulted last wins. Romanizations must be stripped from given-name tables to prevent collisions.
+A canonical-key model forces a false choice: `"Chan"` must map to either `陳`, `陈` *or* `찬`, not both. Table ordering becomes load-bearing — whichever table is consulted last wins. Romanizations must be stripped from given-name tables to prevent collisions.
 
 The `NameCluster` model eliminates this: every romanization system's output is just another member of a frozenset. `lookup()` returns all matching clusters. Ambiguity is surfaced, not suppressed. The most likely interpretation comes first by frequency.
 
