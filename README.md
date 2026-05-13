@@ -30,8 +30,8 @@ clusters = lookup("Chan")
 #  NameCluster(language='korean_given', 3 forms)]
 
 # Both Chinese scripts are in the same cluster — co-equal
-assert "陈" in clusters[0]   # Simplified
 assert "陳" in clusters[0]   # Traditional
+assert "陈" in clusters[0]   # Simplified
 
 # Membership is case-insensitive
 assert "CHAN" in clusters[0]
