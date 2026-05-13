@@ -84,9 +84,10 @@ from name_variants import dialect
 dialect("chen")   # "mandarin_pinyin"
 dialect("chan")   # "cantonese"
 dialect("tan")    # "hokkien"
+dialect("陳")     # "traditional"
+
 dialect("chou")   # "wade_giles"
 dialect("hsu")    # "wade_giles"
-dialect("陳")     # "traditional"
 dialect("Smith")  # None
 ```
 
