@@ -1,7 +1,7 @@
 //! Multilingual name romanization lookup tables.
 //!
 //! Maps romanization variants to their canonical native-script key so that
-//! `Chen`, `Chan`, and `Tan` all resolve to `陈`.
+//! `Chen`, `Chan`, and `Tan` all resolve to `陳`.
 
 mod generated;
 
@@ -18,7 +18,7 @@ mod wasm;
 /// # Examples
 /// ```
 /// use name_variants::lookup_key;
-/// assert_eq!(lookup_key("Chan"), Some("陈"));
+/// assert_eq!(lookup_key("Chan"), Some("陳"));
 /// assert_eq!(lookup_key("Smith"), None);
 /// ```
 pub fn lookup_key(text: &str) -> Option<&'static str> {
@@ -53,7 +53,7 @@ pub fn lookup_key(text: &str) -> Option<&'static str> {
 /// ```
 /// use name_variants::lookup_all;
 /// let (key, variants) = lookup_all("Chan").unwrap();
-/// assert_eq!(key, "陈");
+/// assert_eq!(key, "陳");
 /// assert!(variants.contains(&"chen"));
 /// ```
 pub fn lookup_all(text: &str) -> Option<(&'static str, &'static [&'static str])> {
@@ -125,8 +125,8 @@ mod tests {
     }
 
     #[test]
-    fn chan_resolves_to_simplified_chinese() {
-        assert_eq!(lookup_key("chan"), Some("陈"));
+    fn chan_resolves_to_traditional_chinese() {
+        assert_eq!(lookup_key("chan"), Some("陳"));
     }
 
     #[test]
@@ -167,19 +167,19 @@ mod tests {
     // ── Case-insensitive ─────────────────────────────────────────────────────
     #[test]
     fn uppercase_input_matches() {
-        assert_eq!(lookup_key("CHAN"), Some("陈"));
+        assert_eq!(lookup_key("CHAN"), Some("陳"));
     }
 
     #[test]
     fn mixed_case_input_matches() {
-        assert_eq!(lookup_key("Chan"), Some("陈"));
+        assert_eq!(lookup_key("Chan"), Some("陳"));
     }
 
     // ── Multi-word token split ────────────────────────────────────────────────
     #[test]
     fn full_name_resolves_via_token_split() {
         // "chan wai ming" → first token "chan" matches
-        assert_eq!(lookup_key("Chan Wai Ming"), Some("陈"));
+        assert_eq!(lookup_key("Chan Wai Ming"), Some("陳"));
     }
 
     #[test]
@@ -204,9 +204,9 @@ mod tests {
     #[test]
     fn lookup_all_chan_returns_variants() {
         let (key, variants) = lookup_all("Chan").unwrap();
-        assert_eq!(key, "陈");
+        assert_eq!(key, "陳");
         assert!(variants.contains(&"chen"));
-        assert!(variants.contains(&"陳"));
+        assert!(variants.contains(&"陈"));
     }
 
     #[test]
