@@ -81,4 +81,7 @@ def test_nv_cluster_id_returns_string_series():
     s = pd.Series(["Chan", "Smith", "Park"])
     result = s.nv.cluster_id()
     assert isinstance(result, pd.Series)
-    assert result.dtype == object
+    # pandas >= 3.0 infers StringDtype for string data; earlier versions use object.
+    # The contract is a Series of strings, not a specific dtype representation.
+    assert pd.api.types.is_string_dtype(result)
+    assert all(isinstance(v, str) for v in result)
