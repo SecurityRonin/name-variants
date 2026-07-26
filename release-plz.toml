@@ -25,10 +25,14 @@ changelog_update = true
 # build (incl. release-plz's own release commits) never prepare a release.
 release_commits = "^(feat|fix|perf|refactor|doc|revert)"
 
-# The pyo3 extension module ships as a PyPI wheel, never to crates.io.
+# The pyo3 extension module ships as a PyPI wheel, never to crates.io. Both flags
+# must agree with the crate's Cargo.toml (publish = false), or release-plz rejects
+# the mismatch: `release = false` skips release preparation, `publish = false`
+# matches the manifest so no crates.io publish is attempted.
 [[package]]
 name = "name-variants-py"
 release = false
+publish = false
 
 [changelog]
 commit_parsers = [
