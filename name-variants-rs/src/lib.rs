@@ -3,6 +3,8 @@
 //! Maps romanization variants to their canonical native-script key so that
 //! `Chen`, `Chan`, and `Tan` all resolve to `陳`.
 
+#![cfg_attr(test, allow(clippy::unwrap_used, clippy::expect_used))]
+
 mod generated;
 
 #[cfg(target_arch = "wasm32")]
@@ -64,7 +66,7 @@ pub fn lookup_all(text: &str) -> Option<(&'static str, &'static [&'static str])>
 
 /// Return `(language, forms_slice)` for a canonical storage key, or `None` if unknown.
 ///
-/// Used by the PyO3 extension to build `{"language": "...", "forms": [...]}` dicts.
+/// Used by the `PyO3` extension to build `{"language": "...", "forms": [...]}` dicts.
 pub fn get_cluster_info(canonical_key: &str) -> Option<(&'static str, &'static [&'static str])> {
     let language = generated::LANGUAGE.get(canonical_key)?;
     let forms = generated::VARIANTS.get(canonical_key)?;
