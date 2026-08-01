@@ -1,7 +1,14 @@
+// `#[pyfunction]` expands to a wrapper carrying an `Into<PyErr>` that clippy
+// reports against this crate's spans. It lives in pyo3's generated sibling item,
+// so a function-scoped allow does not reach it, and there is nothing here to
+// remove. Crate-scoped because this crate is nothing but pyo3 bindings
+// (publish = false); drop it when pyo3 stops emitting the conversion.
+#![allow(clippy::useless_conversion)]
+
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyList};
 
-/// Return all NameClusters that contain this text as a member form.
+/// Return all `NameClusters` that contain this text as a member form.
 ///
 /// Returns a list of dicts: ``[{"language": "chinese", "forms": ["陈", "chen", ...]}, ...]``
 /// Returns ``[]`` for unknown names or empty input.
@@ -30,7 +37,7 @@ fn lookup(py: Python<'_>, text: &str) -> PyResult<PyObject> {
     Ok(results.into())
 }
 
-/// PyO3 native extension for name-variants.
+/// `PyO3` native extension for name-variants.
 ///
 /// Optional high-performance backend. Import via ``name_variants._native``.
 #[pymodule]
