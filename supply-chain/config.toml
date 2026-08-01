@@ -47,10 +47,6 @@ criteria = "safe-to-deploy"
 version = "0.9.1"
 criteria = "safe-to-deploy"
 
-[[exemptions.name-variants]]
-version = "0.1.0"
-criteria = "safe-to-deploy"
-
 [[exemptions.once_cell]]
 version = "1.21.4"
 criteria = "safe-to-deploy"
