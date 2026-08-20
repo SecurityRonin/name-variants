@@ -15,8 +15,15 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
 
+      # Was `curl https://rustwasm.github.io/... | sh`: an unpinned remote script
+      # executed as-is, with no retry and no way to know what ran. The fleet
+      # SHA-pins every action; piping a URL into a shell is the opposite of that,
+      # and it fails the whole job on any blip. install-action ships a pinned,
+      # checksummed binary and caches it.
       - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+        uses: taiki-e/install-action@15449e3094499af05d8d964a1c884208e4b8b595 # v2.81.11
+        with:
+          tool: wasm-pack
 
       - name: Build WASM package
         run: wasm-pack build name-variants-rs --target web --out-dir ../name-variants-wasm/pkg
