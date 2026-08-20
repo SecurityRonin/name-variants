@@ -2,6 +2,12 @@
 name = "name-variants-py"
 version = "0.1.0"
 edition = "2021"
+# 1.83, and the number comes from pyo3 0.29, which declares it. This crate is
+# publish = false and is built by maturin, so the floor is a CI parameter rather
+# than a promise to anyone. The PUBLISHED `name-variants` keeps 1.80 -- it does
+# not depend on pyo3, and raising the workspace to accommodate a private binding
+# would weaken a real promise to satisfy one that does not exist.
+rust-version = "1.83"
 license = "MIT"
 publish = false
 
@@ -10,7 +16,7 @@ name = "_native"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.22", features = ["extension-module"] }
+pyo3 = { version = "0.29", features = ["extension-module"] }
 name-variants = { path = "../name-variants-rs" }
 
 [lints]

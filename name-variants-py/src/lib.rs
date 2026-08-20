@@ -13,13 +13,13 @@ use pyo3::types::{PyDict, PyList};
 /// Returns a list of dicts: ``[{"language": "chinese", "forms": ["陈", "chen", ...]}, ...]``
 /// Returns ``[]`` for unknown names or empty input.
 #[pyfunction]
-fn lookup(py: Python<'_>, text: &str) -> PyResult<PyObject> {
+fn lookup<'py>(py: Python<'py>, text: &str) -> PyResult<Bound<'py, PyList>> {
     let candidates = name_variants::lookup_candidates(text);
-    let results = PyList::empty_bound(py);
+    let results = PyList::empty(py);
 
     for storage_key in &candidates {
         if let Some((language, forms)) = name_variants::get_cluster_info(storage_key) {
-            let d = PyDict::new_bound(py);
+            let d = PyDict::new(py);
             d.set_item("language", language)?;
             // Build forms list: canonical key first, then variants (deduped)
             let mut all_forms: Vec<&str> = vec![storage_key];
@@ -28,13 +28,13 @@ fn lookup(py: Python<'_>, text: &str) -> PyResult<PyObject> {
                     all_forms.push(f);
                 }
             }
-            let py_forms = PyList::new_bound(py, &all_forms);
+            let py_forms = PyList::new(py, &all_forms)?;
             d.set_item("forms", py_forms)?;
             results.append(d)?;
         }
     }
 
-    Ok(results.into())
+    Ok(results)
 }
 
 /// `PyO3` native extension for name-variants.
