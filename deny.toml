@@ -17,6 +17,12 @@ allow = [
 ]
 
 [bans]
+# `name-variants` is reached by `name-variants-py` as a path dependency with no
+# version, because the pyo3 crate is publish = false and is built by maturin
+# rather than packaged. That is a wildcard by construction, not an unpinned
+# third-party dependency. This permits wildcards ONLY for path deps on private
+# crates; a genuine unpinned dependency on a published crate still fails.
+allow-wildcard-paths = true
 multiple-versions = "deny"
 wildcards = "deny"
 
