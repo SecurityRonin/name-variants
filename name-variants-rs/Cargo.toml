@@ -2,6 +2,14 @@
 name = "name-variants"
 version = "0.1.1"
 edition = "2021"
+# 1.80, and the number is measured. The old job asserted 1.85, which was never
+# checked against anything. The CRATE itself builds on 1.75; what stops the
+# declaration going that low is this repo's Cargo.lock, which is v4 and cannot be
+# parsed by a cargo old enough to matter. That is a property of our tree, not of
+# the published crate -- a downstream resolves its own lock -- but in-tree
+# verification is what CI can actually do, so the declared floor is the one CI
+# can prove.
+rust-version = "1.80"
 description = "Multilingual name romanization lookup tables: Chinese, Japanese, Korean, Arabic, Vietnamese, Indian, Persian, Hebrew, Thai, Greek, Turkish, Russian, Indonesian/Malay"
 license = "MIT"
 repository = "https://github.com/SecurityRonin/name-variants"

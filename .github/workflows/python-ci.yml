@@ -1,0 +1,72 @@
+# The Python side of this repo, carved out of ci.yml when the RUST side moved to
+# the shared fleet workflow. It stays here because none of it is expressible as
+# Rust CI: ruff, bandit, pip-audit, a pytest matrix across three interpreters,
+# and the codegen-drift check that keeps `generated.rs` honest against the
+# Python source tables.
+#
+# codegen-drift is the load-bearing one. `generated.rs` is compiled Rust
+# produced FROM the Python catalog, so drift means the two ecosystems disagree
+# about the same data -- a correctness gate, not a style one.
+name: python-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "ruff>=0.9"
+      - run: ruff check name_variants/ tests/
+      - run: ruff format --check name_variants/ tests/
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --upgrade pip "bandit[toml]>=1.7" "pip-audit>=2.7"
+      - run: pip install -e "."
+      - name: SAST — bandit
+        run: bandit -c pyproject.toml -r name_variants/ -ll
+      - name: Dependency audit — pip-audit
+        run: pip-audit --skip-editable
+  python-tests:
+    runs-on: ubuntu-latest
+    needs: [lint, security]
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev,mcp,pandas]"
+      - run: pytest tests/ -v
+  codegen-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e "."
+      - run: python codegen/gen_rust.py
+      - name: Fail if generated.rs changed
+        run: |
+          if ! git diff --exit-code name-variants-rs/src/generated.rs; then
+            echo "ERROR: name-variants-rs/src/generated.rs is out of sync."
+            echo "Run 'python codegen/gen_rust.py' and commit the result."
+            exit 1
+          fi
